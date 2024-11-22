@@ -1,0 +1,148 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import image1 from '@/images/photos/image-1.gif'
+
+export const article = {
+  author: 'Anas Figuigui',
+  date: '2024-11-03',
+  title: 'Snake :',
+  description:
+    'Snake est une réinterprétation dynamique et colorée du célèbre jeu Snake, mettant en avant des visuels néons et une expérience de jeu fluide.',
+}
+
+export const metadata = {
+  title: article.title,
+  description: article.description,
+}
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+**Snake** est une version revisitée et modernisée du célèbre jeu Snake, combinant des mécaniques classiques avec des visuels néons captivants et une fluidité exemplaire. Ce projet explore les possibilités créatives offertes par le développement en JavaScript, tout en offrant une expérience engageante pour les joueurs.
+
+<Image src={image1} alt="Capture d'écran du gameplay de Snake" />
+
+## Caractéristiques Clés
+
+1. **Gameplay Classique** : Le joueur contrôle un serpent qui s’allonge à chaque nourriture consommée, tout en évitant de se heurter à ses propres segments.
+2. **Visuels Néons** : Une esthétique moderne avec des couleurs éclatantes et des effets lumineux.
+3. **Difficulté Progressive** : La vitesse et la complexité augmentent au fur et à mesure du jeu.
+4. **Meilleur Score** : Système de sauvegarde des scores les plus élevés dans le stockage local.
+
+## Détails Techniques
+
+- **Technologie** : Développé avec HTML, CSS et JavaScript.
+- **Type de Jeu** : Arcade, jouable en solo.
+- **Plateforme** : Application web, accessible via navigateur.
+
+
+
+## Classe `Snake` : Mécanique principale du serpent
+```javascript
+class Snake {
+  constructor(i, type) {
+    this.pos = new helpers.Vec(W / 2, H / 2); // Position initiale au centre
+    this.dir = new helpers.Vec(0, 0); // Direction initiale (immobile)
+    this.size = W / cells; // Taille d'une cellule du serpent
+    this.history = []; // Historique des positions pour le corps
+    this.total = 1; // Longueur initiale du serpent
+  }
+
+  draw() {
+    // Dessine la tête du serpent
+    CTX.fillStyle = "white";
+    CTX.fillRect(this.pos.x, this.pos.y, this.size, this.size);
+    // Dessine le corps du serpent
+    this.history.forEach(({ x, y }) => {
+      CTX.fillStyle = "rgba(225,225,225,1)";
+      CTX.fillRect(x, y, this.size, this.size);
+    });
+  }
+
+  update() {
+    this.walls(); // Gestion des bordures
+    this.history[this.total - 1] = new helpers.Vec(this.pos.x, this.pos.y);
+    for (let i = 0; i < this.total - 1; i++) {
+      this.history[i] = this.history[i + 1];
+    }
+    this.pos.add(this.dir); // Mise à jour de la position
+    if (helpers.isCollision(this.pos, food.pos)) {
+      this.total++; // Augmente la taille du serpent
+      food.spawn(); // Génère un nouvel aliment
+    }
+  }
+
+  walls() {
+    // Le serpent traverse les murs et revient de l'autre côté
+    if (this.pos.x < 0) this.pos.x = W - this.size;
+    if (this.pos.x >= W) this.pos.x = 0;
+    if (this.pos.y < 0) this.pos.y = H - this.size;
+    if (this.pos.y >= H) this.pos.y = 0;
+  }
+}
+```
+## Classe `Food` : Gestion des aliments
+```javascript
+class Food {
+  constructor() {
+    this.pos = new helpers.Vec(
+      ~~(Math.random() * cells) * cellSize,
+      ~~(Math.random() * cells) * cellSize
+    ); // Position aléatoire dans la grille
+    this.size = cellSize; // Taille identique à une cellule
+    this.color = `hsl(${helpers.randHue()}, 100%, 50%)`; // Couleur dynamique
+  }
+
+  draw() {
+    CTX.fillStyle = this.color;
+    CTX.fillRect(this.pos.x, this.pos.y, this.size, this.size);
+  }
+
+  spawn() {
+    // Génére une nouvelle position sans collision avec le serpent
+    let randX = ~~(Math.random() * cells) * this.size;
+    let randY = ~~(Math.random() * cells) * this.size;
+    if (snake.history.some((segment) => helpers.isCollision(segment, this.pos))) {
+      return this.spawn(); // Réessaye si la position est occupée
+    }
+    this.pos = new helpers.Vec(randX, randY);
+  }
+}
+```
+## Gestion des `contrôles` : Déplacement du serpent
+```javascript
+let KEY = {
+  ArrowUp: false,
+  ArrowRight: false,
+  ArrowDown: false,
+  ArrowLeft: false,
+
+  listen() {
+    addEventListener("keydown", (e) => {
+      if (e.key === "ArrowUp" && !this.ArrowDown) this.ArrowUp = true;
+      if (e.key === "ArrowDown" && !this.ArrowUp) this.ArrowDown = true;
+      if (e.key === "ArrowLeft" && !this.ArrowRight) this.ArrowLeft = true;
+      if (e.key === "ArrowRight" && !this.ArrowLeft) this.ArrowRight = true;
+    });
+  }
+};
+```
+## Fonction principale `loop` : Mise à jour et affichage
+```javascript
+function loop() {
+  clear(); // Efface le canvas
+  if (!isGameOver) {
+    requestID = requestAnimationFrame(loop); // Appelle la boucle en continu
+    helpers.drawGrid(); // Affiche la grille
+    snake.update(); // Met à jour et dessine le serpent
+    food.draw(); // Dessine l'aliment
+  } else {
+    gameOver(); // Affiche l'écran de fin
+  }
+}
+```
+
+## Points Forts du Développement
+
+Ce projet met en avant :
+- L'implémentation d'un système de collision précis.
+- La génération aléatoire de nourriture tout en évitant les collisions avec le serpent.
+- L'utilisation d'un système de particules pour améliorer l'impact visuel des actions dans le jeu.
