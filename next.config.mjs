@@ -1,6 +1,6 @@
-import rehypePrism from '@mapbox/rehype-prism'
-import nextMDX from '@next/mdx'
-import remarkGfm from 'remark-gfm'
+import rehypePrism from '@mapbox/rehype-prism';
+import nextMDX from '@next/mdx';
+import remarkGfm from 'remark-gfm';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -10,7 +10,11 @@ const nextConfig = {
       '/articles/*': ['./src/app/articles/**/*.mdx'],
     },
   },
-}
+  // Ensure that NEXT_PUBLIC_SITE_URL is available in your environment variables
+  env: {
+    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
+  },
+};
 
 const withMDX = nextMDX({
   extension: /\.mdx?$/,
@@ -18,6 +22,6 @@ const withMDX = nextMDX({
     remarkPlugins: [remarkGfm],
     rehypePlugins: [rehypePrism],
   },
-})
+});
 
-export default withMDX(nextConfig)
+export default withMDX(nextConfig);

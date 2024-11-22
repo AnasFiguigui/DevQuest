@@ -66,7 +66,7 @@ export default function About() {
         </div>
         <div className="lg:order-first lg:row-span-2">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-          Anas Figuigui, développeur backend spécialisé dans l'architecture MACH.
+          Anas Figuigui, développeur backend spécialisé dans `&apos;`architecture MACH.
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
             <p>
