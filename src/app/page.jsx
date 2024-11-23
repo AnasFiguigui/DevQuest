@@ -127,7 +127,7 @@ function Newsletter() {
           className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 sm:text-sm dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:text-yellow-500 dark:focus:ring-teal-400/10"
         />
         <Button type="submit" className="ml-4 flex-none">
-          S`&apos;`inscrire
+          S&apos;inscrire
         </Button>
       </div>
     </form>
@@ -172,7 +172,7 @@ function Role({ role }) {
 }
 
 function Resume() {
-  let resume = [
+  const resume = [
     {
       university: 'Université international rabat',
       title: 'Génie informatique - Executive',
@@ -195,7 +195,7 @@ function Resume() {
     },
     {
       university: 'Institut Spécialisé de Technologie Appliquée',
-      title: 'Developpement web Fullstack',
+      title: 'Développement web Fullstack',
       logo: logoOfppt,
       start: '2021',
       end: '2023',
@@ -207,26 +207,33 @@ function Resume() {
       start: '2019',
       end: '2021',
     },
-  ]
+  ];
 
   return (
     <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
         <BriefcaseIcon className="h-6 w-6 flex-none" />
-        <span className="ml-3">Education et formation</span>
+        <span className="ml-3">Éducation et formation</span>
       </h2>
       <ol className="mt-6 space-y-4">
         {resume.map((role, roleIndex) => (
           <Role key={roleIndex} role={role} />
         ))}
       </ol>
-      <Button href="#" variant="secondary" className="group mt-6 w-full">
+      <Button 
+        href="/cv.pdf" 
+        variant="secondary" 
+        className="group mt-6 w-full" 
+        target="_blank" 
+        rel="noopener noreferrer"
+      >
         Télécharger CV
         <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
       </Button>
     </div>
-  )
+  );
 }
+
 
 function Photos() {
   let rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2']
