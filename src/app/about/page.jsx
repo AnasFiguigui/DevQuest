@@ -70,7 +70,7 @@ export default function About() {
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
             <p>
-            J&apos;ai construit mon parcours autour d&apos;une quête constante d&apos;évolution et de perfectionnement dans des domaines clés tels que le développement web, le jeu vidéo, et les solutions d&apos;architecture cloud. Actuellement en cours d&apos;obtention d&apos;une <b>Licence professionnelle en Génie Informatique</b> à l&apos;Université Internationale de Rabat en formation continue, je suis également titulaire d&apos;un diplôme de <b>Technicien Spécialisé en Développement Web Full Stack</b> de l&apos;Institut de Technologie Appliquée.
+            J&apos;ai construit mon parcours autour d&apos;une quête constante d&apos;évolution et de perfectionnement dans des domaines clés tels que le développement web, le jeu vidéo, et les solutions d&apos;architecture cloud. Actuellement en cours d&apos;obtention d&apos;une <b>Licence professionnelle en Génie Informatique Executive</b> à l&apos;Université Internationale de Rabat, je suis également titulaire d&apos;un diplôme de <b>Technicien Spécialisé en Développement Web Full Stack</b> de l&apos;Institut de Technologie Appliquée.
             </p>
             <p>
             Parallèlement à mon expertise en développement web, je cultive depuis toujours une passion profonde pour la création de jeux vidéo. Cet intérêt, ancré depuis mon enfance, m&apos;a conduit à concevoir des applications ludiques durant mon temps libre, renforçant ainsi ma maîtrise des outils et technologies de développement.
