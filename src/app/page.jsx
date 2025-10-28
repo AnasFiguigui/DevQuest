@@ -11,7 +11,7 @@ import {
   LinkedInIcon,
   XIcon,
 } from '@/components/SocialIcons'
-import logoAlx from '@/images/logos/alx.svg'
+import logoIsart from '@/images/logos/isart.svg'
 import logoOfppt from '@/images/logos/ofppt.svg'
 import logoUir from '@/images/logos/uir.svg'
 import logoUm5s from '@/images/logos/um5s.svg'
@@ -174,24 +174,21 @@ function Role({ role }) {
 function Resume() {
   const resume = [
     {
-      university: 'Université international rabat',
+      university: 'Isart Digital',
       title: 'Génie informatique - Executive',
-      logo: logoUir,
-      start: '2023',
+      logo: logoIsart,
+      start: '2024',
       end: {
         label: 'Present',
         dateTime: new Date().getFullYear().toString(),
       },
     },
     {
-      university: 'Alx',
-      title: 'AWS Cloud Computing',
-      logo: logoAlx,
-      start: '2024',
-      end: {
-        label: 'Present',
-        dateTime: new Date().getFullYear().toString(),
-      },
+      university: 'Université International Rabat',
+      title: 'Génie informatique - Executive',
+      logo: logoUir,
+      start: '2023',
+      end: '2024',
     },
     {
       university: 'Institut Spécialisé de Technologie Appliquée',
@@ -273,10 +270,10 @@ export default async function Home() {
             Développeur web et aspirant architecte cloud.
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-          Je suis Anas, développeur backend basé à Rabat, Maroc. Spécialisé en architecture MACH, je combine ma passion pour la technologie et les jeux vidéo pour créer des expériences numériques innovantes.
-          </p>
+          Je suis Anas Figuigui, développeur backend et créateur de jeux vidéo.
+          Passionné par les architectures modernes (MACH) et les univers interactifs, je conçois aussi bien des systèmes performants que des expériences immersives, alliant rigueur technique et créativité.          </p>
           <div className="mt-6 flex gap-6">
-            <SocialLink href="https://x.com/_AnasFiguigui" aria-label="Follow on X" icon={XIcon} />
+            <SocialLink href="https://x.com/AnasFiguigui_" aria-label="Follow on X" icon={XIcon} />
             <SocialLink
               href="https://www.instagram.com/anasfiguigui/"
               aria-label="Follow on Instagram"
