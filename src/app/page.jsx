@@ -175,7 +175,7 @@ function Resume() {
   const resume = [
     {
       university: 'Isart Digital',
-      title: 'Génie informatique - Executive',
+      title: 'créateur de jeux vidéo',
       logo: logoIsart,
       start: '2024',
       end: {
