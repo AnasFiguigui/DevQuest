@@ -1,107 +1,133 @@
 "use client"
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Image from 'next/image';
 
-export default function Photos({ images = [], height = 220, gap = 40 }) {
+const rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2'];
+
+export default function Photos({ images = [], height = 300, gap = 25 }) {
   const scrollerRef = useRef(null);
   const contentRef = useRef(null);
+  const autoRafIdRef = useRef(null);
+  const rafIdRef = useRef(null);
 
-  // compute width from aspect ratio 9/10 to keep similar layout when using height
-  const imgWidth = `${Math.round((height) * 9/ 10)}px`;
+  // Memoize computed width
+  const imgWidth = useMemo(
+    () => `calc(var(--photo-height, ${height}px) * 0.9)`,
+    [height]
+  );
+
+  // Memoize duplicated images
+  const duplicatedImages = useMemo(
+    () =>
+      Array.from({ length: 3 }).flatMap((_, setIndex) =>
+        images.map((img, i) => ({
+          key: `${setIndex}-${i}`,
+          ...img,
+        }))
+      ),
+    [images]
+  );
+
+  // Callbacks
+  const setInitial = useCallback(() => {
+    const content = contentRef.current;
+    if (!content) return;
+    const total = content.scrollWidth;
+    const one = total / 3;
+    const scroller = scrollerRef.current;
+    if (scroller) scroller.scrollLeft = one;
+  }, []);
+
+  const pauseAuto = useCallback(() => {
+    if (autoRafIdRef.current) {
+      window.cancelAnimationFrame(autoRafIdRef.current);
+      autoRafIdRef.current = null;
+    }
+  }, []);
+
+  const resumeAuto = useCallback(() => {
+    const prefersReducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion) return;
+    if (!autoRafIdRef.current) {
+      let lastTimestamp = null;
+      const speed = 40;
+      const scroller = scrollerRef.current;
+
+      const autoStep = (ts) => {
+        if (!lastTimestamp) lastTimestamp = ts;
+        const dt = (ts - lastTimestamp) / 1000;
+        lastTimestamp = ts;
+        if (scroller) scroller.scrollLeft -= speed * dt;
+        autoRafIdRef.current = window.requestAnimationFrame(autoStep);
+      };
+
+      autoRafIdRef.current = window.requestAnimationFrame(autoStep);
+    }
+  }, []);
+
+  const handleScroll = useCallback(() => {
+    if (rafIdRef.current) return;
+    rafIdRef.current = window.requestAnimationFrame(() => {
+      rafIdRef.current = null;
+      const scroller = scrollerRef.current;
+      const content = contentRef.current;
+      if (!scroller || !content) return;
+
+      const total = content.scrollWidth;
+      const one = total / 3;
+      if (scroller.scrollLeft <= 1) {
+        scroller.scrollLeft += one;
+      } else if (scroller.scrollLeft >= one * 2 - 1) {
+        scroller.scrollLeft -= one;
+      }
+    });
+  }, []);
+
+  const disableWheel = useCallback((e) => {
+    e.preventDefault();
+  }, []);
+
+  const onPointerDown = useCallback((e) => {
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+    scroller.setPointerCapture?.(e.pointerId);
+    scroller.dataset.isDown = 'true';
+    scroller.dataset.startX = e.clientX;
+    scroller.dataset.startScroll = scroller.scrollLeft;
+    pauseAuto();
+  }, [pauseAuto]);
+
+  const onPointerMove = useCallback((e) => {
+    const scroller = scrollerRef.current;
+    if (!scroller || scroller.dataset.isDown !== 'true') return;
+    const startX = parseFloat(scroller.dataset.startX);
+    const startScroll = parseFloat(scroller.dataset.startScroll);
+    const dx = e.clientX - startX;
+    scroller.scrollLeft = startScroll - dx;
+  }, []);
+
+  const onPointerUp = useCallback((e) => {
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+    scroller.dataset.isDown = 'false';
+    try {
+      scroller.releasePointerCapture?.(e.pointerId);
+    } catch (err) {
+      console.error('Failed to release pointer capture:', err);
+    }
+    resumeAuto();
+  }, [resumeAuto]);
 
   useEffect(() => {
     const scroller = scrollerRef.current;
-    const content = contentRef.current;
-    if (!scroller || !content || images.length === 0) return;
+    if (!scroller || images.length === 0) return;
 
-    // Initialize: duplicate content 3x and jump to the middle copy
-    const setInitial = () => {
-      const total = content.scrollWidth;
-      const one = total / 3;
-      scroller.scrollLeft = one;
-    };
-
-    // Small debounce guard using requestAnimationFrame
-    let rafId = null;
-    const handleScroll = () => {
-      if (rafId) return;
-      rafId = window.requestAnimationFrame(() => {
-        rafId = null;
-        const total = content.scrollWidth;
-        const one = total / 3;
-        if (scroller.scrollLeft <= 1) {
-          scroller.scrollLeft += one;
-        } else if (scroller.scrollLeft >= one * 2 - 1) {
-          scroller.scrollLeft -= one;
-        }
-      });
-    };
-
-    // Disable wheel/trackpad scrolling over the gallery (click/drag only)
-    const disableWheel = (e) => {
-      e.preventDefault();
-    };
-
-    // Pointer drag for mouse users
-    let isDown = false;
-    let startX = 0;
-    let startScroll = 0;
-    const onPointerDown = (e) => {
-      isDown = true;
-      scroller.setPointerCapture?.(e.pointerId);
-      startX = e.clientX;
-      startScroll = scroller.scrollLeft;
-      pauseAuto();
-    };
-    const onPointerMove = (e) => {
-      if (!isDown) return;
-      const dx = e.clientX - startX;
-      scroller.scrollLeft = startScroll - dx;
-    };
-    const onPointerUp = (e) => {
-      isDown = false;
-      try {
-        scroller.releasePointerCapture?.(e.pointerId);
-      } catch (err) {
-        console.error('Failed to release pointer capture:', err);
-      }
-      resumeAuto();
-    };
-
-    // Auto-scroll (right -> left)
-    let autoRafId = null;
-    let lastTimestamp = null;
-    const speed = 40; // pixels per second
-    const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    const autoStep = (ts) => {
-      if (!lastTimestamp) lastTimestamp = ts;
-      const dt = (ts - lastTimestamp) / 1000;
-      lastTimestamp = ts;
-      // advance scroll to the left (reversed)
-      scroller.scrollLeft -= speed * dt;
-      // keep seamless by re-centering if needed (handleScroll will also run on scroll event)
-      autoRafId = window.requestAnimationFrame(autoStep);
-    };
-
-    const pauseAuto = () => {
-      if (autoRafId) {
-        window.cancelAnimationFrame(autoRafId);
-        autoRafId = null;
-      }
-      lastTimestamp = null;
-    };
-    const resumeAuto = () => {
-      if (prefersReducedMotion) return;
-      if (!autoRafId) {
-        autoRafId = window.requestAnimationFrame(autoStep);
-      }
-    };
-
-    // Attach listeners
     setInitial();
     scroller.addEventListener('scroll', handleScroll, { passive: true });
     scroller.addEventListener('wheel', disableWheel, { passive: false });
@@ -109,19 +135,19 @@ export default function Photos({ images = [], height = 220, gap = 40 }) {
     scroller.addEventListener('pointermove', onPointerMove);
     scroller.addEventListener('pointerup', onPointerUp);
     scroller.addEventListener('pointercancel', onPointerUp);
-
-    // pause on hover (desktop) and resume on leave
     scroller.addEventListener('mouseenter', pauseAuto);
     scroller.addEventListener('mouseleave', resumeAuto);
 
-    // start auto-scroll unless user prefers reduced motion
-    resumeAuto();
-
-    // Re-center on resize (content width may change)
     const onResize = () => setInitial();
     window.addEventListener('resize', onResize);
 
+    // Delay resumeAuto to allow layout to settle
+    const timeoutId = setTimeout(() => {
+      resumeAuto();
+    }, 100);
+
     return () => {
+      clearTimeout(timeoutId);
       window.removeEventListener('resize', onResize);
       scroller.removeEventListener('scroll', handleScroll);
       scroller.removeEventListener('wheel', disableWheel);
@@ -131,67 +157,75 @@ export default function Photos({ images = [], height = 220, gap = 40 }) {
       scroller.removeEventListener('pointercancel', onPointerUp);
       scroller.removeEventListener('mouseenter', pauseAuto);
       scroller.removeEventListener('mouseleave', resumeAuto);
-      if (rafId) window.cancelAnimationFrame(rafId);
-      if (autoRafId) window.cancelAnimationFrame(autoRafId);
+      if (rafIdRef.current) window.cancelAnimationFrame(rafIdRef.current);
+      if (autoRafIdRef.current) window.cancelAnimationFrame(autoRafIdRef.current);
     };
-  }, [images]);
+  }, [images, handleScroll, disableWheel, onPointerDown, onPointerMove, onPointerUp, pauseAuto, resumeAuto, setInitial]);
 
   if (!images || images.length === 0) return null;
-
-  const rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2'];
 
   return (
     <div className="mt-16 sm:mt-20">
       <div
         ref={scrollerRef}
-        // remove Tailwind gap utilities so the `gap` prop controls spacing
         className="-my-4 flex overflow-hidden py-4 photos-scroller"
         style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-y' }}
         aria-label="Photos gallery"
       >
         <div
           ref={contentRef}
-          style={{ display: 'flex', gap: `${gap}px`, alignItems: 'center', padding: '8px 0' }}
+          style={{
+            display: 'flex',
+            gap: `var(--photo-gap, ${gap}px)`,
+            alignItems: 'center',
+            padding: '8px 0',
+          }}
         >
-          {Array.from({ length: 3 }).map((_, setIndex) =>
-            images.map((img, i) => (
-              <div
-                key={`${setIndex}-${i}`}
-                className={clsx(
-                  'relative flex-none overflow-hidden rounded-xl bg-zinc-100 sm:rounded-2xl dark:bg-zinc-800',
-                  rotations[i % rotations.length]
-                )}
-                style={{ flex: '0 0 auto', height: `${height}px`, width: imgWidth }}
-              >
-                <Image
-                  src={img.src || img}
-                  alt={img.alt || ''}
-                  fill
-                  className="absolute inset-0 h-full w-full object-cover"
-                  draggable={false}
-                  unoptimized={false}
-                />
-              </div>
-                ))
-          )}
+          {duplicatedImages.map(({ key, src, alt }) => (
+            <div
+              key={key}
+              className={clsx(
+                'relative flex-none overflow-hidden rounded-xl bg-zinc-100 sm:rounded-2xl dark:bg-zinc-800',
+                rotations[parseInt(key.split('-')[1]) % rotations.length]
+              )}
+              style={{ flex: '0 0 auto', height: 'var(--photo-height)', width: imgWidth }}
+            >
+              <Image
+                src={src || ''}
+                alt={alt || ''}
+                fill
+                className="absolute inset-0 h-full w-full object-cover"
+                draggable={false}
+                unoptimized={false}
+              />
+            </div>
+          ))}
         </div>
       </div>
 
       <style jsx>{` 
         .photos-scroller {
           cursor: grab;
-          -ms-overflow-style: none; /* IE and Edge */
+          -ms-overflow-style: none;
         }
         .photos-scroller:active {
           cursor: grabbing;
         }
-        /* Hide scrollbar */
         .photos-scroller::-webkit-scrollbar {
           display: none;
         }
-        /* Firefox */
         .photos-scroller {
           scrollbar-width: none;
+        }
+        .photos-scroller > div {
+          --photo-height: ${height}px;
+          --photo-gap: ${gap}px;
+        }
+        @media (max-width: 640px) {
+          .photos-scroller > div {
+            --photo-height: 220px;
+            --photo-gap: 15px;
+          }
         }
       `}</style>
     </div>
@@ -199,7 +233,10 @@ export default function Photos({ images = [], height = 220, gap = 40 }) {
 }
 
 Photos.propTypes = {
-  images: PropTypes.array.isRequired,
+  images: PropTypes.arrayOf(PropTypes.shape({
+    src: PropTypes.string,
+    alt: PropTypes.string,
+  })).isRequired,
   height: PropTypes.number,
   gap: PropTypes.number,
 };
