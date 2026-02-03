@@ -104,27 +104,72 @@ function SocialLink({ icon: Icon, ...props }) {
 function Newsletter() {
   return (
     <form
-      action="/thank-you"
+      action="/api/send-email"
+      method="post"
       className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40"
     >
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
         <MailIcon className="h-6 w-6 flex-none" />
-        <span className="ml-3">Restez informé</span>
+        <span className="ml-3">Contact Me</span>
       </h2>
       <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-      Recevez une notification lorsque je publie du nouveau contenu, et désabonnez-vous à tout moment.
+        Send a message — I&apos;ll get back to you soon.
       </p>
-      <div className="mt-6 flex">
+
+      <div className="mt-6 grid grid-cols-1 gap-3">
+        <label htmlFor="fullName" className="sr-only">
+          Full name
+        </label>
         <input
-          type="email"
-          placeholder="Adresse e-mail"
-          aria-label="Adresse e-mail"
+          id="fullName"
+          name="fullName"
+          type="text"
           required
-          className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 sm:text-sm dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:text-yellow-500 dark:focus:ring-teal-400/10"
+          placeholder="Full name"
+          className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 sm:text-sm dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500"
         />
-        <Button type="submit" className="ml-4 flex-none">
-          S&apos;inscrire
-        </Button>
+
+        <label htmlFor="phone" className="sr-only">
+          Phone number
+        </label>
+        <input
+          id="phone"
+          name="phone"
+          type="tel"
+          required
+          placeholder="Phone number"
+          className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 sm:text-sm dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500"
+        />
+
+        <label htmlFor="email" className="sr-only">
+          Email address
+        </label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          required
+          placeholder="Email address"
+          className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 sm:text-sm dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500"
+        />
+
+        <label htmlFor="message" className="sr-only">
+          Message
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          required
+          rows={4}
+          placeholder="Message"
+          className="min-w-0 w-full resize-none rounded-md border border-zinc-900/10 bg-white px-3 py-2 shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 sm:text-sm dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500"
+        />
+
+        <div className="mt-2 flex">
+          <Button type="submit" className="ml-auto">
+            Send Message
+          </Button>
+        </div>
       </div>
     </form>
   )
@@ -171,7 +216,7 @@ function Resume() {
   const resume = [
     {
       university: 'Isart Digital',
-      title: 'créateur de jeux vidéo',
+      title: 'Video Game Creator',
       logo: logoIsart,
       start: '2024',
       end: {
@@ -180,22 +225,22 @@ function Resume() {
       },
     },
     {
-      university: 'Université International Rabat',
-      title: 'Génie informatique - Executive',
+      university: 'International University Of Rabat',
+      title: 'Computer Engineering - Executive',
       logo: logoUir,
       start: '2023',
       end: '2024',
     },
     {
-      university: 'Institut Spécialisé de Technologie Appliquée',
-      title: 'Développement web Fullstack',
+      university: 'Specialized Institute Of Applied Technology',
+      title: 'Fullstack Web Development',
       logo: logoOfppt,
       start: '2021',
       end: '2023',
     },
     {
-      university: 'FSJES-Souissi - Université Mohammed V',
-      title: 'Economie et Gestion',
+      university: 'FSJES-Souissi - University Of Mohammed V',
+      title: 'Economics and Management',
       logo: logoUm5s,
       start: '2019',
       end: '2021',
@@ -206,7 +251,7 @@ function Resume() {
     <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
         <BriefcaseIcon className="h-6 w-6 flex-none" />
-        <span className="ml-3">Éducation et formation</span>
+        <span className="ml-3">Education & Training</span>
       </h2>
       <ol className="mt-6 space-y-4">
         {resume.map((role, roleIndex) => (
@@ -220,7 +265,7 @@ function Resume() {
         target="_blank" 
         rel="noopener noreferrer"
       >
-        Télécharger CV
+        Download CV
         <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
       </Button>
     </div>
