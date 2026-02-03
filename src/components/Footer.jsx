@@ -6,7 +6,7 @@ function NavLink({ href, children }) {
   return (
     <Link
       href={href}
-      className="transition hover:text-yellow-500 dark:hover:text-yellow-400"
+      className="transition hover:text-purple-500 dark:hover:text-purple-400"
     >
       {children}
     </Link>

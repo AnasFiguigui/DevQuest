@@ -91,7 +91,7 @@ function MobileNavigation(props) {
   return (
     <Popover {...props}>
       <PopoverButton className="group flex items-center rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20">
-        Menue
+        Menu
         <ChevronDownIcon className="ml-3 h-auto w-2 stroke-zinc-500 group-hover:stroke-zinc-700 dark:group-hover:stroke-zinc-400" />
       </PopoverButton>
       <PopoverBackdrop
@@ -113,9 +113,9 @@ function MobileNavigation(props) {
         </div>
         <nav className="mt-6">
           <ul className="-my-2 divide-y divide-zinc-100 text-base text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300">
-            <MobileNavItem href="/about">Apropos</MobileNavItem>
+            <MobileNavItem href="/about">About</MobileNavItem>
             <MobileNavItem href="/articles">Documentation</MobileNavItem>
-            <MobileNavItem href="/projects">Projets</MobileNavItem>
+            <MobileNavItem href="/projects">Projects</MobileNavItem>
           </ul>
         </nav>
       </PopoverPanel>
@@ -133,13 +133,13 @@ function NavItem({ href, children }) {
       className={clsx(
         'relative block px-4 py-2 transition',
         isActive
-          ? 'text-yellow-500 dark:text-yellow-400'
-          : 'hover:text-yellow-500 dark:hover:text-yellow-400',
+          ? 'text-purple-500 dark:text-purple-400'
+          : 'hover:text-purple-500 dark:hover:text-purple-400',
       )}
     >
       {children}
       {isActive && (
-        <span className="absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-yellow-500/0 via-yellow-500/40 to-yellow-500/0 dark:from-yellow-400/0 dark:via-yellow-400/40 dark:to-yellow-400/0" />
+        <span className="absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-purple-500/0 via-purple-500/40 to-purple-500/0 dark:from-purple-400/0 dark:via-purple-400/40 dark:to-purple-400/0" />
       )}
     </Link>
     </li>
@@ -150,9 +150,9 @@ function DesktopNavigation(props) {
   return (
     <nav {...props}>
       <ul className="flex rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
-        <NavItem href="/about">À propos</NavItem>
+        <NavItem href="/about">About</NavItem>
         <NavItem href="/articles">Documentation</NavItem>
-        <NavItem href="/projects">Projets</NavItem>
+        <NavItem href="/projects">Projects</NavItem>
       </ul>
     </nav>
   )
@@ -174,8 +174,8 @@ function ThemeToggle() {
       className="group rounded-full bg-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20"
       onClick={() => setTheme(otherTheme)}
     >
-      <SunIcon className="h-6 w-6 fill-zinc-100 stroke-yellow-500 transition group-hover:fill-zinc-200 group-hover:stroke-yellow-700 dark:hidden [@media(prefers-color-scheme:dark)]:fill-yellow-50 [@media(prefers-color-scheme:dark)]:stroke-yellow-500 [@media(prefers-color-scheme:dark)]:group-hover:fill-yellow-50 [@media(prefers-color-scheme:dark)]:group-hover:stroke-yellow-600"/>
-      <MoonIcon className="hidden h-6 w-6 fill-zinc-700 stroke-zinc-500 transition dark:block [@media(prefers-color-scheme:dark)]:group-hover:stroke-zinc-400 [@media_not_(prefers-color-scheme:dark)]:fill-teal-400/10 [@media_not_(prefers-color-scheme:dark)]:stroke-yellow-500" />
+      <SunIcon className="h-6 w-6 fill-zinc-100 stroke-purple-500 transition group-hover:fill-zinc-200 group-hover:stroke-purple-700 dark:hidden [@media(prefers-color-scheme:dark)]:fill-purple-50 [@media(prefers-color-scheme:dark)]:stroke-purple-500 [@media(prefers-color-scheme:dark)]:group-hover:fill-purple-50 [@media(prefers-color-scheme:dark)]:group-hover:stroke-purple-600"/>
+      <MoonIcon className="hidden h-6 w-6 fill-zinc-700 stroke-zinc-500 transition dark:block [@media(prefers-color-scheme:dark)]:group-hover:stroke-zinc-400 [@media_not_(prefers-color-scheme:dark)]:fill-teal-400/10 [@media_not_(prefers-color-scheme:dark)]:stroke-purple-500" />
     </button>
   )
 }
