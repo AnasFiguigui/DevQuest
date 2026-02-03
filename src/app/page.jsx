@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import clsx from 'clsx'
 import PhotosGallery from '@/components/Photos'
 
 import { Button } from '@/components/Button'
@@ -20,7 +19,16 @@ import { getAllArticles } from '@/lib/articles'
 import { formatDate } from '@/lib/formatDate'
 
 function MailIcon(props) {
-  return (
+  Article.propTypes = {
+    article: PropTypes.shape({
+      slug: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+    }).isRequired,
+  };
+  
+    return (
     <svg
       viewBox="0 0 24 24"
       fill="none"
@@ -78,6 +86,8 @@ function ArrowDownIcon(props) {
   )
 }
 
+import PropTypes from 'prop-types';
+
 function Article({ article }) {
   return (
     <Card as="article">
@@ -88,12 +98,15 @@ function Article({ article }) {
         {formatDate(article.date)}
       </Card.Eyebrow>
       <Card.Description>{article.description}</Card.Description>
-      <Card.Cta>Lire documentation</Card.Cta>
+      <Card.Cta>Read documentation</Card.Cta>
     </Card>
   )
 }
 
 function SocialLink({ icon: Icon, ...props }) {
+  SocialLink.propTypes = {
+    icon: PropTypes.elementType.isRequired,
+  };
   return (
     <Link className="group -m-1 p-1" {...props}>
       <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
@@ -101,7 +114,7 @@ function SocialLink({ icon: Icon, ...props }) {
   )
 }
 
-function Newsletter() {
+function Contact() {
   return (
     <form
       action="/api/send-email"
@@ -176,6 +189,27 @@ function Newsletter() {
 }
 
 function Role({ role }) {
+  Role.propTypes = {
+    role: PropTypes.shape({
+      university: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      logo: PropTypes.string.isRequired,
+      start: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.shape({
+          label: PropTypes.string.isRequired,
+          dateTime: PropTypes.string.isRequired,
+        }),
+      ]).isRequired,
+      end: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.shape({
+          label: PropTypes.string.isRequired,
+          dateTime: PropTypes.string.isRequired,
+        }),
+      ]).isRequired,
+    }).isRequired,
+  };
   let startLabel =
     typeof role.start === 'string' ? role.start : role.start.label
   let startDate =
@@ -343,7 +377,7 @@ export default async function Home() {
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
             <Resume />
-            <Newsletter />
+            <Contact />
           </div>
         </div>
       </Container>
