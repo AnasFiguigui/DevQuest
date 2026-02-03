@@ -54,6 +54,7 @@ export default function Photos({ images = [], height = 220, gap = 40 }) {
       scroller.setPointerCapture?.(e.pointerId);
       startX = e.clientX;
       startScroll = scroller.scrollLeft;
+      pauseAuto();
     };
     const onPointerMove = (e) => {
       if (!isDown) return;
@@ -67,6 +68,37 @@ export default function Photos({ images = [], height = 220, gap = 40 }) {
       } catch (err) {
         console.error('Failed to release pointer capture:', err);
       }
+      resumeAuto();
+    };
+
+    // Auto-scroll (right -> left)
+    let autoRafId = null;
+    let lastTimestamp = null;
+    const speed = 40; // pixels per second
+    const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const autoStep = (ts) => {
+      if (!lastTimestamp) lastTimestamp = ts;
+      const dt = (ts - lastTimestamp) / 1000;
+      lastTimestamp = ts;
+      // advance scroll to the left (reversed)
+      scroller.scrollLeft -= speed * dt;
+      // keep seamless by re-centering if needed (handleScroll will also run on scroll event)
+      autoRafId = window.requestAnimationFrame(autoStep);
+    };
+
+    const pauseAuto = () => {
+      if (autoRafId) {
+        window.cancelAnimationFrame(autoRafId);
+        autoRafId = null;
+      }
+      lastTimestamp = null;
+    };
+    const resumeAuto = () => {
+      if (prefersReducedMotion) return;
+      if (!autoRafId) {
+        autoRafId = window.requestAnimationFrame(autoStep);
+      }
     };
 
     // Attach listeners
@@ -77,6 +109,13 @@ export default function Photos({ images = [], height = 220, gap = 40 }) {
     scroller.addEventListener('pointermove', onPointerMove);
     scroller.addEventListener('pointerup', onPointerUp);
     scroller.addEventListener('pointercancel', onPointerUp);
+
+    // pause on hover (desktop) and resume on leave
+    scroller.addEventListener('mouseenter', pauseAuto);
+    scroller.addEventListener('mouseleave', resumeAuto);
+
+    // start auto-scroll unless user prefers reduced motion
+    resumeAuto();
 
     // Re-center on resize (content width may change)
     const onResize = () => setInitial();
@@ -90,7 +129,10 @@ export default function Photos({ images = [], height = 220, gap = 40 }) {
       scroller.removeEventListener('pointermove', onPointerMove);
       scroller.removeEventListener('pointerup', onPointerUp);
       scroller.removeEventListener('pointercancel', onPointerUp);
+      scroller.removeEventListener('mouseenter', pauseAuto);
+      scroller.removeEventListener('mouseleave', resumeAuto);
       if (rafId) window.cancelAnimationFrame(rafId);
+      if (autoRafId) window.cancelAnimationFrame(autoRafId);
     };
   }, [images]);
 
@@ -130,7 +172,7 @@ export default function Photos({ images = [], height = 220, gap = 40 }) {
                   unoptimized={false}
                 />
               </div>
-            ))
+                ))
           )}
         </div>
       </div>
