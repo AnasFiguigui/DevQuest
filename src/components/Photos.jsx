@@ -43,15 +43,15 @@ export default function Photos({ images = [], height = 300, gap = 25 }) {
 
   const pauseAuto = useCallback(() => {
     if (autoRafIdRef.current) {
-      window.cancelAnimationFrame(autoRafIdRef.current);
+      globalThis.cancelAnimationFrame(autoRafIdRef.current);
       autoRafIdRef.current = null;
     }
   }, []);
 
   const resumeAuto = useCallback(() => {
     const prefersReducedMotion =
-      typeof window !== 'undefined' &&
-      window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+      typeof globalThis !== 'undefined' &&
+      globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
     if (prefersReducedMotion) return;
     if (!autoRafIdRef.current) {
@@ -64,16 +64,16 @@ export default function Photos({ images = [], height = 300, gap = 25 }) {
         const dt = (ts - lastTimestamp) / 1000;
         lastTimestamp = ts;
         if (scroller) scroller.scrollLeft -= speed * dt;
-        autoRafIdRef.current = window.requestAnimationFrame(autoStep);
+        autoRafIdRef.current = globalThis.requestAnimationFrame(autoStep);
       };
 
-      autoRafIdRef.current = window.requestAnimationFrame(autoStep);
+      autoRafIdRef.current = globalThis.requestAnimationFrame(autoStep);
     }
   }, []);
 
   const handleScroll = useCallback(() => {
     if (rafIdRef.current) return;
-    rafIdRef.current = window.requestAnimationFrame(() => {
+    rafIdRef.current = globalThis.requestAnimationFrame(() => {
       rafIdRef.current = null;
       const scroller = scrollerRef.current;
       const content = contentRef.current;
@@ -105,9 +105,9 @@ export default function Photos({ images = [], height = 300, gap = 25 }) {
 
   const onPointerMove = useCallback((e) => {
     const scroller = scrollerRef.current;
-    if (!scroller || scroller.dataset.isDown !== 'true') return;
-    const startX = parseFloat(scroller.dataset.startX);
-    const startScroll = parseFloat(scroller.dataset.startScroll);
+    if (!scroller || scroller.dataset?.isDown !== 'true') return;
+    const startX = Number.parseFloat(scroller.dataset.startX);
+    const startScroll = Number.parseFloat(scroller.dataset.startScroll);
     const dx = e.clientX - startX;
     scroller.scrollLeft = startScroll - dx;
   }, []);
@@ -139,7 +139,7 @@ export default function Photos({ images = [], height = 300, gap = 25 }) {
     scroller.addEventListener('mouseleave', resumeAuto);
 
     const onResize = () => setInitial();
-    window.addEventListener('resize', onResize);
+    globalThis.addEventListener('resize', onResize);
 
     // Delay resumeAuto to allow layout to settle
     const timeoutId = setTimeout(() => {
@@ -148,7 +148,7 @@ export default function Photos({ images = [], height = 300, gap = 25 }) {
 
     return () => {
       clearTimeout(timeoutId);
-      window.removeEventListener('resize', onResize);
+      globalThis.removeEventListener('resize', onResize);
       scroller.removeEventListener('scroll', handleScroll);
       scroller.removeEventListener('wheel', disableWheel);
       scroller.removeEventListener('pointerdown', onPointerDown);
@@ -157,8 +157,8 @@ export default function Photos({ images = [], height = 300, gap = 25 }) {
       scroller.removeEventListener('pointercancel', onPointerUp);
       scroller.removeEventListener('mouseenter', pauseAuto);
       scroller.removeEventListener('mouseleave', resumeAuto);
-      if (rafIdRef.current) window.cancelAnimationFrame(rafIdRef.current);
-      if (autoRafIdRef.current) window.cancelAnimationFrame(autoRafIdRef.current);
+      if (rafIdRef.current) globalThis.cancelAnimationFrame(rafIdRef.current);
+      if (autoRafIdRef.current) globalThis.cancelAnimationFrame(autoRafIdRef.current);
     };
   }, [images, handleScroll, disableWheel, onPointerDown, onPointerMove, onPointerUp, pauseAuto, resumeAuto, setInitial]);
 
@@ -186,7 +186,7 @@ export default function Photos({ images = [], height = 300, gap = 25 }) {
               key={key}
               className={clsx(
                 'relative flex-none overflow-hidden rounded-xl bg-zinc-100 sm:rounded-2xl dark:bg-zinc-800',
-                rotations[parseInt(key.split('-')[1]) % rotations.length]
+                rotations[Number.parseInt(key.split('-')[1]) % rotations.length]
               )}
               style={{ flex: '0 0 auto', height: 'var(--photo-height)', width: imgWidth }}
             >

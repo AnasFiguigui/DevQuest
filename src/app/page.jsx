@@ -16,11 +16,6 @@ import logoIsart from '@/images/logos/isart.svg'
 import logoOfppt from '@/images/logos/ofppt.svg'
 import logoUir from '@/images/logos/uir.svg'
 import logoUm5s from '@/images/logos/um5s.svg'
-import image1 from '@/images/photos/image-1.gif'
-import image2 from '@/images/photos/image-2.gif'
-import image3 from '@/images/photos/image-3.gif'
-import image4 from '@/images/photos/image-4.gif'
-import image5 from '@/images/photos/image-5.gif'
 import { getAllArticles } from '@/lib/articles'
 import { formatDate } from '@/lib/formatDate'
 
@@ -232,9 +227,23 @@ function Resume() {
   );
 }
 
+async function loadPhotos() {
+  const images = []
+  let i = 1
+  while (true) {
+    try {
+      const image = await import(`@/images/photos/image-${i}.gif`)
+      images.push(image.default)
+      i++
+    } catch {
+      break
+    }
+  }
+  return images
+}
 
-function Photos() {
-  const imgs = [image1, image2, image3, image4, image5].map((img) => ({
+function Photos({ images }) {
+  const imgs = images.map((img) => ({
     src: img?.src || img,
     alt: img?.alt || '',
   }))
@@ -248,6 +257,7 @@ function Photos() {
 
 export default async function Home() {
   let articles = (await getAllArticles()).slice(0, 4)
+  const photos = await loadPhotos()
 
   return (
     <>
@@ -278,7 +288,7 @@ export default async function Home() {
           </div>
         </div>
       </Container>
-      <Photos />
+      <Photos images={photos} />
       <Container className="mt-24 md:mt-28">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
           <div className="flex flex-col gap-16">
