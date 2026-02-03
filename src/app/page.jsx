@@ -288,8 +288,8 @@ function Resume() {
         <span className="ml-3">Education & Training</span>
       </h2>
       <ol className="mt-6 space-y-4">
-        {resume.map((role, roleIndex) => (
-          <Role key={roleIndex} role={role} />
+        {resume.map((role) => (
+          <Role key={`${role.university}-${role.title}`} role={role} />
         ))}
       </ol>
       <Button 
@@ -322,6 +322,18 @@ async function loadPhotos() {
 }
 
 function Photos({ images }) {
+  Photos.propTypes = {
+    images: PropTypes.arrayOf(
+      PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.shape({
+          src: PropTypes.string,
+          alt: PropTypes.string,
+        }),
+      ])
+    ).isRequired,
+  };
+  
   const imgs = images.map((img) => ({
     src: img?.src || img,
     alt: img?.alt || '',
