@@ -2,59 +2,58 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
-import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
-import github from '@/images/logos/github.svg'
 
 const projects = [
-    {
-        name: 'Snake',
-        description:
-        'Une revisite moderne du classique Snake',
-        link: { href: 'https://github.com/AnasFiguigui/snake', label: 'github.com/snake' },
-        logo: github,
-        type: 'games',
-    },
-    {
-        name: 'Stacking tower',
-        description:
-        'Un défi d\'empilement en 3D',
-        link: { href: 'https://github.com/AnasFiguigui/Stacking-tower', label: 'github.com/Stacking-tower' },
-        logo: github,
-        type: 'games',
-    },
-    {
-        name: 'Uno clone',
-        description:
-        'Une adaptation numérique du célèbre jeu de cartes',
-        link: { href: 'https://github.com/AnasFiguigui/Uno-clone', label: 'github.com/Uno-clone' },
-        logo: github,
-        type: 'games',
-    },
-    {
-        name: 'DevMerge',
-        description:
-        'Un jeu éducatif fusionnant technologies et créativité.',
-        link: { href: 'https://github.com/AnasFiguigui/DevMerge', label: 'github.com/DevMerge' },
-        logo: github,
-        type: 'games',
-    },
-    {
-        name: 'Apocalyse Z',
-        description:
-        'Un jeu 3D de tir immersif dans un monde envahi par les zombies.',
-        link: { href: 'https://github.com/AnasFiguigui/Apocalypse-Z', label: 'github.com/Apocalypse-Z' },
-        logo: github,
-        type: 'games',
-    },
+  {
+    name: 'Snake',
+    description: 'Une revisite moderne du classique Snake',
+    link: { href: 'https://github.com/AnasFiguigui/snake', label: 'github.com/snake' },
+    imageUrl:
+      'https://images.unsplash.com/photo-1496128858413-b36217c2ce36?auto=format&fit=crop&w=1200&q=80',
+    type: 'games',
+  },
+  {
+    name: 'Stacking tower',
+    description: "Un défi d'empilement en 3D",
+    link: { href: 'https://github.com/AnasFiguigui/Stacking-tower', label: 'github.com/Stacking-tower' },
+    imageUrl:
+      'https://images.unsplash.com/photo-1547586696-ea22b4d4235d?auto=format&fit=crop&w=1200&q=80',
+    type: 'games',
+  },
+  {
+    name: 'Uno clone',
+    description: 'Une adaptation numérique du célèbre jeu de cartes',
+    link: { href: 'https://github.com/AnasFiguigui/Uno-clone', label: 'github.com/Uno-clone' },
+    imageUrl:
+      'https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&w=1200&q=80',
+    type: 'games',
+  },
+  {
+    name: 'DevMerge',
+    description: 'Un jeu éducatif fusionnant technologies et créativité.',
+    link: { href: 'https://github.com/AnasFiguigui/DevMerge', label: 'github.com/DevMerge' },
+    imageUrl:
+      'https://images.unsplash.com/photo-1508057198894-247b23fe5ade?auto=format&fit=crop&w=1200&q=80',
+    type: 'games',
+  },
+  {
+    name: 'Apocalypse Z',
+    description: 'Un jeu 3D de tir immersif dans un monde envahi par les zombies.',
+    link: { href: 'https://github.com/AnasFiguigui/Apocalypse-Z', label: 'github.com/Apocalypse-Z' },
+    imageUrl:
+      'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80',
+    type: 'games',
+  },
 ]
 
 const tabs = [
-  { name: 'All Projects', href: '#', current: true, value: 'all' },
-  { name: 'Games', href: '#', current: false, value: 'games' },
-  { name: 'Websites', href: '#', current: false, value: 'websites' },
-  { name: 'Mods', href: '#', current: false, value: 'mods' },
+  { name: 'All Projects', value: 'all' },
+  { name: 'Games', value: 'games' },
+  { name: 'Websites', value: 'websites' },
+  { name: 'Mods', value: 'mods' },
 ]
 
 function classNames(...classes) {
@@ -63,7 +62,7 @@ function classNames(...classes) {
 
 function getCountByCategory(category) {
   if (category === 'all') return projects.length
-  return projects.filter(project => project.type === category).length
+  return projects.filter((project) => project.type === category).length
 }
 
 function Section({ onFilterChange }) {
@@ -84,33 +83,46 @@ function Section({ onFilterChange }) {
           className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-2 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 dark:bg-zinc-800 dark:text-zinc-100 dark:outline-zinc-700"
         >
           {tabs.map((tab) => (
-            <option key={tab.name} value={tab.value}>{tab.name}</option>
+            <option key={tab.value} value={tab.value}>
+              {tab.name} ({getCountByCategory(tab.value)})
+            </option>
           ))}
         </select>
       </div>
+
       <div className="hidden sm:block">
-        <nav aria-label="Tabs" className="isolate flex divide-x divide-zinc-200 rounded-lg bg-zinc-50 shadow dark:divide-zinc-700 dark:bg-zinc-800">
+        <nav
+          aria-label="Tabs"
+          className="isolate flex divide-x divide-zinc-200 rounded-lg bg-zinc-50 shadow dark:divide-zinc-700 dark:bg-zinc-800"
+        >
           {tabs.map((tab, tabIdx) => (
             <button
-              key={tab.name}
+              key={tab.value}
               onClick={() => handleTabChange(tab.value)}
-              aria-current={currentTab === tab.value ? 'page' : undefined}
               className={classNames(
-                currentTab === tab.value ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300',
+                'group relative min-w-0 flex-1 overflow-hidden px-4 py-4 text-center text-sm font-medium inline-flex items-center justify-center',
                 tabIdx === 0 ? 'rounded-l-lg' : '',
                 tabIdx === tabs.length - 1 ? 'rounded-r-lg' : '',
-                'group relative min-w-0 flex-1 overflow-hidden px-4 py-4 text-center text-sm font-medium hover:bg-zinc-100 focus:z-10 dark:hover:bg-zinc-700 inline-flex items-center justify-center',
+                'text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300'
               )}
             >
               <span>{tab.name}</span>
               <span
                 className={classNames(
                   currentTab === tab.value ? 'bg-purple-500/20 text-purple-400' : 'bg-zinc-200/20 dark:bg-white/10 text-zinc-600 dark:text-gray-300',
-                  'ml-3 rounded-full px-2.5 py-0.5 text-xs font-medium',
+                  'ml-3 rounded-full px-2.5 py-0.5 text-xs font-medium'
                 )}
               >
                 {getCountByCategory(tab.value)}
               </span>
+
+              <span
+                aria-hidden="true"
+                className={classNames(
+                  currentTab === tab.value ? 'bg-purple-400' : 'bg-transparent',
+                  'absolute inset-x-0 bottom-0 h-0.5 transition'
+                )}
+              />
             </button>
           ))}
         </nav>
@@ -119,57 +131,70 @@ function Section({ onFilterChange }) {
   )
 }
 
-function LinkIcon(props) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
-      <path
-        d="M15.712 11.823a.75.75 0 1 0 1.06 1.06l-1.06-1.06Zm-4.95 1.768a.75.75 0 0 0 1.06-1.06l-1.06 1.06Zm-2.475-1.414a.75.75 0 1 0-1.06-1.06l1.06 1.06Zm4.95-1.768a.75.75 0 1 0-1.06 1.06l1.06-1.06Zm3.359.53-.884.884 1.06 1.06.885-.883-1.061-1.06Zm-4.95-2.12 1.414-1.415L12 6.344l-1.415 1.413 1.061 1.061Zm0 3.535a2.5 2.5 0 0 1 0-3.536l-1.06-1.06a4 4 0 0 0 0 5.656l1.06-1.06Zm4.95-4.95a2.5 2.5 0 0 1 0 3.535L17.656 12a4 4 0 0 0 0-5.657l-1.06 1.06Zm1.06-1.06a4 4 0 0 0-5.656 0l1.06 1.06a2.5 2.5 0 0 1 3.536 0l1.06-1.06Zm-7.07 7.07.176.177 1.06-1.06-.176-.177-1.06 1.06Zm-3.183-.353.884-.884-1.06-1.06-.884.883 1.06 1.06Zm4.95 2.121-1.414 1.414 1.06 1.06 1.415-1.413-1.06-1.061Zm0-3.536a2.5 2.5 0 0 1 0 3.536l1.06 1.06a4 4 0 0 0 0-5.656l-1.06 1.06Zm-4.95 4.95a2.5 2.5 0 0 1 0-3.535L6.344 12a4 4 0 0 0 0 5.656l1.06-1.06Zm-1.06 1.06a4 4 0 0 0 5.657 0l-1.061-1.06a2.5 2.5 0 0 1-3.535 0l-1.061 1.06Zm7.07-7.07-.176-.177-1.06 1.06.176.178 1.06-1.061Z"
-        fill="currentColor"
-      />
-    </svg>
-  )
-}
-
 export function ProjectsClient() {
   const [selectedCategory, setSelectedCategory] = useState('all')
 
-  const filteredProjects = selectedCategory === 'all' 
-    ? projects 
-    : projects.filter(project => project.type === selectedCategory)
+  const filteredProjects =
+    selectedCategory === 'all'
+      ? projects
+      : projects.filter((project) => project.type === selectedCategory)
 
   return (
     <SimpleLayout
-      title="Mises en pratique et explorations techniques"
-      intro="Cette section regroupe les projets que j'ai réalisés pour approfondir mes compétences en développement de jeux vidéo et d'applications web. Vous y trouverez des dépôts GitHub pour explorer le code, tester les fonctionnalités, et comprendre les concepts techniques appliqués."
+      title="Projects, Experiments & Technical Explorations"
+      intro="This section showcases projects I have developed to expand. It includes playable experiences, technical prototypes, and production-ready systems, with GitHub repositories available to explore implementation details, gameplay mechanics, and architectural decisions."
     >
       <Section onFilterChange={setSelectedCategory} />
       <p className="mb-10 mt-6 text-sm text-center text-zinc-600 dark:text-zinc-400">
         Explore my projects by area of expertise: video games, web applications, and developer tools.
       </p>
-      <ul
-        className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3 mt-8"
-      >
+
+      <div className="mx-auto mt-6 grid max-w-7xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {filteredProjects.map((project) => (
-          <Card as="li" key={project.name}>
-            <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-              <Image
-                src={project.logo}
-                alt=""
-                className="h-8 w-8"
-                unoptimized
+          <article
+            key={project.name}
+            className="group relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-6 pb-6 pt-48 sm:pt-36 lg:pt-36 bg-zinc-900/5 dark:bg-zinc-900"
+          >
+            {/* background image */}
+            <div className="absolute inset-0 -z-10 overflow-hidden rounded-2xl">
+              <img
+                src={project.imageUrl}
+                alt={project.name}
+                className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105 group-hover:blur-sm"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent mix-blend-multiply" />
+              <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-black/10" />
             </div>
-            <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
-              <Card.Link href={project.link.href}>{project.name}</Card.Link>
-            </h2>
-            <Card.Description>{project.description}</Card.Description>
-            <p className="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-purple-400 dark:text-zinc-200">
-              <LinkIcon className="h-6 w-6 flex-none" />
-              <span className="ml-2">{project.link.label}</span>
-            </p>
-          </Card>
+
+            {/* info row (small meta) */}
+            <div className="flex flex-wrap items-center gap-y-1 text-sm text-white/70">
+              {/* placeholder for future meta if needed */}
+            </div>
+
+            {/* title + description */}
+            <div className="relative z-10 transform-gpu transition-all duration-300 group-hover:-translate-y-16">
+              <h3 className="text-2xl font-semibold text-white">
+                {project.name}
+              </h3>
+              <p className="mt-2 max-w-xs text-sm text-white/80">
+                {project.description}
+              </p>
+            </div>
+
+            {/* See project button */}
+            <div className="absolute inset-x-0 bottom-6 z-10 px-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              <Link
+                href={project.link.href}
+                className="pointer-events-none group-hover:pointer-events-auto inline-flex w-full items-center justify-center rounded-md bg-white/90 px-4 py-2 text-sm font-medium text-zinc-900 shadow-lg dark:bg-white/10 dark:text-white"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                See project
+              </Link>
+            </div>
+          </article>
         ))}
-      </ul>
+      </div>
     </SimpleLayout>
   )
 }
