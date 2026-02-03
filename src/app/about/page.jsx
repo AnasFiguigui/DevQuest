@@ -66,19 +66,21 @@ export default function About() {
         </div>
         <div className="lg:order-first lg:row-span-2">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-          Anas Figuigui, développeur backend spécialisé dans l&apos;architecture MACH.
+            Anas Figuigui, Game & Backend Developer specializing in MACH architecture
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
             <p>
-            J&apos;ai construit mon parcours autour d&apos;une quête constante d&apos;évolution et de perfectionnement dans des domaines clés tels que le développement web, le jeu vidéo, et les solutions d&apos;architecture cloud. Actuellement en cours d&apos;obtention d&apos;une <b>Licence professionnelle en Génie Informatique Executive</b> à l&apos;Université Internationale de Rabat, je suis également titulaire d&apos;un diplôme de <b>Technicien Spécialisé en Développement Web Full Stack</b> de l&apos;Institut de Technologie Appliquée.
+              I am a Game and backend engineer with a strong background in cloud-based architectures and interactive experiences. I specialize in designing and implementing gameplay systems, immersive worlds, and scalable backend solutions using Unity, Unreal Engine, and modern cloud technologies.
             </p>
             <p>
-            Parallèlement à mon expertise en développement web, je cultive depuis toujours une passion profonde pour la création de jeux vidéo. Cet intérêt, ancré depuis mon enfance, m&apos;a conduit à concevoir des applications ludiques durant mon temps libre, renforçant ainsi ma maîtrise des outils et technologies de développement.
+              My recent work includes leading the development of a horror game set in a Moroccan location featuring zombies, where I oversaw gameplay systems, technical direction, and team collaboration while contributing to level design and atmosphere creation.
             </p>
             <p>
-            En outre, je m&apos;investis activement dans un programme intensif de formation dispensé par ALX, grâce auquel j&apos;ai obtenu la certification <b>AWS Cloud Practitioner</b> et me prépare actuellement à la certification <b>AWS Solutions Architect.</b>            </p>
+              Alongside game development, I continue to deepen my expertise in cloud and backend technologies, having earned the <b>AWS Cloud Solution Architect</b> certification.
+            </p>
             <p>
-            Curieux et dynamique, j&apos;aspire à relever des défis stimulants tout en continuant à développer mes compétences dans des environnements innovants.            </p>
+              Driven, curious, and hands-on, I enjoy tackling challenging projects, blending technical rigor with creative vision, and building engaging experiences that leave a lasting impact.
+            </p>
           </div>
         </div>
         <div className="lg:pl-20">
