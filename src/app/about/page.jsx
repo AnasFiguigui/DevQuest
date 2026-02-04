@@ -3,6 +3,7 @@ import Link from 'next/link'
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
+import { EducationTimeline } from '@/components/EducationTimeline'
 import {
   GitHubIcon,
   InstagramIcon,
@@ -44,24 +45,46 @@ export const metadata = {
 }
 
 export default function About() {
+  const educationItems = [
+    {
+      date: '2023 - Present',
+      title: 'Master in Computer Science',
+      institution: 'University Name',
+      description: 'Specializing in Game Development and Cloud Architecture',
+    },
+    {
+      date: '2021 - 2023',
+      title: 'Bachelor in Software Engineering',
+      institution: 'University Name',
+      description: 'Focus on Backend Development and System Design',
+    },
+    {
+      date: '2020',
+      title: 'AWS Cloud Solution Architect Certification',
+      institution: 'Amazon Web Services',
+      description: 'Professional certification in cloud architecture',
+    },
+  ]
+
   return (
     <Container className="mt-16 sm:mt-32">
       <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
         <div className="lg:pl-20">
           <div className="max-w-xs px-2.5 lg:max-w-none">
-          <div className="relative">
-            <Image
-              src={portraitImage}
-              alt=""
-              sizes="(min-width: 1024px) 32rem, 20rem"
-              className="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800 transition-opacity duration-500"/>
-            <Image
-              src={hoverImage} 
-              alt=""
-              sizes="(min-width: 1024px) 32rem, 20rem"
-              className="absolute top-0 left-0 aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800 opacity-0 hover:opacity-100 transition-opacity duration-500"
-            />
-          </div>
+            <div className="relative">
+              <Image
+                src={portraitImage}
+                alt=""
+                sizes="(min-width: 1024px) 32rem, 20rem"
+                className="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800 transition-opacity duration-500"
+              />
+              <Image
+                src={hoverImage}
+                alt=""
+                sizes="(min-width: 1024px) 32rem, 20rem"
+                className="absolute top-0 left-0 aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800 opacity-0 hover:opacity-100 transition-opacity duration-500"
+              />
+            </div>
           </div>
         </div>
         <div className="lg:order-first lg:row-span-2">
@@ -106,6 +129,11 @@ export default function About() {
             </SocialLink>
           </ul>
         </div>
+      </div>
+
+      {/* Education Timeline Section */}
+      <div className="mt-24 sm:mt-32">
+        <EducationTimeline title="Education & Certifications" items={educationItems} />
       </div>
     </Container>
   )
