@@ -5,46 +5,81 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { SimpleLayout } from '@/components/SimpleLayout'
+import LISC from '@/images/photos/Games/LISC-1.jpg'
+import Eden from '@/images/photos/Games/Eden-1.jpg'
+import QL from '@/images/photos/Games/Qarn-Laroub-1.jpg'
+import Snake from '@/images/photos/Games/Snake-1.jpg'
+import Tower from '@/images/photos/Games/Tower-1.jpg'
 
 const projects = [
   {
-    name: 'Snake',
+    name: 'Lost In Sala Colonia',
     description: 'Une revisite moderne du classique Snake',
     link: { href: 'https://github.com/AnasFiguigui/snake', label: 'github.com/snake' },
-    imageUrl:
-      'https://images.unsplash.com/photo-1496128858413-b36217c2ce36?auto=format&fit=crop&w=1200&q=80',
+    imageUrl: LISC.src,
+    type: 'games',
+  },
+  {
+    name: 'Eden',
+    description: "Un défi d'empilement en 3D",
+    link: { href: 'https://github.com/AnasFiguigui/Stacking-tower', label: 'github.com/Stacking-tower' },
+    imageUrl: Eden.src,
+    type: 'games',
+  },
+  {
+    name: 'Project 75',
+    description: 'Une adaptation numérique du célèbre jeu de cartes',
+    link: { href: 'https://github.com/AnasFiguigui/Uno-clone', label: 'github.com/Uno-clone' },
+    imageUrl: QL.src,
+    type: 'games',
+  },
+  {
+    name: 'Snake',
+    description: 'Un jeu éducatif fusionnant technologies et créativité.',
+    link: { href: 'https://github.com/AnasFiguigui/DevMerge', label: 'github.com/DevMerge' },
+    imageUrl: Snake.src,
     type: 'games',
   },
   {
     name: 'Stacking tower',
-    description: "Un défi d'empilement en 3D",
-    link: { href: 'https://github.com/AnasFiguigui/Stacking-tower', label: 'github.com/Stacking-tower' },
-    imageUrl:
-      'https://images.unsplash.com/photo-1547586696-ea22b4d4235d?auto=format&fit=crop&w=1200&q=80',
-    type: 'games',
-  },
-  {
-    name: 'Uno clone',
-    description: 'Une adaptation numérique du célèbre jeu de cartes',
-    link: { href: 'https://github.com/AnasFiguigui/Uno-clone', label: 'github.com/Uno-clone' },
-    imageUrl:
-      'https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&w=1200&q=80',
-    type: 'games',
-  },
-  {
-    name: 'DevMerge',
-    description: 'Un jeu éducatif fusionnant technologies et créativité.',
-    link: { href: 'https://github.com/AnasFiguigui/DevMerge', label: 'github.com/DevMerge' },
-    imageUrl:
-      'https://images.unsplash.com/photo-1508057198894-247b23fe5ade?auto=format&fit=crop&w=1200&q=80',
-    type: 'games',
-  },
-  {
-    name: 'Apocalypse Z',
     description: 'Un jeu 3D de tir immersif dans un monde envahi par les zombies.',
     link: { href: 'https://github.com/AnasFiguigui/Apocalypse-Z', label: 'github.com/Apocalypse-Z' },
-    imageUrl:
-      'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80',
+    imageUrl: Tower.src,
+    type: 'games',
+  },
+    {
+    name: 'Stacking tower',
+    description: 'Un jeu 3D de tir immersif dans un monde envahi par les zombies.',
+    link: { href: 'https://github.com/AnasFiguigui/Apocalypse-Z', label: 'github.com/Apocalypse-Z' },
+    imageUrl: Tower.src,
+    type: 'games',
+  },
+    {
+    name: 'Stacking tower',
+    description: 'Un jeu 3D de tir immersif dans un monde envahi par les zombies.',
+    link: { href: 'https://github.com/AnasFiguigui/Apocalypse-Z', label: 'github.com/Apocalypse-Z' },
+    imageUrl: Tower.src,
+    type: 'games',
+  },
+    {
+    name: 'Stacking tower',
+    description: 'Un jeu 3D de tir immersif dans un monde envahi par les zombies.',
+    link: { href: 'https://github.com/AnasFiguigui/Apocalypse-Z', label: 'github.com/Apocalypse-Z' },
+    imageUrl: Tower.src,
+    type: 'games',
+  },
+    {
+    name: 'Stacking tower',
+    description: 'Un jeu 3D de tir immersif dans un monde envahi par les zombies.',
+    link: { href: 'https://github.com/AnasFiguigui/Apocalypse-Z', label: 'github.com/Apocalypse-Z' },
+    imageUrl: Tower.src,
+    type: 'games',
+  },
+    {
+    name: 'Stacking tower',
+    description: 'Un jeu 3D de tir immersif dans un monde envahi par les zombies.',
+    link: { href: 'https://github.com/AnasFiguigui/Apocalypse-Z', label: 'github.com/Apocalypse-Z' },
+    imageUrl: Tower.src,
     type: 'games',
   },
 ]
@@ -133,11 +168,14 @@ function Section({ onFilterChange }) {
 
 export function ProjectsClient() {
   const [selectedCategory, setSelectedCategory] = useState('all')
+  const [showAll, setShowAll] = useState(false)
 
   const filteredProjects =
     selectedCategory === 'all'
       ? projects
       : projects.filter((project) => project.type === selectedCategory)
+
+  const displayedProjects = showAll ? filteredProjects : filteredProjects.slice(0, 6)
 
   return (
     <SimpleLayout
@@ -150,7 +188,7 @@ export function ProjectsClient() {
       </p>
 
       <div className="mx-auto mt-6 grid max-w-7xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {filteredProjects.map((project) => (
+        {displayedProjects.map((project) => (
           <project
             key={project.name}
             className="group relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-6 pb-6 pt-48 sm:pt-36 lg:pt-36 bg-zinc-900/5 dark:bg-zinc-900"
@@ -195,6 +233,17 @@ export function ProjectsClient() {
           </project>
         ))}
       </div>
+
+      {filteredProjects.length > 6 && !showAll && (
+        <div className="flex justify-center mt-12">
+          <button
+            onClick={() => setShowAll(true)}
+            className="inline-flex items-center rounded-md bg-purple-600 px-6 py-3 text-sm font-medium text-white shadow-lg hover:bg-purple-700 transition-colors"
+          >
+            Show All Projects
+          </button>
+        </div>
+      )}
     </SimpleLayout>
   )
 }
