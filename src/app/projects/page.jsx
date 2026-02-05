@@ -1,6 +1,6 @@
 import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
-import { getAllProjects } from '@/lib/articles'
+import { getAllProjects } from '@/lib/projects'
 import { formatDate } from '@/lib/formatDate'
 
 function Project({ project }) {
