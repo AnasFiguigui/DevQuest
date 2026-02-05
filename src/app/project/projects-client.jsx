@@ -7,88 +7,90 @@ import Link from 'next/link'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import LISC from '@/images/photos/Games/LISC-1.jpg'
 import Eden from '@/images/photos/Games/Eden-1.jpg'
+import Portfolio from '@/images/photos/Games/Portfolio-1.jpg'
 import QL from '@/images/photos/Games/Qarn-Laroub-1.jpg'
 import Snake from '@/images/photos/Games/Snake-1.jpg'
 import Tower from '@/images/photos/Games/Tower-1.jpg'
+import Carlyon from '@/images/photos/Games/Carlyon-1.jpg'
 
 const projects = [
   {
     name: 'Lost In Sala Colonia',
     description: 'Une revisite moderne du classique Snake',
-    link: { href: 'https://github.com/AnasFiguigui/snake', label: 'github.com/snake' },
+    link: { href: "/projects/LostInSalaColonia", label: 'github.com/snake' },
     imageUrl: LISC.src,
-    type: 'games',
+    type: 'game',
   },
   {
     name: 'Eden',
     description: "Un défi d'empilement en 3D",
-    link: { href: 'https://github.com/AnasFiguigui/Stacking-tower', label: 'github.com/Stacking-tower' },
+    link: { href: "/projects/LostInSalaColonia", label: 'github.com/Stacking-tower' },
     imageUrl: Eden.src,
-    type: 'games',
+    type: 'game',
   },
   {
     name: 'Project 75',
     description: 'Une adaptation numérique du célèbre jeu de cartes',
-    link: { href: 'https://github.com/AnasFiguigui/Uno-clone', label: 'github.com/Uno-clone' },
+    link: { href: "/projects/LostInSalaColonia", label: 'github.com/Uno-clone' },
     imageUrl: QL.src,
-    type: 'games',
+    type: 'game',
+  },
+  {
+    name: 'Portfolio',
+    description: 'A developer portfolio that reflects my vision and skills.',
+    link: { href: "/projects/LostInSalaColonia", label: 'github.com/Apocalypse-Z' },
+    imageUrl: Portfolio.src,
+    type: 'website',
   },
   {
     name: 'Snake',
     description: 'Un jeu éducatif fusionnant technologies et créativité.',
-    link: { href: 'https://github.com/AnasFiguigui/DevMerge', label: 'github.com/DevMerge' },
+    link: { href: "/projects/LostInSalaColonia", label: 'github.com/DevMerge' },
     imageUrl: Snake.src,
-    type: 'games',
+    type: 'game',
   },
   {
     name: 'Stacking tower',
     description: 'Un jeu 3D de tir immersif dans un monde envahi par les zombies.',
-    link: { href: 'https://github.com/AnasFiguigui/Apocalypse-Z', label: 'github.com/Apocalypse-Z' },
+    link: { href: "/projects/LostInSalaColonia", label: 'github.com/Apocalypse-Z' },
     imageUrl: Tower.src,
-    type: 'games',
+    type: 'game',
+  },
+    {
+    name: 'Carlyon',
+    description: 'Un jeu 3D de tir immersif dans un monde envahi par les zombies.',
+    link: { href: "/projects/LostInSalaColonia", label: 'github.com/Apocalypse-Z' },
+    imageUrl: Carlyon.src,
+    type: 'website',
   },
     {
     name: 'Stacking tower',
     description: 'Un jeu 3D de tir immersif dans un monde envahi par les zombies.',
-    link: { href: 'https://github.com/AnasFiguigui/Apocalypse-Z', label: 'github.com/Apocalypse-Z' },
+    link: { href: "/projects/LostInSalaColonia", label: 'github.com/Apocalypse-Z' },
     imageUrl: Tower.src,
-    type: 'games',
+    type: 'game',
   },
     {
     name: 'Stacking tower',
     description: 'Un jeu 3D de tir immersif dans un monde envahi par les zombies.',
-    link: { href: 'https://github.com/AnasFiguigui/Apocalypse-Z', label: 'github.com/Apocalypse-Z' },
+    link: { href: "/projects/LostInSalaColonia", label: 'github.com/Apocalypse-Z' },
     imageUrl: Tower.src,
-    type: 'games',
+    type: 'game',
   },
     {
     name: 'Stacking tower',
     description: 'Un jeu 3D de tir immersif dans un monde envahi par les zombies.',
-    link: { href: 'https://github.com/AnasFiguigui/Apocalypse-Z', label: 'github.com/Apocalypse-Z' },
+    link: { href: "/projects/LostInSalaColonia", label: 'github.com/Apocalypse-Z' },
     imageUrl: Tower.src,
-    type: 'games',
-  },
-    {
-    name: 'Stacking tower',
-    description: 'Un jeu 3D de tir immersif dans un monde envahi par les zombies.',
-    link: { href: 'https://github.com/AnasFiguigui/Apocalypse-Z', label: 'github.com/Apocalypse-Z' },
-    imageUrl: Tower.src,
-    type: 'games',
-  },
-    {
-    name: 'Stacking tower',
-    description: 'Un jeu 3D de tir immersif dans un monde envahi par les zombies.',
-    link: { href: 'https://github.com/AnasFiguigui/Apocalypse-Z', label: 'github.com/Apocalypse-Z' },
-    imageUrl: Tower.src,
-    type: 'games',
+    type: 'game',
   },
 ]
 
 const tabs = [
   { name: 'All Projects', value: 'all' },
-  { name: 'Games', value: 'games' },
-  { name: 'Websites', value: 'websites' },
-  { name: 'Mods', value: 'mods' },
+  { name: 'Games', value: 'game' },
+  { name: 'Websites', value: 'website' },
+  { name: 'Mods', value: 'mod' },
 ]
 
 function classNames(...classes) {
@@ -224,7 +226,6 @@ export function ProjectsClient() {
               <Link
                 href={project.link.href}
                 className="pointer-events-none group-hover:pointer-events-auto inline-flex w-full items-center justify-center rounded-md bg-white/90 px-4 py-2 text-sm font-medium text-zinc-900 shadow-lg dark:bg-white/10 dark:text-white"
-                target="_blank"
                 rel="noopener noreferrer"
               >
                 See project
