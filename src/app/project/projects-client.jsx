@@ -151,7 +151,7 @@ export function ProjectsClient() {
 
       <div className="mx-auto mt-6 grid max-w-7xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {filteredProjects.map((project) => (
-          <article
+          <project
             key={project.name}
             className="group relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-6 pb-6 pt-48 sm:pt-36 lg:pt-36 bg-zinc-900/5 dark:bg-zinc-900"
           >
@@ -192,7 +192,7 @@ export function ProjectsClient() {
                 See project
               </Link>
             </div>
-          </article>
+          </project>
         ))}
       </div>
     </SimpleLayout>

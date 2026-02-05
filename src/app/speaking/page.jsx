@@ -12,7 +12,7 @@ function SpeakingSection({ children, ...props }) {
 
 function Appearance({ title, description, event, cta, href }) {
   return (
-    <Card as="article">
+    <Card as="project">
       <Card.Title as="h3" href={href}>
         {title}
       </Card.Title>

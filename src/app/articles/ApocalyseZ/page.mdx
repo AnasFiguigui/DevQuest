@@ -1,11 +1,11 @@
-import { ArticleLayout } from '@/components/ArticleLayout';
+import { ProjectLayout } from '@/components/ProjectLayout';
 import Image from 'next/image';
 import image5 from '@/images/photos/image-5.gif';
 import video1 from '@/images/photos/video-1.gif';
 import video2 from '@/images/photos/video-2.gif';
 import video3 from '@/images/photos/video-3.gif';
 
-export const article = {
+export const project = {
   author: 'Anas Figuigui',
   date: '2024-11-21',
   title: 'Apocalypse Z :',
@@ -14,11 +14,11 @@ export const article = {
 };
 
 export const metadata = {
-  title: article.title,
-  description: article.description,
+  title: project.title,
+  description: project.description,
 };
 
-export default (props) => <ArticleLayout article={article} {...props} />;
+export default (props) => <ProjectLayout project={project} {...props} />;
 
 **Apocalypse Z** est un jeu de tir immersif où les joueurs affrontent des hordes de zombies dans un monde post-apocalyptique. Avec des graphismes saisissants et une jouabilité intense, ce projet combine des mécaniques de survie captivantes avec des défis stratégiques. Développé avec Unity et C#, le jeu exploite tout le potentiel de ces technologies pour offrir une expérience fluide et palpitante.
 
@@ -158,7 +158,7 @@ public void TakeDamage(float damage)
 - Audio intégré pour ambiance immersive (`AudioSource`, `AudioClip`).
 
 ### Graphiques
-- Effets de tir et d'impact via des particules (`ParticleSystem`).
+- Effets de tir et d'impact via des particules (`PprojectSystem`).
 
 ---
 <Image src={video3} alt="Capture d'écran du gameplay de Apocalypse Z" />

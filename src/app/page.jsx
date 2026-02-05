@@ -15,12 +15,12 @@ import logoIsart from '@/images/logos/isart.svg'
 import logoOfppt from '@/images/logos/ofppt.svg'
 import logoUir from '@/images/logos/uir.svg'
 import logoUm5s from '@/images/logos/um5s.svg'
-import { getAllArticles } from '@/lib/articles'
+import { getAllProjects } from '@/lib/projects'
 import { formatDate } from '@/lib/formatDate'
 
 function MailIcon(props) {
-  Article.propTypes = {
-    article: PropTypes.shape({
+  Project.propTypes = {
+    project: PropTypes.shape({
       slug: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       date: PropTypes.string.isRequired,
@@ -88,16 +88,16 @@ function ArrowDownIcon(props) {
 
 import PropTypes from 'prop-types';
 
-function Article({ article }) {
+function Project({ project }) {
   return (
-    <Card as="article">
-      <Card.Title href={`/articles/${article.slug}`}>
-        {article.title}
+    <Card as="project">
+      <Card.Title href={`/projects/${project.slug}`}>
+        {project.title}
       </Card.Title>
-      <Card.Eyebrow as="time" dateTime={article.date} decorate>
-        {formatDate(article.date)}
+      <Card.Eyebrow as="time" dateTime={project.date} decorate>
+        {formatDate(project.date)}
       </Card.Eyebrow>
-      <Card.Description>{article.description}</Card.Description>
+      <Card.Description>{project.description}</Card.Description>
       <Card.Cta>Read documentation</Card.Cta>
     </Card>
   )
@@ -347,7 +347,7 @@ function Photos({ images }) {
 }
 
 export default async function Home() {
-  let articles = (await getAllArticles()).slice(0, 4)
+  let projects = (await getAllProjects()).slice(0, 4)
   const photos = await loadPhotos()
 
   return (
@@ -385,11 +385,11 @@ export default async function Home() {
           <div className="flex flex-col gap-14">
             <div>
               <h2 className="text-3xl font-semibold text-zinc-900 dark:text-zinc-100">
-                Latest Articles
+                Latest Projects
               </h2>
             </div>
-            {articles.map((article) => (
-              <Article key={article.slug} article={article} />
+            {projects.map((project) => (
+              <Project key={project.slug} project={project} />
             ))}
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
