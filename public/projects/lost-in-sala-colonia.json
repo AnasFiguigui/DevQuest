@@ -1,0 +1,11 @@
+{
+  "id": "lost-in-sala-colonia",
+  "name": "Lost In Sala Colonia",
+  "date": "2024-09-01",
+  "longDescription": "<p>Full long description for Lost In Sala Colonia. Gameplay details, design notes, and postmortem.</p>",
+  "media": { "type": "image", "src": "/images/photos/Games/LISC-1.jpg" },
+  "pictures": ["/images/photos/Games/LISC-1.jpg"],
+  "technologies": ["Unity", "C#"],
+  "contributors": ["Anas Figuigui"],
+  "videoUrl": ""
+}

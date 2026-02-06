@@ -1,0 +1,11 @@
+{
+  "id": "snake",
+  "name": "Snake",
+  "date": "2021-03-10",
+  "longDescription": "<p>Classic snake mechanics reimagined.</p>",
+  "media": { "type": "image", "src": "/images/photos/Games/Snake-1.jpg" },
+  "pictures": ["/images/photos/Games/Snake-1.jpg"],
+  "technologies": ["JavaScript", "Canvas"],
+  "contributors": ["Anas Figuigui"],
+  "videoUrl": ""
+}

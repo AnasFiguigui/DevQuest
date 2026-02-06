@@ -1,0 +1,11 @@
+{
+  "id": "stacking-tower",
+  "name": "Stacking tower",
+  "date": "2020-11-05",
+  "longDescription": "<p>Stacking tower long description.</p>",
+  "media": { "type": "image", "src": "/images/photos/Games/Tower-1.jpg" },
+  "pictures": ["/images/photos/Games/Tower-1.jpg"],
+  "technologies": ["Three.js"],
+  "contributors": ["Anas Figuigui"],
+  "videoUrl": ""
+}

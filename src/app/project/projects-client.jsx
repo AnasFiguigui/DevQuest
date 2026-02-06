@@ -2,89 +2,10 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 
 import { SimpleLayout } from '@/components/SimpleLayout'
-import LISC from '@/images/photos/Games/LISC-1.jpg'
-import Eden from '@/images/photos/Games/Eden-1.jpg'
-import Portfolio from '@/images/photos/Games/Portfolio-1.jpg'
-import QL from '@/images/photos/Games/Qarn-Laroub-1.jpg'
-import Snake from '@/images/photos/Games/Snake-1.jpg'
-import Tower from '@/images/photos/Games/Tower-1.jpg'
-import Carlyon from '@/images/photos/Games/Carlyon-1.jpg'
-
-const projects = [
-  {
-    name: 'Lost In Sala Colonia',
-    description: 'Une revisite moderne du classique Snake',
-    link: { href: "/projects/LostInSalaColonia", label: 'github.com/snake' },
-    imageUrl: LISC.src,
-    type: 'game',
-  },
-  {
-    name: 'Eden',
-    description: "Un défi d'empilement en 3D",
-    link: { href: "/projects/LostInSalaColonia", label: 'github.com/Stacking-tower' },
-    imageUrl: Eden.src,
-    type: 'game',
-  },
-  {
-    name: 'Project 75',
-    description: 'Une adaptation numérique du célèbre jeu de cartes',
-    link: { href: "/projects/LostInSalaColonia", label: 'github.com/Uno-clone' },
-    imageUrl: QL.src,
-    type: 'game',
-  },
-  {
-    name: 'Portfolio',
-    description: 'A developer portfolio that reflects my vision and skills.',
-    link: { href: "/projects/LostInSalaColonia", label: 'github.com/Apocalypse-Z' },
-    imageUrl: Portfolio.src,
-    type: 'website',
-  },
-  {
-    name: 'Snake',
-    description: 'Un jeu éducatif fusionnant technologies et créativité.',
-    link: { href: "/projects/LostInSalaColonia", label: 'github.com/DevMerge' },
-    imageUrl: Snake.src,
-    type: 'game',
-  },
-  {
-    name: 'Stacking tower',
-    description: 'Un jeu 3D de tir immersif dans un monde envahi par les zombies.',
-    link: { href: "/projects/LostInSalaColonia", label: 'github.com/Apocalypse-Z' },
-    imageUrl: Tower.src,
-    type: 'game',
-  },
-    {
-    name: 'Carlyon',
-    description: 'Un jeu 3D de tir immersif dans un monde envahi par les zombies.',
-    link: { href: "/projects/LostInSalaColonia", label: 'github.com/Apocalypse-Z' },
-    imageUrl: Carlyon.src,
-    type: 'website',
-  },
-    {
-    name: 'Stacking tower',
-    description: 'Un jeu 3D de tir immersif dans un monde envahi par les zombies.',
-    link: { href: "/projects/LostInSalaColonia", label: 'github.com/Apocalypse-Z' },
-    imageUrl: Tower.src,
-    type: 'game',
-  },
-    {
-    name: 'Stacking tower',
-    description: 'Un jeu 3D de tir immersif dans un monde envahi par les zombies.',
-    link: { href: "/projects/LostInSalaColonia", label: 'github.com/Apocalypse-Z' },
-    imageUrl: Tower.src,
-    type: 'game',
-  },
-    {
-    name: 'Stacking tower',
-    description: 'Un jeu 3D de tir immersif dans un monde envahi par les zombies.',
-    link: { href: "/projects/LostInSalaColonia", label: 'github.com/Apocalypse-Z' },
-    imageUrl: Tower.src,
-    type: 'game',
-  },
-]
+import projectsData from '@/lib/projects-client'
+import ProjectModal from '@/components/ProjectModal'
 
 const tabs = [
   { name: 'All Projects', value: 'all' },
@@ -98,8 +19,8 @@ function classNames(...classes) {
 }
 
 function getCountByCategory(category) {
-  if (category === 'all') return projects.length
-  return projects.filter((project) => project.type === category).length
+  if (category === 'all') return projectsData.length
+  return projectsData.filter((project) => project.type === category).length
 }
 
 function Section({ onFilterChange }) {
@@ -171,11 +92,18 @@ function Section({ onFilterChange }) {
 export function ProjectsClient() {
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [showAll, setShowAll] = useState(false)
+  const [modalProjectId, setModalProjectId] = useState(null)
 
   const filteredProjects =
     selectedCategory === 'all'
-      ? projects
-      : projects.filter((project) => project.type === selectedCategory)
+      ? projectsData
+      : projectsData.filter((project) => project.type === selectedCategory)
+
+  // order by release date (newest first) for navigation
+  const orderedFilteredIds = filteredProjects
+    .slice()
+    .sort((a, b) => +new Date(b.releaseDate) - +new Date(a.releaseDate))
+    .map((p) => p.id)
 
   const displayedProjects = showAll ? filteredProjects : filteredProjects.slice(0, 6)
 
@@ -197,9 +125,10 @@ export function ProjectsClient() {
           >
             {/* background image */}
             <div className="absolute inset-0 -z-10 overflow-hidden rounded-2xl">
-              <img
-                src={project.imageUrl}
+              <Image
+                src={project.thumbnail}
                 alt={project.name}
+                fill
                 className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105 group-hover:blur-sm"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent mix-blend-multiply" />
@@ -217,19 +146,19 @@ export function ProjectsClient() {
                 {project.name}
               </h3>
               <p className="mt-2 max-w-xs text-sm text-white/80">
-                {project.description}
+                {project.shortDescription}
               </p>
             </div>
 
             {/* See project button */}
             <div className="absolute inset-x-0 bottom-6 z-10 px-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-              <Link
-                href={project.link.href}
+              <button
+                onClick={() => setModalProjectId(project.id)}
                 className="pointer-events-none group-hover:pointer-events-auto inline-flex w-full items-center justify-center rounded-md bg-white/90 px-4 py-2 text-sm font-medium text-zinc-900 shadow-lg dark:bg-white/10 dark:text-white"
                 rel="noopener noreferrer"
               >
                 See project
-              </Link>
+              </button>
             </div>
           </project>
         ))}
@@ -244,6 +173,15 @@ export function ProjectsClient() {
             Show All Projects
           </button>
         </div>
+      )}
+
+      {modalProjectId && (
+        <ProjectModal
+          projectId={modalProjectId}
+          onClose={() => setModalProjectId(null)}
+          onNavigate={(id) => setModalProjectId(id)}
+          allProjectIds={orderedFilteredIds}
+        />
       )}
     </SimpleLayout>
   )

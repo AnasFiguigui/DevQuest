@@ -1,0 +1,11 @@
+{
+  "id": "project-75",
+  "name": "Project 75",
+  "date": "2022-06-20",
+  "longDescription": "<p>Details for Project 75, rules and scoring.</p>",
+  "media": { "type": "image", "src": "/images/photos/Games/Qarn-Laroub-1.jpg" },
+  "pictures": ["/images/photos/Games/Qarn-Laroub-1.jpg"],
+  "technologies": ["JavaScript", "HTML5 Canvas"],
+  "contributors": ["Anas Figuigui"],
+  "videoUrl": ""
+}

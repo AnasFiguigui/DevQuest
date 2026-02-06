@@ -1,0 +1,11 @@
+{
+  "id": "eden",
+  "name": "Eden",
+  "date": "2023-12-15",
+  "longDescription": "<p>Long description for Eden. Physics and stacking mechanics.</p>",
+  "media": { "type": "image", "src": "/images/photos/Games/Eden-1.jpg" },
+  "pictures": ["/images/photos/Games/Eden-1.jpg", "/images/photos/Games/Eden-2.jpg"],
+  "technologies": ["Three.js", "React"],
+  "contributors": ["Anas Figuigui", "Contributor B"],
+  "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+}

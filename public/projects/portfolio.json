@@ -1,0 +1,11 @@
+{
+  "id": "portfolio",
+  "name": "Portfolio",
+  "date": "2022-01-01",
+  "longDescription": "<p>Project portfolio description and background.</p>",
+  "media": { "type": "image", "src": "/images/photos/Games/Portfolio-1.jpg" },
+  "pictures": ["/images/photos/Games/Portfolio-1.jpg"],
+  "technologies": ["Next.js", "TailwindCSS"],
+  "contributors": ["Anas Figuigui"],
+  "videoUrl": ""
+}
