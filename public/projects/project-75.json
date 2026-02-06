@@ -5,7 +5,7 @@
   "date": "02 October 2025",
   "type": "game",
   "category": "Arcade / Minigames Collection",
-  "banner": { "type": "image", "src": "/images/photos/Projects/Project75/banner.jpg" },
+  "banner": { "type": "image", "src": "/images/photos/Projects/Project75/banner.jpg"},
   "thumbnail": { "type": "image", "src": "/images/photos/Projects/Project75/thumbnail.jpg" },
   "shortDescription": "Fast-paced mini-game collection developed for a game jam.",
   "longDescription": "<p>Set in Morocco, 2100, Project 75 is a fast-paced mini-game collection developed during a game jam. The player takes on the unusual role of a mischievous devil whose only way to progress is by interfering, sabotaging, and influencing events across a series of chaotic micro-challenges. <br><br> Each mini-game introduces a new mechanic and scenario, keeping the experience unpredictable and energetic. As the player advances, the visual style evolves starting with rough, sketch-like scenes that gradually transform to reflect a shifting vision of Morocco’s future.</p>",

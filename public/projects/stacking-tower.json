@@ -1,39 +1,31 @@
 {
-  "id": "lost-in-sala-colonia",
-  "slug": "lost-in-sala-colonia",
-  "name": "Lost In Sala Colonia",
-  "date": "2024-09-01",
+  "id": "stacking-tower",
+  "slug": "stacking-tower",
+  "name": "Stacking Tower",
+  "date": "2024-08-15",
   "type": "game",
-  "category": "Action-Adventure / Survival Horror",
-  "banner": { "type": "image", "src": "/images/photos/Projects/LISC/banner.jpg" },
-  "thumbnail": { "type": "image", "src": "/images/photos/Projects/LISC/thumbnail.jpg" },
-  "shortDescription": "Full long description for Lost In Sala Colonia.",
-  "longDescription": "<p>You play as a YouTuber who goes to film inside Sala Colonia, an ancient historical site in Rabat. At first, it’s just a simple vlog, but very quickly strange things happen. The place is haunted by ghosts and supernatural forces that you can only see with your camera.</p>",
+  "category": "Puzzle / Arcade",
+  "banner": { "type": "image", "src": "/images/photos/Projects/Tower/banner.jpg" },
+  "thumbnail": { "type": "image", "src": "/images/photos/Projects/Tower/thumbnail.jpg" },
+  "shortDescription": "A challenging tower-stacking puzzle game.",
+  "longDescription": "<p>Stack blocks carefully to build the tallest tower possible. Test your precision and timing in this addictive arcade puzzle game.</p>",
   "media": { "type": "video", "src": "" },
-  "youtubeUrl": "https://www.youtube.com/watch?v=9EZrVCmbNSM",
+  "youtubeUrl": "",
   "pictures": [
-    "/images/photos/Projects/LISC/LISC-1.png",
-    "/images/photos/Projects/LISC/LISC-2.png",
-    "/images/photos/Projects/LISC/LISC-3.png",
-    "/images/photos/Projects/LISC/LISC-4.png",
-    "/images/photos/Projects/LISC/LISC-5.png"
+    "/images/photos/Projects/Tower/image-1.jpg",
+    "/images/photos/Projects/Tower/image-2.jpg",
+    "/images/photos/Projects/Tower/image-3.jpg",
+    "/images/photos/Projects/Tower/image-4.jpg",
+    "/images/photos/Projects/Tower/image-5.jpg"
   ],
   "technologies": [
     { "name": "Unity", "svg": "/images/technologies/unity.svg" },
-    { "name": "C#", "svg": "/images/technologies/c-sharp.svg" },
-    { "name": "Blender", "svg": "/images/technologies/blender.svg" },
-    { "name": "Jira", "svg": "/images/technologies/jira.svg" },
-    { "name": "Github", "svg": "/images/technologies/github.svg" },
-    { "name": "Github Actions", "svg": "/images/technologies/github-actions.svg" }
+    { "name": "C#", "svg": "/images/technologies/c-sharp.svg" }
   ],
   "contributors": [
-    "Producer: Anas Figuigui",
-    "Lead Designer: Anas Figuigui",
-    "Lead Programmer: Anas Figuigui",
-    "Artist: Anas Figuigui",
-    "Sound Designer: Anas Figuigui"
+    "Developer: Anas Figuigui"
   ],
-  "articleUrl": "/projects/LostInSalaColonia",
-  "projectUrl": "https://isartmaroc.itch.io/lostinsalacolonia",
+  "articleUrl": "/projects/stacking-tower",
+  "projectUrl": "https://example.com",
   "tags": ["puzzle", "single-player"]
 }

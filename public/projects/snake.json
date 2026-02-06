@@ -1,39 +1,31 @@
 {
-  "id": "lost-in-sala-colonia",
-  "slug": "lost-in-sala-colonia",
-  "name": "Lost In Sala Colonia",
-  "date": "2024-09-01",
+  "id": "snake",
+  "slug": "snake",
+  "name": "Snake",
+  "date": "2024-07-20",
   "type": "game",
-  "category": "Action-Adventure / Survival Horror",
+  "category": "Arcade / Retro",
   "banner": { "type": "image", "src": "/images/photos/Projects/Snake/banner.jpg" },
-  "thumbnail": { "type": "image", "src": "/images/photos/Projects/LISC/thumbnail.jpg" },
-  "shortDescription": "Full long description for Lost In Sala Colonia.",
-  "longDescription": "<p>You play as a YouTuber who goes to film inside Sala Colonia, an ancient historical site in Rabat. At first, it’s just a simple vlog, but very quickly strange things happen. The place is haunted by ghosts and supernatural forces that you can only see with your camera.</p>",
+  "thumbnail": { "type": "image", "src": "/images/photos/Projects/Snake/thumbnail.jpg" },
+  "shortDescription": "A modern take on the classic Snake game.",
+  "longDescription": "<p>Experience the timeless Snake game with modern graphics and new gameplay mechanics. Navigate through challenging levels and beat your high score.</p>",
   "media": { "type": "video", "src": "" },
-  "youtubeUrl": "https://www.youtube.com/watch?v=9EZrVCmbNSM",
+  "youtubeUrl": "",
   "pictures": [
-    "/images/photos/Projects/LISC/LISC-1.png",
-    "/images/photos/Projects/LISC/LISC-2.png",
-    "/images/photos/Projects/LISC/LISC-3.png",
-    "/images/photos/Projects/LISC/LISC-4.png",
-    "/images/photos/Projects/LISC/LISC-5.png"
+    "/images/photos/Projects/Snake/image-1.jpg",
+    "/images/photos/Projects/Snake/image-2.jpg",
+    "/images/photos/Projects/Snake/image-3.jpg",
+    "/images/photos/Projects/Snake/image-4.jpg",
+    "/images/photos/Projects/Snake/image-5.jpg"
   ],
   "technologies": [
     { "name": "Unity", "svg": "/images/technologies/unity.svg" },
-    { "name": "C#", "svg": "/images/technologies/c-sharp.svg" },
-    { "name": "Blender", "svg": "/images/technologies/blender.svg" },
-    { "name": "Jira", "svg": "/images/technologies/jira.svg" },
-    { "name": "Github", "svg": "/images/technologies/github.svg" },
-    { "name": "Github Actions", "svg": "/images/technologies/github-actions.svg" }
+    { "name": "C#", "svg": "/images/technologies/c-sharp.svg" }
   ],
   "contributors": [
-    "Producer: Anas Figuigui",
-    "Lead Designer: Anas Figuigui",
-    "Lead Programmer: Anas Figuigui",
-    "Artist: Anas Figuigui",
-    "Sound Designer: Anas Figuigui"
+    "Developer: Anas Figuigui"
   ],
-  "articleUrl": "/projects/LostInSalaColonia",
-  "projectUrl": "https://isartmaroc.itch.io/lostinsalacolonia",
+  "articleUrl": "/projects/snake",
+  "projectUrl": "https://example.com",
   "tags": ["puzzle", "single-player"]
 }

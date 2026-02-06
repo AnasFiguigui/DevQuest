@@ -1,6 +1,8 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState, memo } from 'react'
+import PropTypes from 'prop-types'
+import Image from 'next/image'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 
 function getYouTubeVideoId(url) {
@@ -9,28 +11,28 @@ function getYouTubeVideoId(url) {
   return match?.[1] || null
 }
 
-function ImageViewer({ pictures, initialIndex, onClose }) {
+function ImageViewerComponent({ pictures, initialIndex, onClose }) {
   const [currentIndex, setCurrentIndex] = useState(initialIndex)
   const hasPrev = currentIndex > 0
   const hasNext = currentIndex < pictures.length - 1
 
-  const handlePrev = () => {
-    if (hasPrev) setCurrentIndex(currentIndex - 1)
-  }
+  const handlePrev = useCallback(() => {
+    if (currentIndex > 0) setCurrentIndex(currentIndex - 1)
+  }, [currentIndex])
 
-  const handleNext = () => {
-    if (hasNext) setCurrentIndex(currentIndex + 1)
-  }
+  const handleNext = useCallback(() => {
+    if (currentIndex < pictures.length - 1) setCurrentIndex(currentIndex + 1)
+  }, [currentIndex, pictures.length])
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'ArrowLeft') handlePrev()
-      if (e.key === 'ArrowRight') handleNext()
+      if (e.key === 'ArrowLeft' && hasPrev) handlePrev()
+      if (e.key === 'ArrowRight' && hasNext) handleNext()
       if (e.key === 'Escape') onClose()
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [currentIndex])
+  }, [handlePrev, handleNext, hasPrev, hasNext, onClose])
 
   return (
     <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
@@ -46,10 +48,12 @@ function ImageViewer({ pictures, initialIndex, onClose }) {
 
         {/* Main image */}
         <div className="flex items-center justify-center w-full">
-          <img
+          <Image
             src={pictures[currentIndex]}
             alt={`Gallery image ${currentIndex + 1}`}
             className="max-w-[90%] max-h-[85vh] object-contain rounded-lg"
+            width={1200}
+            height={800}
           />
         </div>
 
@@ -88,7 +92,10 @@ function ImageViewer({ pictures, initialIndex, onClose }) {
   )
 }
 
-function PictureGallery({ pictures }) {
+const ImageViewer = memo(ImageViewerComponent)
+
+
+function PictureGalleryComponent({ pictures }) {
   const [showAll, setShowAll] = useState(false)
   const [failedImages, setFailedImages] = useState({})
   const [viewerOpen, setViewerOpen] = useState(false)
@@ -96,14 +103,24 @@ function PictureGallery({ pictures }) {
   const displayPics = showAll ? pictures : pictures.slice(0, 4)
   const hasMore = pictures.length > 4
 
-  const handleImageError = (pic) => {
-    setFailedImages((prev) => ({ ...prev, [pic]: true }))
-  }
+  const handleImageError = useCallback(
+    (pic) => {
+      setFailedImages((prev) => ({ ...prev, [pic]: true }))
+    },
+    []
+  )
 
-  const handleImageClick = (index) => {
-    setViewerIndex(index)
-    setViewerOpen(true)
-  }
+  const handleImageClick = useCallback(
+    (index) => {
+      setViewerIndex(index)
+      setViewerOpen(true)
+    },
+    []
+  )
+
+  const handleShowAll = useCallback(() => {
+    setShowAll(true)
+  }, [])
 
   return (
     <div>
@@ -121,19 +138,20 @@ function PictureGallery({ pictures }) {
             >
               {!failed ? (
                 <>
-                  <img
+                  <Image
                     src={pic}
                     alt={`project gallery ${idx + 1}`}
                     className={`h-full w-full object-cover transition-transform group-hover:scale-105 ${
                       isBlurred ? 'blur-md' : ''
                     }`}
                     onError={() => handleImageError(pic)}
+                    fill
                   />
                   {isBlurred && (
                     <button
                       onClick={(e) => {
                         e.stopPropagation()
-                        setShowAll(true)
+                        handleShowAll()
                       }}
                       className="absolute inset-0 flex items-center justify-center bg-black/40 hover:bg-black/50 transition-all text-white font-semibold"
                     >
@@ -169,7 +187,9 @@ function PictureGallery({ pictures }) {
   )
 }
 
-export default function ProjectModal({ projectId, onClose, onNavigate, allProjectIds }) {
+const PictureGallery = memo(PictureGalleryComponent)
+
+export default memo(function ProjectModal({ projectId, onClose, onNavigate, allProjectIds }) {
   const [details, setDetails] = useState(null)
   const [bannerFailed, setBannerFailed] = useState(false)
   const ref = useRef()
@@ -184,34 +204,60 @@ export default function ProjectModal({ projectId, onClose, onNavigate, allProjec
     }
   }, [projectId])
 
+  // Fetch project details
   useEffect(() => {
     if (!projectId) return
     let mounted = true
     fetch(`/projects/${projectId}.json`)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error(`Failed to fetch: ${res.status}`)
+        return res.json()
+      })
       .then((data) => mounted && setDetails(data))
-      .catch(() => mounted && setDetails({ error: 'Could not load details.' }))
+      .catch((err) => {
+        if (mounted) {
+          console.error('Error loading project:', err)
+          setDetails({ error: 'Could not load project details.' })
+        }
+      })
     return () => {
       mounted = false
       setDetails(null)
     }
   }, [projectId])
 
+  // Handle Escape key
   useEffect(() => {
-    function onKey(e) {
+    const handleKeyDown = (e) => {
       if (e.key === 'Escape') onClose()
     }
-    document.addEventListener('keydown', onKey)
-    return () => document.removeEventListener('keydown', onKey)
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
   }, [onClose])
 
-  if (!projectId) return null
+  const handleBackdropClick = useCallback(
+    (e) => {
+      if (e.target === ref.current) onClose()
+    },
+    [onClose]
+  )
 
   const idx = allProjectIds.indexOf(projectId)
   const prevId = idx > 0 ? allProjectIds[idx - 1] : null
   const nextId = idx < allProjectIds.length - 1 ? allProjectIds[idx + 1] : null
 
   const youtubeId = details?.youtubeUrl ? getYouTubeVideoId(details.youtubeUrl) : null
+
+  // Memoized callbacks for navigation (defined before early return)
+  const handlePrevProject = useCallback(() => {
+    if (prevId) onNavigate(prevId)
+  }, [prevId, onNavigate])
+
+  const handleNextProject = useCallback(() => {
+    if (nextId) onNavigate(nextId)
+  }, [nextId, onNavigate])
+
+  if (!projectId) return null
 
   // Determine modal content based on state
   let modalContent
@@ -232,12 +278,12 @@ export default function ProjectModal({ projectId, onClose, onNavigate, allProjec
       /* Main modal */
       <div className="max-h-[95vh] w-full max-w-6xl overflow-hidden rounded-2xl bg-white/0 dark:bg-zinc-950/70 backdrop-blur-xl border border-white/20 dark:border-white/5 shadow-2xl flex flex-col">
         {/* Banner Section */}
-        <div className="relative h-50 w-full overflow-hidden shrink-0 bg-gradient-to-br from-zinc-600 to-zinc-800">
+        <div className="relative h-50 md:h-50 w-full overflow-hidden shrink-0 bg-gradient-to-br from-zinc-600 to-zinc-800">
           {!bannerFailed ? (
             <>
               <img
                 src={details.banner?.src || details.thumbnail?.src}
-                alt={details.name}
+                alt={details.name || 'Project banner'}
                 className="h-full w-full object-cover"
                 onError={() => setBannerFailed(true)}
               />
@@ -251,7 +297,7 @@ export default function ProjectModal({ projectId, onClose, onNavigate, allProjec
               </div>
             </div>
           )}
-          
+
           {/* Close button */}
           <button
             onClick={onClose}
@@ -307,10 +353,12 @@ export default function ProjectModal({ projectId, onClose, onNavigate, allProjec
                   rel="noopener noreferrer"
                   className="block relative group"
                 >
-                  <img
+                  <Image
                     src={`https://img.youtube.com/vi/${youtubeId}/mqdefault.jpg`}
                     alt="YouTube thumbnail"
                     className="w-full rounded-lg"
+                    width={320}
+                    height={180}
                   />
                   <div className="absolute inset-0 flex items-center justify-center group-hover:bg-black/30 transition rounded-lg">
                     <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center text-white group-hover:scale-110 transition">
@@ -337,14 +385,16 @@ export default function ProjectModal({ projectId, onClose, onNavigate, allProjec
                 {details.technologies.map((tech) => (
                   <div key={tech.name} className="flex flex-col items-center gap-2">
                     {tech.svg ? (
-                      <img
-                        src={tech.svg}
-                        alt={tech.name}
-                        className="h-12 w-12 object-contain"
-                        onError={(e) => {
-                          e.target.style.display = 'none'
-                        }}
-                      />
+                        <Image
+                          src={tech.svg}
+                          alt={tech.name}
+                          className="h-12 w-12 object-contain"
+                          onError={(e) => {
+                            e.target.style.display = 'none'
+                          }}
+                          width={48}
+                          height={48}
+                        />
                     ) : (
                       <div className="h-12 w-12 bg-zinc-600 rounded flex items-center justify-center text-white/40 text-xs text-center">
                         No icon
@@ -405,7 +455,7 @@ export default function ProjectModal({ projectId, onClose, onNavigate, allProjec
           {/* Navigation Buttons */}
           <div className="mt-12 flex items-center justify-center gap-4">
             <button
-              onClick={() => prevId && onNavigate(prevId)}
+              onClick={handlePrevProject}
               disabled={!prevId}
               className={`px-8 py-4 rounded-lg font-semibold text-lg transition-all ${
                 prevId
@@ -416,7 +466,7 @@ export default function ProjectModal({ projectId, onClose, onNavigate, allProjec
               ← Previous Project
             </button>
             <button
-              onClick={() => nextId && onNavigate(nextId)}
+              onClick={handleNextProject}
               disabled={!nextId}
               className={`px-8 py-4 rounded-lg font-semibold text-lg transition-all ${
                 nextId
@@ -434,9 +484,7 @@ export default function ProjectModal({ projectId, onClose, onNavigate, allProjec
   return (
     <div
       ref={ref}
-      onMouseDown={(e) => {
-        if (e.target === ref.current) onClose()
-      }}
+      onMouseDown={handleBackdropClick}
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/35 backdrop-blur-lg p-4"
     >
       {modalContent}
@@ -444,7 +492,7 @@ export default function ProjectModal({ projectId, onClose, onNavigate, allProjec
       {/* Left / Right project navigation (screen edges) */}
       {prevId && (
         <button
-          onClick={() => prevId && onNavigate(prevId)}
+          onClick={handlePrevProject}
           aria-label="Previous project"
           className="absolute left-4 top-1/2 transform -translate-y-1/2 inline-flex items-center rounded-l-md bg-white/10 px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-700 hover:bg-white/20 focus:z-10"
         >
@@ -455,7 +503,7 @@ export default function ProjectModal({ projectId, onClose, onNavigate, allProjec
 
       {nextId && (
         <button
-          onClick={() => nextId && onNavigate(nextId)}
+          onClick={handleNextProject}
           aria-label="Next project"
           className="absolute right-4 top-1/2 transform -translate-y-1/2 inline-flex items-center rounded-r-md bg-white/10 px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-700 hover:bg-white/20 focus:z-10"
         >
@@ -465,4 +513,4 @@ export default function ProjectModal({ projectId, onClose, onNavigate, allProjec
       )}
     </div>
   )
-}
+})
