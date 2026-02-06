@@ -8,9 +8,9 @@
   "banner": { "type": "image", "src": "/images/photos/Projects/LISC/banner.jpg" },
   "thumbnail": { "type": "image", "src": "/images/photos/Projects/LISC/thumbnail.jpg" },
   "shortDescription": "Full long description for Lost In Sala Colonia.",
-  "longDescription": "<p>Full long description for Lost In Sala Colonia. Gameplay details, design notes, and postmortem.</p>",
-  "media": { "type": "video", "src": "/projects/lost-in-sala-colonia/video.mp4" },
-  "youtubeUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  "longDescription": "<p>You play as a YouTuber who goes to film inside Sala Colonia, an ancient historical site in Rabat. At first, it’s just a simple vlog, but very quickly strange things happen. The place is haunted by ghosts and supernatural forces that you can only see with your camera.</p>",
+  "media": { "type": "video", "src": "" },
+  "youtubeUrl": "https://www.youtube.com/watch?v=9EZrVCmbNSM",
   "pictures": [
     "/images/photos/Projects/LISC/LISC-1.png",
     "/images/photos/Projects/LISC/LISC-2.png",
