@@ -4,36 +4,32 @@
   "name": "Project 75",
   "date": "02 October 2025",
   "type": "game",
-  "category": "Action-Adventure / Survival Horror",
+  "category": "Arcade / Minigames Collection",
   "banner": { "type": "image", "src": "/images/photos/Projects/Project75/banner.jpg" },
   "thumbnail": { "type": "image", "src": "/images/photos/Projects/Project75/thumbnail.jpg" },
-  "shortDescription": "Full long description for Lost In Sala Colonia.",
-  "longDescription": "<p>You play as a YouTuber who goes to film inside Sala Colonia, an ancient historical site in Rabat. At first, it’s just a simple vlog, but very quickly strange things happen. The place is haunted by ghosts and supernatural forces that you can only see with your camera.</p>",
+  "shortDescription": "Fast-paced mini-game collection developed for a game jam.",
+  "longDescription": "<p>Set in Morocco, 2100, Project 75 is a fast-paced mini-game collection developed during a game jam. The player takes on the unusual role of a mischievous devil whose only way to progress is by interfering, sabotaging, and influencing events across a series of chaotic micro-challenges. <br><br> Each mini-game introduces a new mechanic and scenario, keeping the experience unpredictable and energetic. As the player advances, the visual style evolves starting with rough, sketch-like scenes that gradually transform to reflect a shifting vision of Morocco’s future.</p>",
   "media": { "type": "video", "src": "" },
   "youtubeUrl": "",
   "pictures": [
-    "/images/photos/Projects/Project75/image-1.png",
-    "/images/photos/Projects/Project75/image-2.png",
-    "/images/photos/Projects/Project75/image-3.png",
-    "/images/photos/Projects/Project75/image-4.png",
-    "/images/photos/Projects/Project75/image-5.png"
+    "/images/photos/Projects/Project75/image-1.jpg",
+    "/images/photos/Projects/Project75/image-2.jpg",
+    "/images/photos/Projects/Project75/image-3.jpg",
+    "/images/photos/Projects/Project75/image-4.jpg"
   ],
   "technologies": [
     { "name": "Unity", "svg": "/images/technologies/unity.svg" },
     { "name": "C#", "svg": "/images/technologies/c-sharp.svg" },
     { "name": "Blender", "svg": "/images/technologies/blender.svg" },
-    { "name": "Jira", "svg": "/images/technologies/jira.svg" },
     { "name": "Github", "svg": "/images/technologies/github.svg" },
-    { "name": "Github Actions", "svg": "/images/technologies/github-actions.svg" }
+    { "name": "Adobe PS", "svg": "/images/technologies/photoshop.svg" }
   ],
   "contributors": [
-    "Producer: Anas Figuigui",
-    "Lead Designer: Anas Figuigui",
-    "Lead Programmer: Anas Figuigui",
-    "Artist: Anas Figuigui",
-    "Sound Designer: Anas Figuigui"
+    "Programmers: Anas Figuigui, Ziad",
+    "Artists: Badr, Soulaymane",
+    "Sound Designer: Soulaymane"
   ],
   "articleUrl": "/projects/LostInSalaColonia",
-  "projectUrl": "https://isartmaroc.itch.io/lostinsalacolonia",
-  "tags": ["puzzle", "single-player"]
+  "projectUrl": "https://anasfiguigui.itch.io/qarnlaroub",
+  "tags": ["arcade", "single-player", "minigames", "morocco", "future", "chaos"]
 }

@@ -12,11 +12,12 @@
   "media": { "type": "video", "src": "" },
   "youtubeUrl": "",
   "pictures": [
-    "/images/photos/Projects/Eden/Eden-1.png",
-    "/images/photos/Projects/Eden/Eden-2.png",
-    "/images/photos/Projects/Eden/Eden-3.png",
-    "/images/photos/Projects/Eden/Eden-4.png",
-    "/images/photos/Projects/Eden/Eden-5.png"
+    "/images/photos/Projects/Eden/image-1.jpg",
+    "/images/photos/Projects/Eden/image-2.jpg",
+    "/images/photos/Projects/Eden/image-3.jpg",
+    "/images/photos/Projects/Eden/image-4.jpg",
+    "/images/photos/Projects/Eden/image-5.jpg",
+    "/images/photos/Projects/Eden/image-6.jpg"
   ],
   "technologies": [
     { "name": "Unity", "svg": "/images/technologies/unity.svg" },

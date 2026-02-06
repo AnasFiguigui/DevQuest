@@ -1,21 +1,22 @@
 {
   "id": "portfolio",
   "slug": "portfolio",
-  "name": "DevQuest",
+  "name": "Portfolio",
   "date": "2024-09-01",
   "type": "website",
-  "category": "Personal Portfolio",
-  "banner": { "type": "image", "src": "/images/photos/Projects/Portfolio/banner.jpg" },
+  "category": "Action-Adventure / Survival Horror",
+  "banner": { "type": "image", "src": "/images/photos/Projects/Carlyon/banner.jpg" },
   "thumbnail": { "type": "image", "src": "/images/photos/Projects/Portfolio/thumbnail.jpg" },
   "shortDescription": "Full long description for Lost In Sala Colonia.",
-  "longDescription": "<p>DevQuest is my personal development journey and creative portfolio, featuring the games and web projects I’ve built. Each project challenges me to explore new ideas, refine my skills, and document my progress through blogs and updates — keeping every step of the journey trackable and memorable.</p>",
+  "longDescription": "<p>You play as a YouTuber who goes to film inside Sala Colonia, an ancient historical site in Rabat. At first, it’s just a simple vlog, but very quickly strange things happen. The place is haunted by ghosts and supernatural forces that you can only see with your camera.</p>",
   "media": { "type": "video", "src": "" },
   "youtubeUrl": "",
   "pictures": [
-    "/images/photos/Projects/Portfolio/image-1.jpg",
-    "/images/photos/Projects/Portfolio/image-2.jpg",
-    "/images/photos/Projects/Portfolio/image-3.jpg",
-    "/images/photos/Projects/Portfolio/image-4.jpg"
+    "/images/photos/Projects/Portfolio/Portfolio-1.png",
+    "/images/photos/Projects/Portfolio/Portfolio-2.png",
+    "/images/photos/Projects/Portfolio/Portfolio-3.png",
+    "/images/photos/Projects/Portfolio/Portfolio-4.png",
+    "/images/photos/Projects/Portfolio/Portfolio-5.png"
   ],
   "technologies": [
     { "name": "JavaScript", "svg": "/images/technologies/javascript.svg" },

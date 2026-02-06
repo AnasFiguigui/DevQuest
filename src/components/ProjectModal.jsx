@@ -264,7 +264,7 @@ export default function ProjectModal({ projectId, onClose, onNavigate, allProjec
         </div>
 
         {/* Content Section */}
-        <div className="overflow-y-auto flex-1 px-8 py-8 hide-scrollbar">
+        <div className="overflow-y-auto flex-1 px-14 py-8 hide-scrollbar">
           
           {/* Title overlay */}
           <div className=" text-white">
