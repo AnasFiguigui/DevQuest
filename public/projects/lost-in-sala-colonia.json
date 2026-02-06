@@ -1,11 +1,35 @@
 {
   "id": "lost-in-sala-colonia",
+  "slug": "lost-in-sala-colonia",
   "name": "Lost In Sala Colonia",
   "date": "2024-09-01",
+  "type": "game",
+  "category": "Action-Adventure / Survival Horror",
+  "banner": { "type": "image", "src": "/images/photos/Projects/LISC/banner.jpg" },
+  "thumbnail": { "type": "image", "src": "/images/photos/Projects/LISC/thumbnail.jpg" },
+  "shortDescription": "Full long description for Lost In Sala Colonia.",
   "longDescription": "<p>Full long description for Lost In Sala Colonia. Gameplay details, design notes, and postmortem.</p>",
-  "media": { "type": "image", "src": "/images/photos/Games/LISC-1.jpg" },
-  "pictures": ["/images/photos/Games/LISC-1.jpg"],
-  "technologies": ["Unity", "C#"],
-  "contributors": ["Anas Figuigui"],
-  "videoUrl": ""
+  "media": { "type": "video", "src": "/projects/lost-in-sala-colonia/video.mp4" },
+  "youtubeUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  "pictures": [
+    "/images/photos/Projects/LISC/LISC-1.png",
+    "/images/photos/Projects/LISC/LISC-2.png",
+    "/images/photos/Projects/LISC/LISC-3.png",
+    "/images/photos/Projects/LISC/LISC-4.png",
+    "/images/photos/Projects/LISC/LISC-5.png"
+  ],
+  "technologies": [
+    { "name": "Unity", "svg": "/images/technologies/unity.svg" },
+    { "name": "C#", "svg": "/images/technologies/csharp.svg" }
+  ],
+  "contributors": [
+    "Producer: Anas Figuigui",
+    "Lead Designer: Anas Figuigui",
+    "Lead Programmer: Anas Figuigui",
+    "Artist: Anas Figuigui",
+    "Sound Designer: Anas Figuigui"
+  ],
+  "articleUrl": "/projects/LostInSalaColonia",
+  "projectUrl": "https://isartmaroc.itch.io/lostinsalacolonia",
+  "tags": ["puzzle", "single-player"]
 }
