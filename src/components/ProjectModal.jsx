@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 
 function getYouTubeVideoId(url) {
   if (!url) return null
@@ -56,28 +57,26 @@ function ImageViewer({ pictures, initialIndex, onClose }) {
         <button
           onClick={handlePrev}
           disabled={!hasPrev}
-          className={`absolute left-4 w-12 h-12 rounded-full flex items-center justify-center text-2xl transition-all ${
-            hasPrev
-              ? 'bg-white/20 hover:bg-white/30 border border-white/30 text-white backdrop-blur-md'
-              : 'bg-white/5 border border-white/10 text-white/30 cursor-not-allowed'
+          className={`absolute left-4 inline-flex items-center rounded-l-md bg-white/10 px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-700 hover:bg-white/20 focus:z-10 transition-all ${
+            hasPrev ? '' : 'opacity-40 cursor-not-allowed'
           }`}
           aria-label="Previous image"
         >
-          ‹
+          <span className="sr-only">Previous</span>
+          <ChevronLeftIcon aria-hidden="true" className="h-5 w-5" />
         </button>
 
         {/* Next button */}
         <button
           onClick={handleNext}
           disabled={!hasNext}
-          className={`absolute right-4 w-12 h-12 rounded-full flex items-center justify-center text-2xl transition-all ${
-            hasNext
-              ? 'bg-white/20 hover:bg-white/30 border border-white/30 text-white backdrop-blur-md'
-              : 'bg-white/5 border border-white/10 text-white/30 cursor-not-allowed'
+          className={`absolute right-4 inline-flex items-center rounded-r-md bg-white/10 px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-700 hover:bg-white/20 focus:z-10 transition-all ${
+            hasNext ? '' : 'opacity-40 cursor-not-allowed'
           }`}
           aria-label="Next image"
         >
-          ›
+          <span className="sr-only">Next</span>
+          <ChevronRightIcon aria-hidden="true" className="h-5 w-5" />
         </button>
 
         {/* Image counter */}
@@ -441,6 +440,29 @@ export default function ProjectModal({ projectId, onClose, onNavigate, allProjec
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/35 backdrop-blur-lg p-4"
     >
       {modalContent}
+
+      {/* Left / Right project navigation (screen edges) */}
+      {prevId && (
+        <button
+          onClick={() => prevId && onNavigate(prevId)}
+          aria-label="Previous project"
+          className="absolute left-4 top-1/2 transform -translate-y-1/2 inline-flex items-center rounded-l-md bg-white/10 px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-700 hover:bg-white/20 focus:z-10"
+        >
+          <span className="sr-only">Previous project</span>
+          <ChevronLeftIcon aria-hidden="true" className="h-5 w-5" />
+        </button>
+      )}
+
+      {nextId && (
+        <button
+          onClick={() => nextId && onNavigate(nextId)}
+          aria-label="Next project"
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 inline-flex items-center rounded-r-md bg-white/10 px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-700 hover:bg-white/20 focus:z-10"
+        >
+          <span className="sr-only">Next project</span>
+          <ChevronRightIcon aria-hidden="true" className="h-5 w-5" />
+        </button>
+      )}
     </div>
   )
 }
