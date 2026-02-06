@@ -1,11 +1,39 @@
 {
-  "id": "snake",
-  "name": "Snake",
-  "date": "2021-03-10",
-  "longDescription": "<p>Classic snake mechanics reimagined.</p>",
-  "media": { "type": "image", "src": "/images/photos/Games/Snake-1.jpg" },
-  "pictures": ["/images/photos/Games/Snake-1.jpg"],
-  "technologies": ["JavaScript", "Canvas"],
-  "contributors": ["Anas Figuigui"],
-  "videoUrl": ""
+  "id": "lost-in-sala-colonia",
+  "slug": "lost-in-sala-colonia",
+  "name": "Lost In Sala Colonia",
+  "date": "2024-09-01",
+  "type": "game",
+  "category": "Action-Adventure / Survival Horror",
+  "banner": { "type": "image", "src": "/images/photos/Projects/LISC/banner.jpg" },
+  "thumbnail": { "type": "image", "src": "/images/photos/Projects/LISC/thumbnail.jpg" },
+  "shortDescription": "Full long description for Lost In Sala Colonia.",
+  "longDescription": "<p>You play as a YouTuber who goes to film inside Sala Colonia, an ancient historical site in Rabat. At first, it’s just a simple vlog, but very quickly strange things happen. The place is haunted by ghosts and supernatural forces that you can only see with your camera.</p>",
+  "media": { "type": "video", "src": "" },
+  "youtubeUrl": "https://www.youtube.com/watch?v=9EZrVCmbNSM",
+  "pictures": [
+    "/images/photos/Projects/LISC/LISC-1.png",
+    "/images/photos/Projects/LISC/LISC-2.png",
+    "/images/photos/Projects/LISC/LISC-3.png",
+    "/images/photos/Projects/LISC/LISC-4.png",
+    "/images/photos/Projects/LISC/LISC-5.png"
+  ],
+  "technologies": [
+    { "name": "Unity", "svg": "/images/technologies/unity.svg" },
+    { "name": "C#", "svg": "/images/technologies/c-sharp.svg" },
+    { "name": "Blender", "svg": "/images/technologies/blender.svg" },
+    { "name": "Jira", "svg": "/images/technologies/jira.svg" },
+    { "name": "Github", "svg": "/images/technologies/github.svg" },
+    { "name": "Github Actions", "svg": "/images/technologies/github-actions.svg" }
+  ],
+  "contributors": [
+    "Producer: Anas Figuigui",
+    "Lead Designer: Anas Figuigui",
+    "Lead Programmer: Anas Figuigui",
+    "Artist: Anas Figuigui",
+    "Sound Designer: Anas Figuigui"
+  ],
+  "articleUrl": "/projects/LostInSalaColonia",
+  "projectUrl": "https://isartmaroc.itch.io/lostinsalacolonia",
+  "tags": ["puzzle", "single-player"]
 }

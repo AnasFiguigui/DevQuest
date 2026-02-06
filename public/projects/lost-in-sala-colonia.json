@@ -20,7 +20,11 @@
   ],
   "technologies": [
     { "name": "Unity", "svg": "/images/technologies/unity.svg" },
-    { "name": "C#", "svg": "/images/technologies/csharp.svg" }
+    { "name": "C#", "svg": "/images/technologies/c-sharp.svg" },
+    { "name": "Blender", "svg": "/images/technologies/blender.svg" },
+    { "name": "Jira", "svg": "/images/technologies/jira.svg" },
+    { "name": "Github", "svg": "/images/technologies/github.svg" },
+    { "name": "Github Actions", "svg": "/images/technologies/github-actions.svg" }
   ],
   "contributors": [
     "Producer: Anas Figuigui",

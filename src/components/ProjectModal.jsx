@@ -231,7 +231,7 @@ export default function ProjectModal({ projectId, onClose, onNavigate, allProjec
   } else {
     modalContent = (
       /* Main modal */
-      <div className="max-h-[95vh] w-full max-w-6xl overflow-hidden rounded-2xl bg-white/15 dark:bg-zinc-950/70 backdrop-blur-xl border border-white/20 dark:border-white/5 shadow-2xl flex flex-col">
+      <div className="max-h-[95vh] w-full max-w-6xl overflow-hidden rounded-2xl bg-white/0 dark:bg-zinc-950/70 backdrop-blur-xl border border-white/20 dark:border-white/5 shadow-2xl flex flex-col">
         {/* Banner Section */}
         <div className="relative h-50 w-full overflow-hidden shrink-0 bg-gradient-to-br from-zinc-600 to-zinc-800">
           {!bannerFailed ? (
@@ -274,7 +274,8 @@ export default function ProjectModal({ projectId, onClose, onNavigate, allProjec
           </div>
           {/* Long Description */}
           {details.longDescription && (
-            <div className="prose dark:prose-invert max-w-none mb-8">
+            <div className="prose dark:prose-invert max-w-none mb-8 [&>*:first-child]:mt-0">
+
               <div
                 className="text-white/90"
                 dangerouslySetInnerHTML={{ __html: details.longDescription }}
@@ -332,7 +333,7 @@ export default function ProjectModal({ projectId, onClose, onNavigate, allProjec
           {/* Technologies */}
           {details.technologies?.length > 0 && (
             <div className="mb-8">
-              <h3 className="mb-4 text-lg font-semibold text-white">Technologies</h3>
+              <h3 className="mb-4 text-lg font-semibold text-white tracking-wide">Technologies</h3>
               <div className="flex flex-wrap gap-6">
                 {details.technologies.map((tech) => (
                   <div key={tech.name} className="flex flex-col items-center gap-2">
@@ -340,13 +341,13 @@ export default function ProjectModal({ projectId, onClose, onNavigate, allProjec
                       <img
                         src={tech.svg}
                         alt={tech.name}
-                        className="h-16 w-16 object-contain"
+                        className="h-12 w-12 object-contain"
                         onError={(e) => {
                           e.target.style.display = 'none'
                         }}
                       />
                     ) : (
-                      <div className="h-16 w-16 bg-zinc-600 rounded flex items-center justify-center text-white/40 text-xs text-center">
+                      <div className="h-12 w-12 bg-zinc-600 rounded flex items-center justify-center text-white/40 text-xs text-center">
                         No icon
                       </div>
                     )}
@@ -360,7 +361,7 @@ export default function ProjectModal({ projectId, onClose, onNavigate, allProjec
           {/* Contributors */}
           {details.contributors?.length > 0 && (
             <div className="mb-8">
-              <h3 className="mb-4 text-lg font-semibold text-white">Contributors</h3>
+              <h3 className="mb-4 text-lg font-semibold text-white tracking-wide">Contributors</h3>
               <ul className="space-y-2">
                 {details.contributors.map((contrib, idx) => (
                   <li key={idx} className="text-white/80">
@@ -437,7 +438,7 @@ export default function ProjectModal({ projectId, onClose, onNavigate, allProjec
       onMouseDown={(e) => {
         if (e.target === ref.current) onClose()
       }}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-lg p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/35 backdrop-blur-lg p-4"
     >
       {modalContent}
     </div>
