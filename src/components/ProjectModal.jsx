@@ -40,7 +40,7 @@ function ImageViewerComponent({ pictures, initialIndex, onClose }) {
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-2xl transition-all z-10"
+          className="absolute top-6 right-6 w-12 h-12 rounded-full bg-black/50 hover:bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-white text-2xl transition-all z-10 shadow-lg"
           aria-label="Close"
         >
           ✕
@@ -302,7 +302,7 @@ export default memo(function ProjectModal({ projectId, onClose, onNavigate, allP
           <button
             onClick={onClose}
             aria-label="Close"
-            className="absolute top-4 right-4 w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-2xl transition-all"
+            className="absolute top-4 right-4 w-12 h-12 rounded-full bg-black/20 hover:bg-black/60 backdrop-blur-md border border-white/10 flex items-center justify-center text-white text-2xl transition-all shadow-lg"
           >
             ✕
           </button>
