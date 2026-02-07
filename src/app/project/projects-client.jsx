@@ -1,4 +1,4 @@
- 'use client'
+'use client'
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
@@ -178,7 +178,6 @@ function ProjectCard({ project, onOpen }) {
 
   const thumb = details?.thumbnail?.src || project.thumbnail
   const title = details?.title || details?.name || project.name
-  const date = details?.date || ''
   const shortDesc = details?.shortDescription || project.shortDescription || ''
   const truncated = truncateWords(shortDesc, 5)
 

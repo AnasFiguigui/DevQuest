@@ -1,7 +1,6 @@
 'use client'
 
 import { useCallback, useEffect, useRef, useState, memo } from 'react'
-import PropTypes from 'prop-types'
 import Image from 'next/image'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 
@@ -193,7 +192,7 @@ function SkeletonLoader() {
   return (
     <div className="max-h-[95vh] w-full max-w-6xl overflow-hidden rounded-2xl bg-white/0 dark:bg-zinc-950/70 backdrop-blur-xl border border-white/20 dark:border-white/5 shadow-2xl flex flex-col animate-pulse">
       {/* Banner Skeleton */}
-      <div className="relative h-50 md:h-50 w-full overflow-hidden shrink-0 bg-zinc-700/50" />
+      <div className="relative h-52 md:h-52 w-full overflow-hidden shrink-0 bg-zinc-700/50" />
       
       {/* Content Skeleton */}
       <div className="overflow-y-auto flex-1 px-14 py-8">
@@ -247,6 +246,7 @@ export default memo(function ProjectModal({ projectId, onClose, onNavigate, allP
   // Fetch project details
   useEffect(() => {
     if (!projectId) return
+    setBannerFailed(false)
     let mounted = true
     fetch(`/projects/${projectId}.json`)
       .then((res) => {
@@ -314,7 +314,7 @@ export default memo(function ProjectModal({ projectId, onClose, onNavigate, allP
       /* Main modal */
       <div className="max-h-[95vh] w-full max-w-6xl overflow-hidden rounded-2xl bg-white/0 dark:bg-zinc-950/70 backdrop-blur-xl border border-white/20 dark:border-white/5 shadow-2xl flex flex-col">
         {/* Banner Section */}
-        <div className="relative h-50 md:h-50 w-full overflow-hidden shrink-0 bg-gradient-to-br from-zinc-600 to-zinc-800">
+        <div className="relative h-52 md:h-52 w-full overflow-hidden shrink-0 bg-gradient-to-br from-zinc-600 to-zinc-800">
           {!bannerFailed ? (
             <>
               <img
