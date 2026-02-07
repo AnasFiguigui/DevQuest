@@ -19,7 +19,7 @@ export function EducationTimeline({ title = 'Education', items = [] }) {
           >
             <div className="relative flex items-start gap-4 group-odd:flex-row-reverse group-odd:text-right group-even:order-last">
               {/* Timeline dot */}
-              <span className="size-3 shrink-0 rounded-full bg-purple-600 dark:bg-purple-500"></span>
+              <span className="size-3 shrink-0 rounded-full bg-indigo-600 dark:bg-indigo-500"></span>
 
               {/* Content */}
               <div className="-mt-2">

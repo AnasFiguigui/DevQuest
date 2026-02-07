@@ -38,7 +38,7 @@
 //               <span
 //                 aria-hidden="true"
 //                 className={classNames(
-//                   currentTab === tab.value ? 'bg-purple-400' : 'bg-transparent',
+//                   currentTab === tab.value ? 'bg-indigo-400' : 'bg-transparent',
 //                   'absolute inset-x-0 bottom-0 h-0.5 transition',
 //                 )}
 //               />
@@ -90,7 +90,7 @@
 //               <span>{tab.name}</span>
 //               <span
 //                 className={classNames(
-//                   currentTab === tab.value ? 'bg-purple-500/20 text-purple-400' : 'bg-zinc-200/20 dark:bg-white/10 text-zinc-600 dark:text-gray-300',
+//                   currentTab === tab.value ? 'bg-indigo-500/20 text-indigo-400' : 'bg-zinc-200/20 dark:bg-white/10 text-zinc-600 dark:text-gray-300',
 //                   'ml-3 rounded-full px-2.5 py-0.5 text-xs font-medium',
 //                 )}
 //               >

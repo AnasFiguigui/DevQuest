@@ -1,6 +1,6 @@
-'use client'
+ 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 
 import { SimpleLayout } from '@/components/SimpleLayout'
@@ -67,7 +67,7 @@ function Section({ onFilterChange }) {
               <span>{tab.name}</span>
               <span
                 className={classNames(
-                  currentTab === tab.value ? 'bg-purple-500/20 text-purple-400' : 'bg-zinc-200/20 dark:bg-white/10 text-zinc-600 dark:text-gray-300',
+                  currentTab === tab.value ? 'bg-indigo-500/20 text-indigo-400' : 'bg-zinc-200/20 dark:bg-white/10 text-zinc-600 dark:text-gray-300',
                   'ml-3 rounded-full px-2.5 py-0.5 text-xs font-medium'
                 )}
               >
@@ -77,7 +77,7 @@ function Section({ onFilterChange }) {
               <span
                 aria-hidden="true"
                 className={classNames(
-                  currentTab === tab.value ? 'bg-purple-400' : 'bg-transparent',
+                  currentTab === tab.value ? 'bg-indigo-400' : 'bg-transparent',
                   'absolute inset-x-0 bottom-0 h-0.5 transition'
                 )}
               />
@@ -119,48 +119,11 @@ export function ProjectsClient() {
 
       <div className="mx-auto mt-6 grid max-w-7xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {displayedProjects.map((project) => (
-          <project
-            key={project.name}
-            className="group relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-6 pb-6 pt-48 sm:pt-36 lg:pt-36 bg-zinc-900/5 dark:bg-zinc-900"
-          >
-            {/* background image */}
-            <div className="absolute inset-0 -z-10 overflow-hidden rounded-2xl">
-              <Image
-                src={project.thumbnail}
-                alt={project.name}
-                fill
-                className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105 group-hover:blur-sm"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent mix-blend-multiply" />
-              <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-black/10" />
-            </div>
-
-            {/* info row (small meta) */}
-            <div className="flex flex-wrap items-center gap-y-1 text-sm text-white/70">
-              {/* placeholder for future meta if needed */}
-            </div>
-
-            {/* title + description */}
-            <div className="relative z-10 transform-gpu transition-all duration-300 group-hover:-translate-y-16">
-              <h3 className="text-2xl font-semibold text-white">
-                {project.name}
-              </h3>
-              <p className="mt-2 max-w-xs text-sm text-white/80">
-                {project.shortDescription}
-              </p>
-            </div>
-
-            {/* See project button */}
-            <div className="absolute inset-x-0 bottom-6 z-10 px-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-              <button
-                onClick={() => setModalProjectId(project.id)}
-                className="pointer-events-none group-hover:pointer-events-auto inline-flex w-full items-center justify-center rounded-md bg-white/90 px-4 py-2 text-sm font-medium text-zinc-900 shadow-lg dark:bg-white/10 dark:text-white"
-                rel="noopener noreferrer"
-              >
-                See project
-              </button>
-            </div>
-          </project>
+          <ProjectCard
+            key={project.id}
+            project={project}
+            onOpen={() => setModalProjectId(project.id)}
+          />
         ))}
       </div>
 
@@ -168,7 +131,7 @@ export function ProjectsClient() {
         <div className="flex justify-center mt-12">
           <button
             onClick={() => setShowAll(true)}
-            className="inline-flex items-center rounded-md bg-purple-600 px-6 py-3 text-sm font-medium text-white shadow-lg hover:bg-purple-700 transition-colors"
+            className="inline-flex items-center rounded-md bg-indigo-500/20 px-3.5 py-2.5 text-sm font-semibold text-indigo-400 hover:bg-indigo-500/30"
           >
             Show All Projects
           </button>
@@ -184,5 +147,76 @@ export function ProjectsClient() {
         />
       )}
     </SimpleLayout>
+  )
+}
+
+function truncateWords(text, maxWords = 5) {
+  if (!text) return ''
+  const words = text.split(/\s+/).filter(Boolean)
+  if (words.length <= maxWords) return text
+  return words.slice(0, maxWords).join(' ') + '...'
+}
+
+function ProjectCard({ project, onOpen }) {
+  const [details, setDetails] = useState(null)
+
+  useEffect(() => {
+    let mounted = true
+    fetch(`/projects/${project.id}.json`)
+      .then((r) => {
+        if (!r.ok) throw new Error('Failed')
+        return r.json()
+      })
+      .then((d) => mounted && setDetails(d))
+      .catch(() => {
+        if (mounted) setDetails(null)
+      })
+    return () => {
+      mounted = false
+    }
+  }, [project.id])
+
+  const thumb = details?.thumbnail?.src || project.thumbnail
+  const title = details?.title || details?.name || project.name
+  const date = details?.date || ''
+  const shortDesc = details?.shortDescription || project.shortDescription || ''
+  const truncated = truncateWords(shortDesc, 5)
+
+  return (
+    <article className="group relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-6 pb-6 pt-56 sm:pt-36 lg:pt-36 min-h-[256px] bg-zinc-900/5 dark:bg-zinc-900">
+      {/* background image */}
+      <div className="absolute inset-0 -z-10 overflow-hidden rounded-2xl">
+        <Image
+          src={thumb}
+          alt={title}
+          fill
+          className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105 group-hover:blur-sm"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent mix-blend-multiply" />
+        <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-black/10" />
+      </div>
+
+      {/* title + description */}
+      <div className="relative z-10 mt-auto transform-gpu transition-all duration-300 group-hover:-translate-y-16">
+        <h3 className="text-2xl font-semibold text-white">
+          {title}
+        </h3>
+        <p className="mt-2 max-w-xs text-sm text-white/80">
+          <span className="inline-block group-hover:hidden">{truncated}</span>
+          <span className="hidden group-hover:inline">{shortDesc}</span>
+        </p>
+      </div>
+
+      {/* See project button */}
+      <div className="absolute inset-x-0 bottom-6 z-10 px-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+        <button
+          onClick={onOpen}
+          className="pointer-events-none group-hover:pointer-events-auto inline-flex w-full items-center justify-center rounded-md bg-white/90 px-4 py-2 text-sm font-medium text-zinc-900 shadow-lg dark:bg-white/10 dark:text-white"
+          rel="noopener noreferrer"
+        >
+          See project
+        </button>
+      </div>
+    </article>
   )
 }

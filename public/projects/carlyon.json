@@ -1,22 +1,22 @@
 {
-  "id": "portfolio",
-  "slug": "portfolio",
-  "name": "Portfolio",
+  "id": "carlyon",
+  "slug": "carlyon",
+  "name": "Carlyon",
+  "title": "Carlyon",
   "date": "2024-09-01",
   "type": "website",
-  "category": "Action-Adventure / Survival Horror",
+  "category": "Service / Platform",
   "banner": { "type": "image", "src": "/images/photos/Projects/Carlyon/banner.jpg" },
-  "thumbnail": { "type": "image", "src": "/images/photos/Projects/Portfolio/thumbnail.jpg" },
-  "shortDescription": "Full long description for Lost In Sala Colonia.",
+  "thumbnail": { "type": "image", "src": "/images/photos/Projects/Carlyon/thumbnail.jpg" },
+  "shortDescription": "Comercial service webiste",
   "longDescription": "<p>You play as a YouTuber who goes to film inside Sala Colonia, an ancient historical site in Rabat. At first, it’s just a simple vlog, but very quickly strange things happen. The place is haunted by ghosts and supernatural forces that you can only see with your camera.</p>",
   "media": { "type": "video", "src": "" },
   "youtubeUrl": "",
   "pictures": [
-    "/images/photos/Projects/Portfolio/Portfolio-1.png",
-    "/images/photos/Projects/Portfolio/Portfolio-2.png",
-    "/images/photos/Projects/Portfolio/Portfolio-3.png",
-    "/images/photos/Projects/Portfolio/Portfolio-4.png",
-    "/images/photos/Projects/Portfolio/Portfolio-5.png"
+    "/images/photos/Projects/Carlyon/image-1.jpg",
+    "/images/photos/Projects/Carlyon/image-2.jpg",
+    "/images/photos/Projects/Carlyon/image-3.jpg",
+    "/images/photos/Projects/Carlyon/image-4.jpg"
   ],
   "technologies": [
     { "name": "JavaScript", "svg": "/images/technologies/javascript.svg" },
