@@ -6,18 +6,18 @@
   "date": "2024-08-15",
   "type": "game",
   "category": "Puzzle / Arcade",
-  "banner": { "type": "image", "src": "/images/photos/Projects/Tower/banner.jpg" },
-  "thumbnail": { "type": "image", "src": "/images/photos/Projects/Tower/thumbnail.jpg" },
+  "banner": { "type": "image", "src": "/images/photos/Projects/Tower/banner.avif" },
+  "thumbnail": { "type": "image", "src": "/images/photos/Projects/Tower/thumbnail.avif" },
   "shortDescription": "A challenging tower-stacking puzzle game.",
   "longDescription": "<p>Stack blocks carefully to build the tallest tower possible. Test your precision and timing in this addictive arcade puzzle game.</p>",
   "media": { "type": "video", "src": "" },
   "youtubeUrl": "",
   "pictures": [
-    "/images/photos/Projects/Tower/image-1.jpg",
-    "/images/photos/Projects/Tower/image-2.jpg",
-    "/images/photos/Projects/Tower/image-3.jpg",
-    "/images/photos/Projects/Tower/image-4.jpg",
-    "/images/photos/Projects/Tower/image-5.jpg"
+    "/images/photos/Projects/Tower/image-1.avif",
+    "/images/photos/Projects/Tower/image-2.avif",
+    "/images/photos/Projects/Tower/image-3.avif",
+    "/images/photos/Projects/Tower/image-4.avif",
+    "/images/photos/Projects/Tower/image-5.avif"
   ],
   "technologies": [
     { "name": "Unity", "svg": "/images/technologies/unity.svg" },

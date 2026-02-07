@@ -6,18 +6,18 @@
   "date": "2024-07-20",
   "type": "game",
   "category": "Arcade / Retro",
-  "banner": { "type": "image", "src": "/images/photos/Projects/Snake/banner.jpg" },
-  "thumbnail": { "type": "image", "src": "/images/photos/Projects/Snake/thumbnail.jpg" },
+  "banner": { "type": "image", "src": "/images/photos/Projects/Snake/banner.avif" },
+  "thumbnail": { "type": "image", "src": "/images/photos/Projects/Snake/thumbnail.avif" },
   "shortDescription": "Snake game made uing Javascript.",
   "longDescription": "<p>Experience the timeless Snake game with modern graphics and new gameplay mechanics. Navigate through challenging levels and beat your high score.</p>",
   "media": { "type": "video", "src": "" },
   "youtubeUrl": "",
   "pictures": [
-    "/images/photos/Projects/Snake/image-1.jpg",
-    "/images/photos/Projects/Snake/image-2.jpg",
-    "/images/photos/Projects/Snake/image-3.jpg",
-    "/images/photos/Projects/Snake/image-4.jpg",
-    "/images/photos/Projects/Snake/image-5.jpg"
+    "/images/photos/Projects/Snake/image-1.avif",
+    "/images/photos/Projects/Snake/image-2.avif",
+    "/images/photos/Projects/Snake/image-3.avif",
+    "/images/photos/Projects/Snake/image-4.avif",
+    "/images/photos/Projects/Snake/image-5.avif"
   ],
   "technologies": [
     { "name": "Unity", "svg": "/images/technologies/unity.svg" },

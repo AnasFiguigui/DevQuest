@@ -6,17 +6,17 @@
   "date": "2024-09-01",
   "type": "website",
   "category": "Service / Platform",
-  "banner": { "type": "image", "src": "/images/photos/Projects/Carlyon/banner.jpg" },
-  "thumbnail": { "type": "image", "src": "/images/photos/Projects/Carlyon/thumbnail.jpg" },
-  "shortDescription": "Comercial service webiste",
+  "banner": { "type": "image", "src": "/images/photos/Projects/Carlyon/banner.avif" },
+  "thumbnail": { "type": "image", "src": "/images/photos/Projects/Carlyon/thumbnail.avif" },
+  "shortDescription": "Comercial service webiste.",
   "longDescription": "<p>You play as a YouTuber who goes to film inside Sala Colonia, an ancient historical site in Rabat. At first, it’s just a simple vlog, but very quickly strange things happen. The place is haunted by ghosts and supernatural forces that you can only see with your camera.</p>",
   "media": { "type": "video", "src": "" },
   "youtubeUrl": "",
   "pictures": [
-    "/images/photos/Projects/Carlyon/image-1.jpg",
-    "/images/photos/Projects/Carlyon/image-2.jpg",
-    "/images/photos/Projects/Carlyon/image-3.jpg",
-    "/images/photos/Projects/Carlyon/image-4.jpg"
+    "/images/photos/Projects/Carlyon/image-1.avif",
+    "/images/photos/Projects/Carlyon/image-2.avif",
+    "/images/photos/Projects/Carlyon/image-3.avif",
+    "/images/photos/Projects/Carlyon/image-4.avif"
   ],
   "technologies": [
     { "name": "JavaScript", "svg": "/images/technologies/javascript.svg" },

@@ -13,15 +13,15 @@ export const summaries = [
     shortDescription: 'Une revisite moderne du classique Snake',
     thumbnail: LISC.src,
     type: 'game',
-    releaseDate: '2024-09-01'
+    releaseDate: '2025-09-17'
   },
   {
     id: 'eden',
     name: 'Eden',
-    shortDescription: "Un défi d'empilement en 3D",
+    shortDescription: "2D platformer game.",
     thumbnail: Eden.src,
     type: 'game',
-    releaseDate: '2023-12-15'
+    releaseDate: '2025-05-15'
   },
   {
     id: 'project-75',
@@ -29,7 +29,7 @@ export const summaries = [
     shortDescription: 'Une adaptation numérique du célèbre jeu de cartes',
     thumbnail: QL.src,
     type: 'game',
-    releaseDate: '2022-06-20'
+    releaseDate: '2025-10-03'
   },
   {
     id: 'portfolio',
@@ -37,7 +37,7 @@ export const summaries = [
     shortDescription: 'A developer portfolio that reflects my vision and skills.',
     thumbnail: Portfolio.src,
     type: 'website',
-    releaseDate: '2022-01-01'
+    releaseDate: '2024-11-01'
   },
   {
     id: 'snake',
@@ -45,7 +45,7 @@ export const summaries = [
     shortDescription: 'Un jeu éducatif fusionnant technologies et créativité.',
     thumbnail: SnakeImg.src,
     type: 'game',
-    releaseDate: '2021-03-10'
+    releaseDate: '2024-07-20'
   },
   {
     id: 'stacking-tower',
@@ -53,15 +53,15 @@ export const summaries = [
     shortDescription: 'Expérience d’empilement 3D',
     thumbnail: Tower.src,
     type: 'game',
-    releaseDate: '2020-11-05'
+    releaseDate: '2024-08-15'
   },
   {
     id: 'carlyon',
     name: 'Carlyon',
-    shortDescription: 'Un jeu/website expérimental',
+    shortDescription: 'Comercial service webiste',
     thumbnail: Carlyon.src,
     type: 'website',
-    releaseDate: '2019-08-12'
+    releaseDate: '2025-02-12'
   }
 ]
 

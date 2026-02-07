@@ -6,17 +6,17 @@
   "date": "2024-09-01",
   "type": "website",
   "category": "Personal Portfolio",
-  "banner": { "type": "image", "src": "/images/photos/Projects/Portfolio/banner.jpg" },
-  "thumbnail": { "type": "image", "src": "/images/photos/Projects/Portfolio/thumbnail.jpg" },
+  "banner": { "type": "image", "src": "/images/photos/Projects/Portfolio/banner.avif" },
+  "thumbnail": { "type": "image", "src": "/images/photos/Projects/Portfolio/thumbnail.avif" },
   "shortDescription": "Personal Portfolio/Blog.",
   "longDescription": "<p>DevQuest is my personal development journey and creative portfolio, featuring the games and web projects I’ve built. Each project challenges me to explore new ideas, refine my skills, and document my progress through blogs and updates — keeping every step of the journey trackable and memorable.</p>",
   "media": { "type": "video", "src": "" },
   "youtubeUrl": "",
   "pictures": [
-    "/images/photos/Projects/Portfolio/image-1.jpg",
-    "/images/photos/Projects/Portfolio/image-2.jpg",
-    "/images/photos/Projects/Portfolio/image-3.jpg",
-    "/images/photos/Projects/Portfolio/image-4.jpg"
+    "/images/photos/Projects/Portfolio/image-1.avif",
+    "/images/photos/Projects/Portfolio/image-2.avif",
+    "/images/photos/Projects/Portfolio/image-3.avif",
+    "/images/photos/Projects/Portfolio/image-4.avif"
   ],
   "technologies": [
     { "name": "JavaScript", "svg": "/images/technologies/javascript.svg" },

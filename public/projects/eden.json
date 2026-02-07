@@ -6,19 +6,19 @@
   "date": "25 April 2025",
   "type": "game",
   "category": "Platformer / Action-Adventure",
-  "banner": { "type": "image", "src": "/images/photos/Projects/Eden/banner.jpg" },
-  "thumbnail": { "type": "image", "src": "/images/photos/Projects/Eden/thumbnail.jpg" },
+  "banner": { "type": "image", "src": "/images/photos/Projects/Eden/banner.avif" },
+  "thumbnail": { "type": "image", "src": "/images/photos/Projects/Eden/thumbnail.avif" },
   "shortDescription": "2D platformer game.",
   "longDescription": "<p>You play as a YouTuber who goes to film inside Sala Colonia, an ancient historical site in Rabat. At first, it’s just a simple vlog, but very quickly strange things happen. The place is haunted by ghosts and supernatural forces that you can only see with your camera.</p>",
   "media": { "type": "video", "src": "" },
   "youtubeUrl": "",
   "pictures": [
-    "/images/photos/Projects/Eden/image-1.jpg",
-    "/images/photos/Projects/Eden/image-2.jpg",
-    "/images/photos/Projects/Eden/image-3.jpg",
-    "/images/photos/Projects/Eden/image-4.jpg",
-    "/images/photos/Projects/Eden/image-5.jpg",
-    "/images/photos/Projects/Eden/image-6.jpg"
+    "/images/photos/Projects/Eden/image-1.avif",
+    "/images/photos/Projects/Eden/image-2.avif",
+    "/images/photos/Projects/Eden/image-3.avif",
+    "/images/photos/Projects/Eden/image-4.avif",
+    "/images/photos/Projects/Eden/image-5.avif",
+    "/images/photos/Projects/Eden/image-6.avif"
   ],
   "technologies": [
     { "name": "Unity", "svg": "/images/technologies/unity.svg" },
