@@ -47,22 +47,28 @@ export const metadata = {
 export default function About() {
   const educationItems = [
     {
-      date: '2023 - Present',
-      title: 'Master in Computer Science',
-      institution: 'University Name',
-      description: 'Specializing in Game Development and Cloud Architecture',
+      date: 'Jan 2025 - Oct 2025',
+      title: 'Video game creator',
+      institution: 'ISART DIGITAL',
+      description: 'Certified in Video Game Creation, covering game design, programming, and production pipelines.',
     },
     {
-      date: '2021 - 2023',
-      title: 'Bachelor in Software Engineering',
-      institution: 'University Name',
-      description: 'Focus on Backend Development and System Design',
-    },
-    {
-      date: '2020',
+      date: 'May 2024',
       title: 'AWS Cloud Solution Architect Certification',
       institution: 'Amazon Web Services',
       description: 'Professional certification in cloud architecture',
+    },
+    {
+      date: 'Dec 2023 - Nov 2024',
+      title: 'Bachelors degree, Computer Engineering',
+      institution: 'International University of Rabat',
+      description: 'Graduated in Computer Engineering with a focus on software development, cloud architecture, and AI applications.',
+    },
+    {
+      date: 'Sep 2021 - Jul 2023',
+      title: 'Digital Developpement option Web Full Stack',
+      institution: 'Specialized Institute Of Applied Technology NTIC',
+      description: 'Completed a comprehensive program in web development, covering both frontend and backend technologies, with a focus on modern frameworks and best practices.',
     },
   ]
 
