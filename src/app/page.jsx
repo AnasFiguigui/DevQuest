@@ -307,18 +307,13 @@ function Resume() {
 }
 
 async function loadPhotos() {
-  const images = []
-  let i = 1
-  while (true) {
-    try {
-      const image = await import(`@/images/photos/image-${i}.gif`)
-      images.push(image.default)
-      i++
-    } catch {
-      break
-    }
-  }
-  return images
+  return [
+    '/images/photos/image-1.webm',
+    '/images/photos/image-2.webm',
+    '/images/photos/image-3.webm',
+    '/images/photos/image-4.webm',
+    '/images/photos/image-5.webm',
+  ]
 }
 
 function Photos({ images }) {

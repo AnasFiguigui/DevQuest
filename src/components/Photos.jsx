@@ -181,7 +181,9 @@ export default function Photos({ images = [], height = 300, gap = 25 }) {
             padding: '8px 0',
           }}
         >
-          {duplicatedImages.map(({ key, src, alt }) => (
+          {duplicatedImages.map(({ key, src, alt }) => {
+            const isWebm = typeof src === 'string' && src.toLowerCase().endsWith('.webm');
+            return (
             <div
               key={key}
               className={clsx(
@@ -190,16 +192,31 @@ export default function Photos({ images = [], height = 300, gap = 25 }) {
               )}
               style={{ flex: '0 0 auto', height: 'var(--photo-height)', width: imgWidth }}
             >
-              <Image
-                src={src || ''}
-                alt={alt || ''}
-                fill
-                className="absolute inset-0 h-full w-full object-cover"
-                draggable={false}
-                unoptimized={false}
-              />
+              {isWebm ? (
+                <video
+                  src={src}
+                  className="absolute inset-0 h-full w-full object-cover"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  disablePictureInPicture
+                  controls={false}
+                  preload="metadata"
+                />
+              ) : (
+                <Image
+                  src={src || ''}
+                  alt={alt || ''}
+                  fill
+                  className="absolute inset-0 h-full w-full object-cover"
+                  draggable={false}
+                  unoptimized={false}
+                />
+              )}
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 

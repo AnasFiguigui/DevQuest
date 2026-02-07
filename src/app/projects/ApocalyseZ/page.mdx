@@ -1,9 +1,4 @@
 import { ProjectLayout } from '@/components/ProjectLayout';
-import Image from 'next/image';
-import image5 from '@/images/photos/image-5.gif';
-import video1 from '@/images/photos/video-1.gif';
-import video2 from '@/images/photos/video-2.gif';
-import video3 from '@/images/photos/video-3.gif';
 
 export const project = {
   author: 'Anas Figuigui',
@@ -22,7 +17,15 @@ export default (props) => <ProjectLayout project={project} {...props} />;
 
 **Apocalypse Z** est un jeu de tir immersif où les joueurs affrontent des hordes de zombies dans un monde post-apocalyptique. Avec des graphismes saisissants et une jouabilité intense, ce projet combine des mécaniques de survie captivantes avec des défis stratégiques. Développé avec Unity et C#, le jeu exploite tout le potentiel de ces technologies pour offrir une expérience fluide et palpitante.
 
-<Image src={video1} alt="Capture d'écran du gameplay de Apocalypse Z" />
+<video
+  src="/images/photos/image-1.webm"
+  className="w-full rounded-lg"
+  autoPlay
+  loop
+  muted
+  playsInline
+  preload="metadata"
+/>
 
 ## Fonctionnalités Principales
 
@@ -68,7 +71,15 @@ public void TakeDamage(float damage)
     }
 }
 ```
-<Image src={video2} alt="Capture d'écran du gameplay de Apocalypse Z" />
+<video
+  src="/images/photos/image-2.webm"
+  className="w-full rounded-lg"
+  autoPlay
+  loop
+  muted
+  playsInline
+  preload="metadata"
+/>
 ### 3. **IA Ennemi**
 - **EnemyAI.cs :** Comportement des ennemis.
   - Poursuite via `ChaseTarget()`.
@@ -110,7 +121,15 @@ public void AttackHitEvent()
     target.GetComponent<DamageDisplayer>().ShowDamageImpact();
 }
 ```
-<Image src={image5} alt="Capture d'écran du gameplay de Apocalypse Z" />
+<video
+  src="/images/photos/image-5.webm"
+  className="w-full rounded-lg"
+  autoPlay
+  loop
+  muted
+  playsInline
+  preload="metadata"
+/>
 ### 4. **Système de Mort**
 - **DeathHandler.cs :**  Gère la fin du jeu.
   - Écran de Game Over via `gameOverCanvas`.
