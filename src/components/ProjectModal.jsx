@@ -189,17 +189,57 @@ function PictureGalleryComponent({ pictures }) {
 
 const PictureGallery = memo(PictureGalleryComponent)
 
+function SkeletonLoader() {
+  return (
+    <div className="max-h-[95vh] w-full max-w-6xl overflow-hidden rounded-2xl bg-white/0 dark:bg-zinc-950/70 backdrop-blur-xl border border-white/20 dark:border-white/5 shadow-2xl flex flex-col animate-pulse">
+      {/* Banner Skeleton */}
+      <div className="relative h-50 md:h-50 w-full overflow-hidden shrink-0 bg-zinc-700/50" />
+      
+      {/* Content Skeleton */}
+      <div className="overflow-y-auto flex-1 px-14 py-8">
+        {/* Title skeleton */}
+        <div className="mb-8">
+          <div className="h-10 bg-zinc-700/50 rounded w-2/3 mb-3" />
+          <div className="h-4 bg-zinc-700/30 rounded w-32" />
+        </div>
+        
+        {/* Description skeleton */}
+        <div className="mb-8 space-y-3">
+          <div className="h-4 bg-zinc-700/30 rounded w-full" />
+          <div className="h-4 bg-zinc-700/30 rounded w-full" />
+          <div className="h-4 bg-zinc-700/30 rounded w-3/4" />
+        </div>
+        
+        {/* Gallery skeleton */}
+        <div className="mb-8">
+          <div className="h-6 bg-zinc-700/50 rounded w-24 mb-4" />
+          <div className="grid grid-cols-2 gap-4">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="bg-zinc-700/30 rounded-lg" style={{ aspectRatio: '16 / 9' }} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default memo(function ProjectModal({ projectId, onClose, onNavigate, allProjectIds }) {
   const [details, setDetails] = useState(null)
   const [bannerFailed, setBannerFailed] = useState(false)
+  const [isAnimating, setIsAnimating] = useState(true)
   const ref = useRef()
 
   // Prevent body scroll when modal is open
   useEffect(() => {
     if (projectId) {
       document.body.style.overflow = 'hidden'
+      // Trigger animation
+      setIsAnimating(true)
+      const timer = setTimeout(() => setIsAnimating(false), 50)
       return () => {
         document.body.style.overflow = 'unset'
+        clearTimeout(timer)
       }
     }
   }, [projectId])
@@ -262,11 +302,7 @@ export default memo(function ProjectModal({ projectId, onClose, onNavigate, allP
   // Determine modal content based on state
   let modalContent
   if (!details) {
-    modalContent = (
-      <div className="rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 p-8 text-white">
-        Loading…
-      </div>
-    )
+    modalContent = <SkeletonLoader />
   } else if (details.error) {
     modalContent = (
       <div className="rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 p-8 text-red-400">
@@ -388,7 +424,7 @@ export default memo(function ProjectModal({ projectId, onClose, onNavigate, allP
                         <Image
                           src={tech.svg}
                           alt={tech.name}
-                          className="h-12 w-12 object-contain"
+                          className="h-10 w-10 object-contain"
                           onError={(e) => {
                             e.target.style.display = 'none'
                           }}
@@ -396,7 +432,7 @@ export default memo(function ProjectModal({ projectId, onClose, onNavigate, allP
                           height={48}
                         />
                     ) : (
-                      <div className="h-12 w-12 bg-zinc-600 rounded flex items-center justify-center text-white/40 text-xs text-center">
+                      <div className="h-10 w-10 bg-zinc-600 rounded flex items-center justify-center text-white/40 text-xs text-center">
                         No icon
                       </div>
                     )}
@@ -485,9 +521,13 @@ export default memo(function ProjectModal({ projectId, onClose, onNavigate, allP
     <div
       ref={ref}
       onMouseDown={handleBackdropClick}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/35 backdrop-blur-lg p-4"
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-black/35 backdrop-blur-lg p-4 transition-opacity duration-300 ${
+        isAnimating ? 'opacity-0' : 'opacity-100'
+      }`}
     >
-      {modalContent}
+      <div className={`transform transition-all duration-300 ${isAnimating ? 'scale-95 opacity-0' : 'scale-100 opacity-100'}`}>
+        {modalContent}
+      </div>
 
       {/* Left / Right project navigation (screen edges) */}
       {prevId && (
