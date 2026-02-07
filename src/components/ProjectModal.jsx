@@ -383,25 +383,15 @@ export default memo(function ProjectModal({ projectId, onClose, onNavigate, allP
                 />
               )}
               {youtubeId && (
-                <a
-                  href={details.youtubeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block relative group"
-                >
-                  <Image
-                    src={`https://img.youtube.com/vi/${youtubeId}/mqdefault.jpg`}
-                    alt="YouTube thumbnail"
-                    className="w-full rounded-lg"
-                    width={320}
-                    height={180}
+                <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                  <iframe
+                    src={`https://www.youtube.com/embed/${youtubeId}`}
+                    title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    className="absolute top-0 left-0 w-full h-full rounded-lg"
                   />
-                  <div className="absolute inset-0 flex items-center justify-center group-hover:bg-black/30 transition rounded-lg">
-                    <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center text-white group-hover:scale-110 transition">
-                      ▶
-                    </div>
-                  </div>
-                </a>
+                </div>
               )}
             </div>
           )}
