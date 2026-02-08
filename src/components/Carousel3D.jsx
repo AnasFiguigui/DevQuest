@@ -12,9 +12,9 @@ const DRAG_SENS = 1
 // Visual constants
 const MAX_ROTATION = 30
 const MAX_DEPTH = 150
-const MIN_SCALE = 0.90
+const MIN_SCALE = 0.85
 const SCALE_RANGE = 0.1
-const GAP = 25
+const GAP = 10
 const SKELETON_COUNT = 7
 const SKELETON_STEP = 215
 
@@ -188,8 +188,8 @@ Carousel3D.propTypes = {
 
   // Helper function to calculate responsive gap
   const getResponsiveGap = (vw) => {
-    if (vw <= 480) return 10
-    if (vw <= 768) return 15
+    if (vw <= 480) return 2
+    if (vw <= 768) return 2
     return GAP
   }
 
