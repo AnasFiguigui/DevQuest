@@ -1,45 +1,45 @@
 import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
-import { getAllProjects } from '@/lib/projects'
+import { getAllArticles } from '@/lib/articles'
 import { formatDate } from '@/lib/formatDate'
 
-function Project({ project }) {
+function Article({ article }) {
   return (
-    <project className="md:grid md:grid-cols-4 md:items-baseline">
+    <article className="md:grid md:grid-cols-4 md:items-baseline">
       <Card className="md:col-span-3">
-        <Card.Title href={`/projects/${project.slug}`}>
-          {project.title}
+        <Card.Title href={`/articles/${article.slug}`}>
+          {article.title}
         </Card.Title>
         <Card.Eyebrow
           as="time"
-          dateTime={project.date}
+          dateTime={article.date}
           className="md:hidden"
           decorate
         >
-          {formatDate(project.date)}
+          {formatDate(article.date)}
         </Card.Eyebrow>
-        <Card.Description>{project.description}</Card.Description>
-        <Card.Cta>Read project</Card.Cta>
+        <Card.Description>{article.description}</Card.Description>
+        <Card.Cta>Read article</Card.Cta>
       </Card>
       <Card.Eyebrow
         as="time"
-        dateTime={project.date}
+        dateTime={article.date}
         className="mt-1 hidden md:block"
       >
-        {formatDate(project.date)}
+        {formatDate(article.date)}
       </Card.Eyebrow>
-    </project>
+    </article>
   )
 }
 
 export const metadata = {
-  title: 'Projects',
+  title: 'Articles',
   description:
     'Découvrez des analyses approfondies sur la conception de jeux vidéo, les mécaniques de gameplay et les technologies utilisées. Une ressource idéale pour explorer les aspects techniques et créatifs de chaque réalisation.',
 }
 
-export default async function ProjectsIndex() {
-  let projects = await getAllProjects()
+export default async function ArticlesIndex() {
+  let articles = await getAllArticles()
 
   return (
     <SimpleLayout
@@ -48,8 +48,8 @@ export default async function ProjectsIndex() {
     >
       <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
         <div className="flex max-w-3xl flex-col space-y-16">
-          {projects.map((project) => (
-            <Project key={project.slug} project={project} />
+          {articles.map((article) => (
+            <Article key={article.slug} article={article} />
           ))}
         </div>
       </div>

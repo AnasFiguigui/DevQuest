@@ -168,8 +168,7 @@ export default function About() {
           <span className="h-px flex-1 bg-gray-300 dark:bg-gray-600"></span>
         </div>
         <p className="text-base text-zinc-600 dark:text-zinc-400 mb-8">
-          Gaming has always been a source of inspiration for me, influencing my approach to game development and interactive experiences.
-          Here are some of the games that have shaped my passion and creativity.
+          Gaming has always driven my creativity, shaping how I design games and interactive experiences. Here are some titles that sparked my passion.
         </p>
 
 
