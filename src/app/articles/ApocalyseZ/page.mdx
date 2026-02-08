@@ -1,4 +1,4 @@
-import { ProjectLayout } from '@/components/ProjectLayout';
+import { ArticleLayout } from '@/components/ArticleLayout'
 
 export const article = {
   author: 'Anas Figuigui',
@@ -6,14 +6,14 @@ export const article = {
   title: 'Apocalypse Z :',
   description:
     'Apocalypse Z est un jeu de tir immersif où les joueurs affrontent des hordes de zombies dans un monde post-apocalyptique.',
-};
+}
 
 export const metadata = {
   title: article.title,
   description: article.description,
-};
+}
 
-export default (props) => <ProjectLayout project={article} {...props} />;
+export default (props) => <ArticleLayout article={article} {...props} />
 
 **Apocalypse Z** est un jeu de tir immersif où les joueurs affrontent des hordes de zombies dans un monde post-apocalyptique. Avec des graphismes saisissants et une jouabilité intense, ce projet combine des mécaniques de survie captivantes avec des défis stratégiques. Développé avec Unity et C#, le jeu exploite tout le potentiel de ces technologies pour offrir une expérience fluide et palpitante.
 
