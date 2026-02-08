@@ -1,0 +1,162 @@
+/* Carousel 3D Stage */
+.carousel3d-stage {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  perspective: 1500px;
+  overscroll-behavior: none;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: none;
+  cursor: grab;
+}
+
+.carousel3d-stage.dragging {
+  cursor: grabbing;
+}
+
+/* Loader overlay */
+.carousel3d-loader {
+  position: absolute;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  transition: opacity 0.2s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.2s linear;
+}
+
+.carousel3d-loader--hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Skeleton loader */
+.carousel3d-skeleton {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1500px;
+  transform-style: preserve-3d;
+}
+
+.carousel3d-skeleton__card {
+  position: absolute;
+  width: min(14vw, 180px);
+  aspect-ratio: 4/5;
+  border-radius: 12px;
+  background: linear-gradient(
+    90deg,
+    rgba(200, 200, 200, 0.2) 25%,
+    rgba(200, 200, 200, 0.4) 50%,
+    rgba(200, 200, 200, 0.2) 75%
+  );
+  background-size: 200% 100%;
+  animation: carousel3d-shimmer 1.5s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+
+@keyframes carousel3d-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Dark mode skeleton */
+@media (prefers-color-scheme: dark) {
+  .carousel3d-skeleton__card {
+    background: linear-gradient(
+      90deg,
+      rgba(80, 80, 80, 0.3) 25%,
+      rgba(100, 100, 100, 0.5) 50%,
+      rgba(80, 80, 80, 0.3) 75%
+    );
+    background-size: 200% 100%;
+  }
+}
+
+/* Cards container */
+.carousel3d-cards {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  transform-style: preserve-3d;
+}
+
+/* Card */
+.carousel3d-cards .card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(14vw, 180px);
+  aspect-ratio: 4/5;
+  isolation: isolate;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, filter;
+  transform-origin: 90% center;
+  contain: layout paint;
+  transition: filter 0.1s ease-out;
+}
+
+/* Card with 16:9 aspect ratio */
+.carousel3d-cards[data-aspect-ratio="16/9"] .card {
+  aspect-ratio: 16/9;
+}
+
+/* Card with 4:5 aspect ratio (default) */
+.carousel3d-cards[data-aspect-ratio="4/5"] .card {
+  aspect-ratio: 3/4;
+}
+
+.carousel3d-cards .card__img {
+  border-radius: 12px;
+  opacity: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: translateZ(0);
+  pointer-events: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .carousel3d-stage {
+    height: 220px;
+  }
+  
+  .carousel3d-cards .card {
+    width: min(30vw, 150px);
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel3d-stage {
+    height: 240px;
+  }
+  
+  .carousel3d-cards .card {
+    width: min(40vw, 160px);
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel3d-stage {
+    height: 220px;
+  }
+  
+  .carousel3d-cards .card {
+    width: min(50vw, 140px);
+  }
+}

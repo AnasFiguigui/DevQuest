@@ -4,6 +4,7 @@ import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
 import { EducationTimeline } from '@/components/EducationTimeline'
+import Carousel3D from '@/components/Carousel3D'
 import {
   GitHubIcon,
   InstagramIcon,
@@ -70,6 +71,21 @@ export default function About() {
       institution: 'Specialized Institute Of Applied Technology NTIC',
       description: 'Completed a comprehensive program in web development, covering both frontend and backend technologies, with a focus on modern frameworks and best practices.',
     },
+  ]
+
+  // Favorite games images
+  const favoriteGames = [
+    '/images/photos/FavGames/arc.avif',
+    '/images/photos/FavGames/bdo.avif',
+    '/images/photos/FavGames/crimson.avif',
+    '/images/photos/FavGames/d3.avif',
+    '/images/photos/FavGames/diablo2.avif',
+    '/images/photos/FavGames/diablo4.avif',
+    '/images/photos/FavGames/hades2.avif',
+    '/images/photos/FavGames/khazan.avif',
+    '/images/photos/FavGames/minecraft.avif',
+    '/images/photos/FavGames/poe.avif',
+    '/images/photos/FavGames/witcher3.avif',
   ]
 
   return (
@@ -140,6 +156,22 @@ export default function About() {
       {/* Education Timeline Section */}
       <div className="mt-24 sm:mt-32">
         <EducationTimeline title="Education & Certifications" items={educationItems} />
+      </div>
+
+      {/* Favorite Games Carousel Section */}
+      <div className="mt-24 sm:mt-32">
+        <h2 className="text-3xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 mb-8">
+          Favorite Games
+        </h2>
+        <p className="text-base text-zinc-600 dark:text-zinc-400 mb-8">
+          Gaming has always been a source of inspiration for me, influencing my approach to game development and interactive experiences. Here are some of the games that have shaped my passion and creativity.
+        </p>
+        <Carousel3D 
+          images={favoriteGames} 
+          autoPlay={true}
+          autoPlaySpeed={2000}
+          aspectRatio="4/5"
+        />
       </div>
     </Container>
   )
