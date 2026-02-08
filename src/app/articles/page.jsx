@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { getAllArticles } from '@/lib/articles'
@@ -5,10 +7,17 @@ import { formatDate } from '@/lib/formatDate'
 
 function Article({ article }) {
   return (
-    <article className="md:grid md:grid-cols-4 md:items-baseline">
+    <article className="group relative md:grid md:grid-cols-4 md:items-baseline">
+      {/* Hover background that covers the entire article including date */}
+      <div className="absolute -inset-x-4 -inset-y-6 z-0 scale-80 bg-zinc-50 opacity-0 transition group-hover:scale-80 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl dark:bg-zinc-800/50" />
+      
+      {/* Clickable overlay */}
+      <Link href={`/articles/${article.slug}`} className="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 sm:rounded-2xl" />
+      
+      {/* Card content - left columns */}
       <Card className="md:col-span-3">
-        <Card.Title href={`/articles/${article.slug}`}>
-          {article.title}
+        <Card.Title as="h2">
+          <span className="relative z-10">{article.title}</span>
         </Card.Title>
         <Card.Eyebrow
           as="time"
@@ -21,10 +30,12 @@ function Article({ article }) {
         <Card.Description>{article.description}</Card.Description>
         <Card.Cta>Read article</Card.Cta>
       </Card>
+      
+      {/* Desktop date - right column */}
       <Card.Eyebrow
         as="time"
         dateTime={article.date}
-        className="mt-1 hidden md:block"
+        className="relative z-10 mt-1 hidden md:block"
       >
         {formatDate(article.date)}
       </Card.Eyebrow>

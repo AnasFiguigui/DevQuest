@@ -2,10 +2,10 @@ import { ArticleLayout } from '@/components/ArticleLayout'
 
 export const article = {
   author: 'Anas Figuigui',
-  date: '2024-11-21',
-  title: 'Apocalypse Z :',
+  date: '2026-02-08',
+  title: 'Article Title Here',
   description:
-    'Apocalypse Z est un jeu de tir immersif où les joueurs affrontent des hordes de zombies dans un monde post-apocalyptique.',
+    'A brief description of what this article is about. This will appear in article lists and as the meta description.',
 }
 
 export const metadata = {
@@ -15,178 +15,139 @@ export const metadata = {
 
 export default (props) => <ArticleLayout article={article} {...props} />
 
-**Apocalypse Z** est un jeu de tir immersif où les joueurs affrontent des hordes de zombies dans un monde post-apocalyptique. Avec des graphismes saisissants et une jouabilité intense, ce projet combine des mécaniques de survie captivantes avec des défis stratégiques. Développé avec Unity et C#, le jeu exploite tout le potentiel de ces technologies pour offrir une expérience fluide et palpitante.
+{/* 
+  ============================================
+  ARTICLE TEMPLATE - HOW TO USE
+  ============================================
+  
+  1. Duplicate this folder and rename it (e.g., "my-new-article")
+  2. Update the article metadata above (author, date, title, description)
+  3. Replace this content with your article content
+  4. Use the components shown below for rich content
+  
+  Available components:
+  - ImageLightbox: Clickable image that opens in a modal
+  - ArticleVideo: Video player with optional controls
+  - Carousel3D: 3D image carousel
+  - Standard markdown (headers, lists, code blocks, etc.)
+*/}
 
-<video
+This is the introduction paragraph of your article. Write about your journey, 
+experience, or whatever topic you want to cover. **Bold text** and *italic text* 
+work as expected in markdown.
+
+## Section Header
+
+Use `##` for main sections and `###` for subsections. This helps organize your 
+content and creates a clear hierarchy.
+
+### Clickable Images
+
+Use `ImageLightbox` for images that users can click to view in full size:
+
+<ImageLightbox 
+  src="/images/photos/Projects/Eden/image-1.avif" 
+  alt="Description of the image for accessibility"
+  caption="Optional caption that appears below the image"
+/>
+
+### Videos
+
+Use `ArticleVideo` to embed videos:
+
+<ArticleVideo 
   src="/images/photos/image-1.webm"
-  className="w-full rounded-lg"
-  autoPlay
-  loop
-  muted
-  playsInline
-  preload="metadata"
+  caption="Demo video showing the feature in action"
+  autoPlay={true}
+  loop={true}
+  muted={true}
+  controls={false}
 />
 
-## Fonctionnalités Principales
-
-### 1. **Système de Combat**
-- **Weapon.cs :** Gère les armes : tirs, munitions, effets visuels/sonores, et dégâts infligés aux ennemis.
-  - Tirs contrôlés via `Shoot()`.
-  - Gestion des munitions avec `AmmoType` et affichage via `ammoText`.
-  - Effets de tir : `muzzleFlash`, `hitEffect`.
-```csharp
-  IEnumerator Shoot()
-  {
-      canShoot = false;
-      if (ammoSlot.GetCurrentAmmo(ammoType) > 0)
-      {
-          PlayMuzzleFlash();
-          ProcessRaycast();
-          audioSource.PlayOneShot(gunSound);
-          ammoSlot.ReduceCurrentAmmo(ammoType);
-      }
-      else
-      {
-          PlayEmptyGunSound();
-      }
-      yield return new WaitForSeconds(timeBetweenShots);
-      canShoot = true;
-  }
-```
-### 2. **Santé du Joueur**
-- **PlayerHealth.cs :** Traite la santé et l'affichage du joueur
-  - Diminution via `TakeDamage()`.
-  - Mort déclenchée avec `HandleDeath()` (voir `DeathHandler.cs`).
-  - Affichage de la santé avec `healthBar`.
-
-```csharp
-public void TakeDamage(float damage)
-{
-    hitPoints -= damage;
-    audioSource.PlayOneShot(hitSound);
-    if (hitPoints <= 0)
-    {
-        audioSource.PlayOneShot(deathSound);
-        GetComponent<DeathHandler>().HandleDeath();
-    }
-}
-```
-<video
-  src="/images/photos/image-2.webm"
-  className="w-full rounded-lg"
-  autoPlay
-  loop
-  muted
-  playsInline
-  preload="metadata"
+{/* For videos with user controls: */}
+{/* 
+<ArticleVideo 
+  src="/path/to/video.mp4"
+  caption="Video with controls"
+  autoPlay={false}
+  loop={false}
+  muted={false}
+  controls={true}
 />
-### 3. **IA Ennemi**
-- **EnemyAI.cs :** Comportement des ennemis.
-  - Poursuite via `ChaseTarget()`.
-  - Attaque lorsqu'à portée via `AttackTarget()`.
-  - Détection du joueur avec `chaseRange`.
-  
-```csharp
-void EngageTarget()
-{
-    FaceTarget();
-    if (distanceToTarget >= navMeshAgent.stoppingDistance) 
-    {
-        ChaseTarget();
-    }
-    if (distanceToTarget <= navMeshAgent.stoppingDistance) 
-    {
-        AttackTarget();
-    }
-}
+*/}
 
-void FaceTarget()
-{
-    Vector3 direction = (target.position - transform.position).normalized;
-    Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-    transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
-}
-```
+### 3D Carousel
 
-- **EnemyAttack.cs :** Gère les attaques ennemies.
-  - Dommages infligés au joueur via `AttackHitEvent()`.
-  - Sons de provocation avec `provokedSound`.
-  
-```csharp
-public void AttackHitEvent()
-{
-    if (target == null) { return; }
-    target.TakeDamage(damage);
-    audioSource.PlayOneShot(provokedSound, 0.2f);
-    target.GetComponent<DamageDisplayer>().ShowDamageImpact();
-}
-```
-<video
-  src="/images/photos/image-5.webm"
-  className="w-full rounded-lg"
-  autoPlay
-  loop
-  muted
-  playsInline
-  preload="metadata"
+Use `Carousel3D` to showcase multiple images in an interactive carousel:
+
+<Carousel3D 
+  images={[
+    '/images/photos/FavGames/minecraft.avif',
+    '/images/photos/FavGames/witcher3.avif',
+    '/images/photos/FavGames/diablo4.avif',
+    '/images/photos/FavGames/hades2.avif',
+    '/images/photos/FavGames/poe.avif',
+  ]}
+  autoPlay={true}
+  autoPlaySpeed={50}
+  aspectRatio="3/4"
 />
-### 4. **Système de Mort**
-- **DeathHandler.cs :**  Gère la fin du jeu.
-  - Écran de Game Over via `gameOverCanvas`.
-  - Arrêt du temps et désactivation des commandes après la mort.
-  
-```csharp
-public void HandleDeath()
-{
-    gameOverCanvas.enabled = true;
-    Time.timeScale = 0;
-    FindObjectOfType<WeaponSwitcher>().enabled = false;
-    Cursor.lockState = CursorLockMode.None;
-    Cursor.visible = true;
+
+### Links
+
+Regular markdown links work normally:
+- [Internal link to about page](/about)
+- [External link to GitHub](https://github.com/AnasFiguigui)
+
+External links automatically open in a new tab.
+
+### Code Blocks
+
+Use triple backticks for code blocks with syntax highlighting:
+
+```javascript
+function hello() {
+  console.log('Hello from the article!')
 }
 ```
 
-### 5. **Affichage des Dégâts**
-- **DamageDisplayer.cs :** Affiche des effets d'impact visuels après des attaques ennemies.
-  - Activation temporaire du canvas avec `ShowDamageImpact()`.
-
-  
-```csharp
-public void TakeDamage(float damage)
-{
-    hitPoints -= damage;
-    audioSource.PlayOneShot(hitSound);
-    if (hitPoints <= 0)
-    {
-        audioSource.PlayOneShot(deathSound);
-        GetComponent<DeathHandler>().HandleDeath();
-    }
-}
+```python
+def greet(name):
+    return f"Hello, {name}!"
 ```
 
----
+### Lists
 
-## Points Techniques Clés
+**Unordered list:**
+- First item
+- Second item
+- Third item with nested items
+  - Nested item 1
+  - Nested item 2
 
-### Gameplay
-- Gestion du temps et des états : `Time.timeScale`.
-- Animation des ennemis via l’Animator.
-- Navigation avec `NavMeshAgent`.
+**Ordered list:**
+1. First step
+2. Second step
+3. Third step
 
-### Sons
-- Audio intégré pour ambiance immersive (`AudioSource`, `AudioClip`).
+### Blockquotes
 
-### Graphiques
-- Effets de tir et d'impact via des particules (`PprojectSystem`).
+> This is a blockquote. Use it to highlight important quotes or key takeaways 
+> from your article.
 
----
-<Image src={video3} alt="Capture d'écran du gameplay de Apocalypse Z" />
-## Exemple de Scénario
-1. Le joueur tire sur un zombie avec une arme :
-   - `Weapon.cs` détecte le clic, déclenche `Shoot()`.
-   - Si le zombie est touché, `EnemyHealth.TakeDamage()` est appelé.
-2. Le zombie contre-attaque :
-   - `EnemyAI` engage le joueur, `EnemyAttack.AttackHitEvent()` inflige des dégâts.
-   - `PlayerHealth.TakeDamage()` met à jour la santé.
-3. Si la santé atteint zéro :
-   - `PlayerHealth` appelle `DeathHandler.HandleDeath()`.
+### Inline Code
+
+Use backticks for `inline code` like variable names or short commands.
+
+## Technical Details
+
+When writing about technical topics, you can organize information in clear sections:
+
+- **Technology**: List the technologies used
+- **Platform**: Web, mobile, etc.
+- **Duration**: How long the project took
+
+## Conclusion
+
+Wrap up your article with final thoughts, lessons learned, or a call to action 
+for readers.

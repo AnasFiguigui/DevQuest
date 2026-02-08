@@ -2,10 +2,10 @@ import { ArticleLayout } from '@/components/ArticleLayout'
 
 export const article = {
   author: 'Anas Figuigui',
-  date: '2025-05-09',
-  title: 'Eden',
+  date: '2026-02-08',
+  title: 'Article Title Here',
   description:
-    "DevMerge est un jeu éducatif interactif où les joueurs fusionnent des concepts de programmation pour construire une pile technologique complète.",
+    'A brief description of what this article is about. This will appear in article lists and as the meta description.',
 }
 
 export const metadata = {
@@ -15,101 +15,139 @@ export const metadata = {
 
 export default (props) => <ArticleLayout article={article} {...props} />
 
-**DevMerge** est un jeu éducatif conçu pour aider les développeurs à explorer et comprendre différents concepts technologiques en fusionnant des technologies pour progresser dans un arbre technologique.
+{/* 
+  ============================================
+  ARTICLE TEMPLATE - HOW TO USE
+  ============================================
+  
+  1. Duplicate this folder and rename it (e.g., "my-new-article")
+  2. Update the article metadata above (author, date, title, description)
+  3. Replace this content with your article content
+  4. Use the components shown below for rich content
+  
+  Available components:
+  - ImageLightbox: Clickable image that opens in a modal
+  - ArticleVideo: Video player with optional controls
+  - Carousel3D: 3D image carousel
+  - Standard markdown (headers, lists, code blocks, etc.)
+*/}
 
-<video
-    src="/images/photos/image-4.webm"
-    className="w-full rounded-lg"
-    autoPlay
-    loop
-    muted
-    playsInline
-    preload="metadata"
+This is the introduction paragraph of your article. Write about your journey, 
+experience, or whatever topic you want to cover. **Bold text** and *italic text* 
+work as expected in markdown.
+
+## Section Header
+
+Use `##` for main sections and `###` for subsections. This helps organize your 
+content and creates a clear hierarchy.
+
+### Clickable Images
+
+Use `ImageLightbox` for images that users can click to view in full size:
+
+<ImageLightbox 
+  src="/images/photos/Projects/Eden/image-1.avif" 
+  alt="Description of the image for accessibility"
+  caption="Optional caption that appears below the image"
 />
 
-## Caractéristiques Clés
+### Videos
 
-1. **Fusion des Concepts** : Les joueurs glissent et déposent des éléments pour fusionner des technologies (ex. HTML + CSS = Styling, Frontend + Backend = Fullstack).
-2. **Arbre Technologique** : Chaque fusion débloque des concepts plus avancés, progressant vers une pile technologique complète.
-3. **Focus Développeur** : Un environnement visuel moderne et amusant basé sur des technologies bien connues.
-4. **Éducation Interactive** : Apprentissage des relations entre technologies grâce à des interactions engageantes.
-5. **Interface Accessible** : Une interface claire et intuitive pour les joueurs novices et expérimentés.
+Use `ArticleVideo` to embed videos:
 
-## Détails Techniques
+<ArticleVideo 
+  src="/images/photos/image-1.webm"
+  caption="Demo video showing the feature in action"
+  autoPlay={true}
+  loop={true}
+  muted={true}
+  controls={false}
+/>
 
-- **Technologie** : Développé avec HTML, CSS, et JavaScript.
-- **Type de Jeu** : Jeu éducatif interactif.
-- **Plateforme** : Application web, jouable dans un navigateur.
+{/* For videos with user controls: */}
+{/* 
+<ArticleVideo 
+  src="/path/to/video.mp4"
+  caption="Video with controls"
+  autoPlay={false}
+  loop={false}
+  muted={false}
+  controls={true}
+/>
+*/}
 
-## Points Clés du Code
+### 3D Carousel
 
-### 1. Données des Technologies
+Use `Carousel3D` to showcase multiple images in an interactive carousel:
 
-Un tableau définit les technologies disponibles et leur type (frontend, backend, cloud, etc.).
+<Carousel3D 
+  images={[
+    '/images/photos/FavGames/minecraft.avif',
+    '/images/photos/FavGames/witcher3.avif',
+    '/images/photos/FavGames/diablo4.avif',
+    '/images/photos/FavGames/hades2.avif',
+    '/images/photos/FavGames/poe.avif',
+  ]}
+  autoPlay={true}
+  autoPlaySpeed={50}
+  aspectRatio="3/4"
+/>
+
+### Links
+
+Regular markdown links work normally:
+- [Internal link to about page](/about)
+- [External link to GitHub](https://github.com/AnasFiguigui)
+
+External links automatically open in a new tab.
+
+### Code Blocks
+
+Use triple backticks for code blocks with syntax highlighting:
 
 ```javascript
-const words = [
-    { text: "HTML", type: "frontend" },
-    { text: "CSS", type: "frontend" },
-    { text: "JavaScript", type: "frontend" },
-    { text: "Python", type: "backend" },
-    { text: "SQL", type: "database" },
-    { text: "Node.js", type: "backend" },
-    { text: "React", type: "frontend" },
-    // ...
-];
-```
-### 2. Mécanisme de Fusion
-Une logique de fusion associe deux technologies pour en débloquer une nouvelle.
-
-```JavaScript
-const merges = {
-    "HTML+CSS": "Styling",
-    "Styling+JavaScript": "Frontend",
-    "Python+SQL": "Database",
-    "Frontend+Backend": "Fullstack",
-    "Fullstack+Cloud": "Cloud App",
-};
-```
-### 3. Glisser-Déposer (Drag and Drop)
-Le joueur glisse des éléments entre la zone de sélection et la zone de fusion.
-```JavaScript
-function dragStart(e) {
-    draggedElement = e.target;
-}
-
-function drop(e) {
-    e.preventDefault();
-    const target = e.target;
-
-    if (target.closest(".merge-container")) {
-        const clone = draggedElement.cloneNode(true);
-        mergeArea.appendChild(clone);
-        checkForMerge();
-    }
-}
-```
-### 4. Indicateur de Fusion
-Un indicateur visuel apparaît lorsqu'une fusion valide est possible.
-```JavaScript
-function showMergeIndicator(e) {
-    const items = [...mergeArea.querySelectorAll(".word")];
-    if (items.length > 0 && draggedElement) {
-        const key = `${items[0].textContent}+${draggedElement.textContent}`;
-        if (merges[key]) {
-            // Affiche l'indicateur
-        }
-    }
-}
-```
-### 5. Résultat de la Fusion
-Les éléments fusionnés sont remplacés par un nouvel élément représentant le résultat.
-```JavaScript
-function performMerge(item1, item2, result) {
-    item1.remove();
-    item2.remove();
-    const newWord = createWordElement(result);
-    mergeArea.appendChild(newWord);
+function hello() {
+  console.log('Hello from the article!')
 }
 ```
 
+```python
+def greet(name):
+    return f"Hello, {name}!"
+```
+
+### Lists
+
+**Unordered list:**
+- First item
+- Second item
+- Third item with nested items
+  - Nested item 1
+  - Nested item 2
+
+**Ordered list:**
+1. First step
+2. Second step
+3. Third step
+
+### Blockquotes
+
+> This is a blockquote. Use it to highlight important quotes or key takeaways 
+> from your article.
+
+### Inline Code
+
+Use backticks for `inline code` like variable names or short commands.
+
+## Technical Details
+
+When writing about technical topics, you can organize information in clear sections:
+
+- **Technology**: List the technologies used
+- **Platform**: Web, mobile, etc.
+- **Duration**: How long the project took
+
+## Conclusion
+
+Wrap up your article with final thoughts, lessons learned, or a call to action 
+for readers.
