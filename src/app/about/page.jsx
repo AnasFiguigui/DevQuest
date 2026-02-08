@@ -160,12 +160,20 @@ export default function About() {
 
       {/* Favorite Games Carousel Section */}
       <div className="mt-24 sm:mt-32">
-        <h2 className="text-3xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 mb-8">
-          Favorite Games
-        </h2>
+        <div className="flex items-center pb-5">
+          <span className="h-px flex-1 bg-gray-300 dark:bg-gray-600"></span>
+          <span className="shrink-0 px-4 text-gray-900 dark:text-white font-semibold text-2xl">
+            Favorite games
+          </span>
+          <span className="h-px flex-1 bg-gray-300 dark:bg-gray-600"></span>
+        </div>
         <p className="text-base text-zinc-600 dark:text-zinc-400 mb-8">
-          Gaming has always been a source of inspiration for me, influencing my approach to game development and interactive experiences. Here are some of the games that have shaped my passion and creativity.
+          Gaming has always been a source of inspiration for me, influencing my approach to game development and interactive experiences.
+          Here are some of the games that have shaped my passion and creativity.
         </p>
+
+
+        
         <Carousel3D 
           images={favoriteGames} 
           autoPlay={true}

@@ -4,7 +4,7 @@ export function EducationTimeline({ title = 'Education', items = [] }) {
       {/* Title with divider line */}
       <div className="flex items-center pb-4">
         <span className="h-px flex-1 bg-gray-300 dark:bg-gray-600"></span>
-        <span className="shrink-0 px-4 text-gray-900 dark:text-white font-semibold text-xl">
+        <span className="shrink-0 px-4 text-gray-900 dark:text-white font-semibold text-2xl">
           {title}
         </span>
         <span className="h-px flex-1 bg-gray-300 dark:bg-gray-600"></span>
