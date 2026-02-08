@@ -14,7 +14,7 @@ const MAX_ROTATION = 28
 const MAX_DEPTH = 140
 const MIN_SCALE = 0.92
 const SCALE_RANGE = 0.1
-const GAP = 15
+const GAP = 20
 
 export default function Carousel3D({ images, autoPlay = true, autoPlaySpeed = 50, aspectRatio = '4/5' }) {
   const stageRef = useRef(null)
@@ -274,6 +274,7 @@ export default function Carousel3D({ images, autoPlay = true, autoPlaySpeed = 50
 
       setIsLoading(false)
       isEnteringRef.current = false
+      cardsRoot.classList.add('loaded')
       startCarousel()
     }
 
@@ -316,7 +317,7 @@ export default function Carousel3D({ images, autoPlay = true, autoPlaySpeed = 50
       // Resume auto-play after a delay
       setTimeout(() => {
         pauseAutoPlayRef.current = false
-      }, 3000)
+      }, 1000)
     }
 
     const handleResize = () => {
@@ -360,16 +361,28 @@ export default function Carousel3D({ images, autoPlay = true, autoPlaySpeed = 50
       {isLoading && (
         <div className="carousel3d-loader">
           <div className="carousel3d-skeleton">
-            {[...Array(5)].map((_, i) => (
-              <div 
-                key={i} 
-                className="carousel3d-skeleton__card"
-                style={{ 
-                  transform: `translateX(${(i - 2) * 120}px) rotateY(${(i - 2) * -15}deg) translateZ(${100 - Math.abs(i - 2) * 30}px)`,
-                  opacity: 1 - Math.abs(i - 2) * 0.2
-                }}
-              />
-            ))}
+            {[...Array(7)].map((_, i) => {
+              const offset = i - 3
+              const screenX = offset * 215 // card width (~180) + GAP (35)
+              const norm = Math.max(-1, Math.min(1, screenX / 400))
+              const absNorm = Math.abs(norm)
+              const invNorm = 1 - absNorm
+              const ry = -norm * MAX_ROTATION
+              const tz = invNorm * MAX_DEPTH
+              const scale = MIN_SCALE + invNorm * SCALE_RANGE
+              
+              return (
+                <div 
+                  key={i} 
+                  className="carousel3d-skeleton__card"
+                  style={{ 
+                    transform: `translate3d(${screenX}px, -50%, ${tz}px) rotateY(${ry}deg) scale(${scale})`,
+                    zIndex: 1000 + Math.round(tz),
+                    opacity: Math.abs(offset) <= 2 ? 1 : 0.6
+                  }}
+                />
+              )
+            })}
           </div>
         </div>
       )}

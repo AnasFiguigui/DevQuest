@@ -46,18 +46,22 @@
 
 .carousel3d-skeleton__card {
   position: absolute;
+  top: 50%;
+  left: 50%;
   width: min(14vw, 180px);
-  aspect-ratio: 4/5;
+  aspect-ratio: 3/4;
   border-radius: 12px;
   background: linear-gradient(
     90deg,
-    rgba(200, 200, 200, 0.2) 25%,
-    rgba(200, 200, 200, 0.4) 50%,
-    rgba(200, 200, 200, 0.2) 75%
+    rgba(200, 200, 200, 0.05) 25%,
+    rgba(200, 200, 200, 0.1) 50%,
+    rgba(200, 200, 200, 0.05) 75%
   );
   background-size: 200% 100%;
   animation: carousel3d-shimmer 1.5s ease-in-out infinite;
   transform-style: preserve-3d;
+  transform-origin: 90% center;
+  backface-visibility: hidden;
 }
 
 @keyframes carousel3d-shimmer {
@@ -74,9 +78,9 @@
   .carousel3d-skeleton__card {
     background: linear-gradient(
       90deg,
-      rgba(80, 80, 80, 0.3) 25%,
-      rgba(100, 100, 100, 0.5) 50%,
-      rgba(80, 80, 80, 0.3) 75%
+      rgba(80, 80, 80, 0.05) 25%,
+      rgba(100, 100, 100, 0.1) 50%,
+      rgba(80, 80, 80, 0.05) 75%
     );
     background-size: 200% 100%;
   }
@@ -104,6 +108,11 @@
   transform-origin: 90% center;
   contain: layout paint;
   transition: filter 0.1s ease-out;
+  opacity: 0;
+}
+
+.carousel3d-cards.loaded .card {
+  opacity: 1;
 }
 
 /* Card with 16:9 aspect ratio */
