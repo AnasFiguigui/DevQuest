@@ -7,7 +7,7 @@ const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
   experimental: {
     outputFileTracingIncludes: {
-      '/projects/*': ['./src/app/projects/**/*.mdx'],
+      '/articles/*': ['./src/app/articles/**/*.mdx'],
     },
   },
   // Ensure that NEXT_PUBLIC_SITE_URL is available in your environment variables

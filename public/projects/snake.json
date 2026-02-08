@@ -14,10 +14,7 @@
   "youtubeUrl": "",
   "pictures": [
     "/images/photos/Projects/Snake/image-1.avif",
-    "/images/photos/Projects/Snake/image-2.avif",
-    "/images/photos/Projects/Snake/image-3.avif",
-    "/images/photos/Projects/Snake/image-4.avif",
-    "/images/photos/Projects/Snake/image-5.avif"
+    "/images/photos/Projects/Snake/image-2.avif"
   ],
   "technologies": [
     { "name": "Unity", "svg": "/images/technologies/unity.svg" },
@@ -26,7 +23,7 @@
   "contributors": [
     "Developer: Anas Figuigui"
   ],
-  "articleUrl": "/projects/snake",
+  "articleUrl": "",
   "projectUrl": "https://example.com",
   "tags": ["puzzle", "single-player"]
 }
