@@ -1,23 +1,32 @@
 'use client'
 
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
 import Image from 'next/image'
+import PropTypes from 'prop-types'
 import './Carousel3D.css'
 
-// Physics constants - improved for smoother animation
+// Physics constants
 const FRICTION = 0.95
-const WHEEL_SENS = 0.6
 const DRAG_SENS = 1
 
 // Visual constants
-const MAX_ROTATION = 28
-const MAX_DEPTH = 140
-const MIN_SCALE = 0.92
+const MAX_ROTATION = 30
+const MAX_DEPTH = 150
+const MIN_SCALE = 0.90
 const SCALE_RANGE = 0.1
-const GAP = 20
+const GAP = 25
+const SKELETON_COUNT = 7
+const SKELETON_STEP = 215
 
-export default function Carousel3D({ images, autoPlay = true, autoPlaySpeed = 50, aspectRatio = '4/5' }) {
+export default function Carousel3D({ images, autoPlay = true, autoPlaySpeed = 50, aspectRatio = '3/4' }) {
   const stageRef = useRef(null)
+
+Carousel3D.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.string).isRequired,
+  autoPlay: PropTypes.bool,
+  autoPlaySpeed: PropTypes.number,
+  aspectRatio: PropTypes.string,
+}
   const cardsRef = useRef(null)
   const [isLoading, setIsLoading] = useState(true)
   
@@ -46,7 +55,6 @@ export default function Carousel3D({ images, autoPlay = true, autoPlaySpeed = 50
   const lastDeltaRef = useRef(0)
   
   // Auto-play refs
-  const autoPlayActiveRef = useRef(false)
   const pauseAutoPlayRef = useRef(false)
 
   // Utility: Safe modulo for negative numbers
@@ -155,16 +163,20 @@ export default function Carousel3D({ images, autoPlay = true, autoPlaySpeed = 50
     })
   }, [mod, updateCarouselTransforms, autoPlay])
 
-  // Measure card dimensions
+  // Measure card dimensions (use offsetWidth to avoid scale transform affecting measurement)
   const measure = useCallback(() => {
     const items = itemsRef.current
     const sample = items[0]?.el
     if (!sample) return
 
-    const r = sample.getBoundingClientRect()
-    cardWRef.current = r.width || cardWRef.current
-    cardHRef.current = r.height || cardHRef.current
-    stepRef.current = cardWRef.current + GAP
+    // Responsive gap: smaller on mobile
+    const vw = window.innerWidth
+    const gap = getResponsiveGap(vw)
+
+    // offsetWidth gives the unscaled CSS width, unlike getBoundingClientRect
+    cardWRef.current = sample.offsetWidth || cardWRef.current
+    cardHRef.current = sample.offsetHeight || cardHRef.current
+    stepRef.current = cardWRef.current + gap
     trackRef.current = items.length * stepRef.current
 
     items.forEach((it, i) => {
@@ -174,9 +186,16 @@ export default function Carousel3D({ images, autoPlay = true, autoPlaySpeed = 50
     positionsRef.current = new Float32Array(items.length)
   }, [])
 
+  // Helper function to calculate responsive gap
+  const getResponsiveGap = (vw) => {
+    if (vw <= 480) return 10
+    if (vw <= 768) return 15
+    return GAP
+  }
+
   // Initialize carousel
   useEffect(() => {
-    if (!images || !images.length) return
+    if (!images?.length) return
 
     const stage = stageRef.current
     const cardsRoot = cardsRef.current
@@ -335,54 +354,62 @@ export default function Carousel3D({ images, autoPlay = true, autoPlaySpeed = 50
       resizeTimeout = setTimeout(handleResize, 80)
     }
 
+    const preventDefault = (e) => e.preventDefault()
+
     stage.addEventListener('pointerdown', handlePointerDown)
-    stage.addEventListener('pointermove', handlePointerMove)
+    stage.addEventListener('pointermove', handlePointerMove, { passive: true })
     stage.addEventListener('pointerup', handlePointerUp)
-    stage.addEventListener('dragstart', (e) => e.preventDefault())
-    window.addEventListener('resize', debouncedResize)
+    stage.addEventListener('dragstart', preventDefault)
+    window.addEventListener('resize', debouncedResize, { passive: true })
 
     // Cleanup
     return () => {
       if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current)
+      clearTimeout(resizeTimeout)
       stage.removeEventListener('pointerdown', handlePointerDown)
       stage.removeEventListener('pointermove', handlePointerMove)
       stage.removeEventListener('pointerup', handlePointerUp)
-      stage.removeEventListener('dragstart', (e) => e.preventDefault())
+      stage.removeEventListener('dragstart', preventDefault)
       window.removeEventListener('resize', debouncedResize)
     }
   }, [images, startCarousel, transformForScreenX, updateCarouselTransforms, computeTransformComponents, measure, mod, autoPlay])
 
-  if (!images || !images.length) {
-    return null
-  }
+  // Pre-compute skeleton transforms (static, computed once)
+  const skeletonCards = useMemo(() => {
+    const cards = []
+    const center = Math.floor(SKELETON_COUNT / 2)
+    for (let i = 0; i < SKELETON_COUNT; i++) {
+      const offset = i - center
+      const screenX = offset * SKELETON_STEP
+      const norm = Math.max(-1, Math.min(1, screenX / 400))
+      const invNorm = 1 - Math.abs(norm)
+      const ry = -norm * MAX_ROTATION
+      const tz = invNorm * MAX_DEPTH
+      const scale = MIN_SCALE + invNorm * SCALE_RANGE
+      cards.push({
+        key: i,
+        transform: `translate3d(${screenX}px,-50%,${tz}px) rotateY(${ry}deg) scale(${scale})`,
+        zIndex: 1000 + Math.round(tz),
+        opacity: Math.abs(offset) <= 2 ? 1 : 0.6
+      })
+    }
+    return cards
+  }, [])
+
+  if (!images?.length) return null
 
   return (
     <div ref={stageRef} className="carousel3d-stage">
       {isLoading && (
         <div className="carousel3d-loader">
           <div className="carousel3d-skeleton">
-            {[...Array(7)].map((_, i) => {
-              const offset = i - 3
-              const screenX = offset * 215 // card width (~180) + GAP (35)
-              const norm = Math.max(-1, Math.min(1, screenX / 400))
-              const absNorm = Math.abs(norm)
-              const invNorm = 1 - absNorm
-              const ry = -norm * MAX_ROTATION
-              const tz = invNorm * MAX_DEPTH
-              const scale = MIN_SCALE + invNorm * SCALE_RANGE
-              
-              return (
-                <div 
-                  key={i} 
-                  className="carousel3d-skeleton__card"
-                  style={{ 
-                    transform: `translate3d(${screenX}px, -50%, ${tz}px) rotateY(${ry}deg) scale(${scale})`,
-                    zIndex: 1000 + Math.round(tz),
-                    opacity: Math.abs(offset) <= 2 ? 1 : 0.6
-                  }}
-                />
-              )
-            })}
+            {skeletonCards.map(({ key, transform, zIndex, opacity }) => (
+              <div 
+                key={key} 
+                className="carousel3d-skeleton__card"
+                style={{ transform, zIndex, opacity }}
+              />
+            ))}
           </div>
         </div>
       )}
