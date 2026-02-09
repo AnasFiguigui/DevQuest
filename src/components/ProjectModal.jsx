@@ -351,7 +351,14 @@ export default memo(function ProjectModal({ projectId, onClose, onNavigate, allP
           {/* Title overlay */}
           <div className=" text-white">
             <h2 className="text-4xl font-bold mb-2">{details.name}</h2>
-            <p className="text-sm text-white/50">{details.date}</p>
+            <p className="text-sm text-white/50">
+              {[
+                details.category,
+                details.technologies?.[0]?.name,
+                details.technologies?.[1]?.name,
+                details.date ? new Date(details.date).getFullYear() || details.date.split(' ').pop() : null
+              ].filter(Boolean).join(' · ')}
+            </p>
           </div>
           {/* Long Description */}
           {details.longDescription && (
@@ -361,14 +368,6 @@ export default memo(function ProjectModal({ projectId, onClose, onNavigate, allP
                 className="text-white/90"
                 dangerouslySetInnerHTML={{ __html: details.longDescription }}
               />
-            </div>
-          )}
-
-          {/* Category */}
-          {details.category && (
-            <div className="mb-8">
-              <p className="text-lg font-semibold text-white tracking-wide">Genre</p>
-              <p className=" text-white/70 ">{details.category}</p>
             </div>
           )}
 
@@ -403,10 +402,10 @@ export default memo(function ProjectModal({ projectId, onClose, onNavigate, allP
             </div>
           )}
 
-          {/* Technologies */}
+          {/* Tech Stack */}
           {details.technologies?.length > 0 && (
             <div className="mb-8">
-              <h3 className="mb-4 text-lg font-semibold text-white tracking-wide">Technologies</h3>
+              <h3 className="mb-4 text-lg font-semibold text-white tracking-wide">Tech Stack</h3>
               <div className="flex flex-wrap gap-6">
                 {details.technologies.map((tech) => (
                   <div key={tech.name} className="flex flex-col items-center gap-2">
@@ -433,31 +432,58 @@ export default memo(function ProjectModal({ projectId, onClose, onNavigate, allP
             </div>
           )}
 
-          {/* Contributors */}
-          {details.contributors?.length > 0 && (
-            <div className="mb-8">
-              <h3 className="mb-4 text-lg font-semibold text-white tracking-wide">Contributors</h3>
-              <ul className="space-y-2 list-disc list-inside">
-                {details.contributors.map((contrib, idx) => {
-                  const colonIndex = contrib.indexOf(':')
-                  if (colonIndex !== -1) {
-                    const role = contrib.slice(0, colonIndex)
-                    const names = contrib.slice(colonIndex + 1)
-                    return (
-                      <li key={idx} className="text-white/80">
-                        <strong className="text-white">{role}:</strong>{names}
-                      </li>
-                    )
-                  }
-                  return (
-                    <li key={idx} className="text-white/80">
-                      {contrib}
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
-          )}
+          {/* Contribution */}
+          <div className="mb-8">
+            <h3 className="mb-4 text-lg font-semibold text-white tracking-wide">Project Overview</h3>
+            
+            {details.contribution ? (
+              <div className="space-y-6">
+                {/* My Role */}
+                <div>
+                  <h4 className="text-md font-semibold text-white mb-2">My Role</h4>
+                  <p className="text-white/80">{details.contribution.myRole}</p>
+                </div>
+                
+                {/* Responsibilities */}
+                {details.contribution.responsibilities?.length > 0 && (
+                  <div>
+                    <h4 className="text-md font-semibold text-white mb-2">Responsibilities</h4>
+                    <ul className="space-y-1 list-disc list-inside">
+                      {details.contribution.responsibilities.map((resp, idx) => (
+                        <li key={idx} className="text-white/80">{resp}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                
+                {/* Team */}
+                {details.contribution.team?.length > 0 && (
+                  <div>
+                    <h4 className="text-md font-semibold text-white mb-2">Team</h4>
+                    <ul className="space-y-1 list-disc list-inside">
+                      {details.contribution.team.map((member, idx) => {
+                        const colonIndex = member.indexOf(':')
+                        if (colonIndex !== -1) {
+                          const role = member.slice(0, colonIndex)
+                          const names = member.slice(colonIndex + 1)
+                          return (
+                            <li key={idx} className="text-white/80">
+                              <strong className="text-white">{role}:</strong>{names}
+                            </li>
+                          )
+                        }
+                        return (
+                          <li key={idx} className="text-white/80">{member}</li>
+                        )
+                      })}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <p className="text-white/80"><strong className="text-white">Developer:</strong> Anas FIGUIGUI</p>
+            )}
+          </div>
 
           {/* Articles */}
           {details.articleUrl && (

@@ -5,7 +5,7 @@
   "title": "DevQuest",
   "date": "2024-09-01",
   "type": "website",
-  "category": "Personal Portfolio",
+  "category": "Portfolio Project",
   "banner": { "type": "image", "src": "/images/photos/Projects/Portfolio/banner.avif" },
   "thumbnail": { "type": "image", "src": "/images/photos/Projects/Portfolio/thumbnail.avif" },
   "shortDescription": "Personal Portfolio/Blog.",

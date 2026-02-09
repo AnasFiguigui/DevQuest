@@ -5,7 +5,7 @@
   "title": "Snake",
   "date": "2024-07-20",
   "type": "game",
-  "category": "Arcade / Retro",
+  "category": "Arcade / Web Game",
   "banner": { "type": "image", "src": "/images/photos/Projects/Snake/banner.avif" },
   "thumbnail": { "type": "image", "src": "/images/photos/Projects/Snake/thumbnail.avif" },
   "shortDescription": "Snake game made uing Javascript.",
@@ -17,8 +17,10 @@
     "/images/photos/Projects/Snake/image-2.avif"
   ],
   "technologies": [
-    { "name": "Unity", "svg": "/images/technologies/unity.svg" },
-    { "name": "C#", "svg": "/images/technologies/c-sharp.svg" }
+    { "name": "JavaScript", "svg": "/images/technologies/javascript.svg" },
+    { "name": "HTML5", "svg": "/images/technologies/html.svg" },
+    { "name": "CSS3", "svg": "/images/technologies/css.svg" },
+        { "name": "Github", "svg": "/images/technologies/github.svg" }
   ],
   "contributors": [
     "Developer: Anas FIGUIGUI"

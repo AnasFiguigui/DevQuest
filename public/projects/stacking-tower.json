@@ -5,7 +5,7 @@
   "title": "Stacking Tower",
   "date": "2024-08-15",
   "type": "game",
-  "category": "Puzzle / Arcade",
+  "category": "Puzzle / Web Game",
   "banner": { "type": "image", "src": "/images/photos/Projects/Tower/banner.avif" },
   "thumbnail": { "type": "image", "src": "/images/photos/Projects/Tower/thumbnail.avif" },
   "shortDescription": "A challenging tower-stacking puzzle game.",
@@ -17,8 +17,11 @@
     "/images/photos/Projects/Tower/image-2.avif"
   ],
   "technologies": [
-    { "name": "Unity", "svg": "/images/technologies/unity.svg" },
-    { "name": "C#", "svg": "/images/technologies/c-sharp.svg" }
+    { "name": "JavaScript", "svg": "/images/technologies/javascript.svg" },
+    { "name": "ThreeJs", "svg": "/images/technologies/threejs.svg" },
+    { "name": "HTML5", "svg": "/images/technologies/html.svg" },
+    { "name": "CSS3", "svg": "/images/technologies/css.svg" },
+    { "name": "Github", "svg": "/images/technologies/github.svg" }
   ],
   "contributors": [
     "Developer: Anas FIGUIGUI"

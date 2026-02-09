@@ -5,7 +5,7 @@
   "title": "Lost In Sala Colonia",
   "date": "2024-09-01",
   "type": "game",
-  "category": "Action-Adventure / Survival Horror",
+  "category": "Survival Horror / Puzzle / Single-Player",
   "banner": { "type": "image", "src": "/images/photos/Projects/LISC/banner.avif" },
   "thumbnail": { "type": "image", "src": "/images/photos/Projects/LISC/thumbnail.avif" },
   "shortDescription": "FPS horror/Puzzle game.",
@@ -23,17 +23,26 @@
     { "name": "Unity", "svg": "/images/technologies/unity.svg" },
     { "name": "C#", "svg": "/images/technologies/c-sharp.svg" },
     { "name": "Blender", "svg": "/images/technologies/blender.svg" },
-    { "name": "Jira", "svg": "/images/technologies/jira.svg" },
     { "name": "Github", "svg": "/images/technologies/github.svg" },
-    { "name": "Github Actions", "svg": "/images/technologies/github-actions.svg" }
+    { "name": "Github Actions", "svg": "/images/technologies/github-actions.svg" },
+    { "name": "Jira", "svg": "/images/technologies/jira.svg" }
   ],
-  "contributors": [
-    "Producers: Anas FIGUIGUI, Nouhaila EL KARMANI",
-    "Game Designers: Zhor ELHAMDOUCHI, Nouhaila EL KARMANI, Reda AIT LAARAB",
-    "Game Programmers: Anas FIGUIGUI, Rachid EL MANSORI, Moussaab EL MAHRAOUI",
-    "Game Artists: Issam CHENTOUI, Mehdi HAIDAR",
-    "Music & Sound Designer: Soulayman ECHATOUI"
-  ],
+  "contributors": [],
+  "contribution": {
+    "myRole": "Producer & Game Developer – Anas FIGUIGUI",
+    "responsibilities": [
+      "Project planning & coordination",
+      "Task management & milestone tracking",
+      "Gameplay programming / system implementation"
+    ],
+    "team": [
+      "Game Designers: ELHAMDOUCHI Zhor, AIT LAARAB Reda",
+      "Producer & Game Designer: ELKARMANI Nouhaila",
+      "Game Programmers: EL MANSORI Rachid, EL MAHRAOUI Moussaab",
+      "Game Artists: HAIDAR Mehdi, CHENTOUI Issam",
+      "Music & Sound Designer: ECHATOUI Souleyman"
+    ]
+  },
   "articleUrl": "/projects/LostInSalaColonia",
   "projectUrl": "https://isartmaroc.itch.io/lostinsalacolonia",
   "tags": ["puzzle", "single-player"]

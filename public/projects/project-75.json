@@ -25,11 +25,18 @@
     { "name": "Github", "svg": "/images/technologies/github.svg" },
     { "name": "Adobe PS", "svg": "/images/technologies/photoshop.svg" }
   ],
-  "contributors": [
-    "Game Programmers: Anas FIGUIGUI, Ziad RBAI",
-    "Game Artists: Badr BENFANICH, Soulayman ECHATOUI",
-    "Music & Sound Designer: Soulayman ECHATOUI"
-  ],
+  "contributors": [],
+  "contribution": {
+    "myRole": "Game Developer – Anas FIGUIGUI",
+    "responsibilities": [
+      "Gameplay programming & system implementation"
+    ],
+    "team": [
+      "Game Programmers: Anas FIGUIGUI, Ziad RBAI",
+      "Game Artists: Badr BENFANICH, Soulayman ECHATOUI",
+      "Music & Sound Designer: Soulayman ECHATOUI"
+    ]
+  },
   "articleUrl": "/projects/LostInSalaColonia",
   "projectUrl": "https://anasfiguigui.itch.io/qarnlaroub",
   "tags": ["arcade", "single-player", "minigames", "morocco", "future", "chaos"]

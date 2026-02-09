@@ -5,7 +5,7 @@
   "title": "Eden",
   "date": "25 April 2025",
   "type": "game",
-  "category": "Platformer / Action-Adventure",
+  "category": "Single-Player / Action-Adventure Platformer",
   "banner": { "type": "image", "src": "/images/photos/Projects/Eden/banner.avif" },
   "thumbnail": { "type": "image", "src": "/images/photos/Projects/Eden/thumbnail.avif" },
   "shortDescription": "2D platformer game.",
@@ -28,12 +28,20 @@
     { "name": "Github", "svg": "/images/technologies/github.svg" },
     { "name": "Github Actions", "svg": "/images/technologies/github-actions.svg" }
   ],
-  "contributors": [
-    "Producer: Anas FIGUIGUI",
-    "Game Designers: Zhor ELHAMDOUCHI, Mehdi HAIDAR",
-    "Game Programmers: Fadwa QORCHI, Anas FIGUIGUI",
-    "Game Artists: Mehdi HAIDAR"
-  ],
+  "contributors": [],
+  "contribution": {
+    "myRole": "Producer & Game Developer – Anas FIGUIGUI",
+    "responsibilities": [
+      "Project planning & coordination",
+      "Task management & milestone tracking",
+      "Gameplay programming / system implementation"
+    ],
+    "team": [
+      "Game Designers: Zhor ELHAMDOUCHI, Mehdi HAIDAR",
+      "Game Programmer: Fadwa QORCHI,",
+      "Game Artist: Mehdi HAIDAR"
+    ]
+  },
   "articleUrl": "/projects/LostInSalaColonia",
   "projectUrl": "https://isartmaroc.itch.io/lostinsalacolonia",
   "tags": ["puzzle", "single-player"]

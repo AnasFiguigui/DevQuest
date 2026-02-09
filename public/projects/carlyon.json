@@ -5,7 +5,7 @@
   "title": "Carlyon",
   "date": "2024-09-01",
   "type": "website",
-  "category": "Service / Platform",
+  "category": "Web Project",
   "banner": { "type": "image", "src": "/images/photos/Projects/Carlyon/banner.avif" },
   "thumbnail": { "type": "image", "src": "/images/photos/Projects/Carlyon/thumbnail.avif" },
   "shortDescription": "Comercial service webiste.",
@@ -14,18 +14,12 @@
   "youtubeUrl": "",
   "pictures": [
     "/images/photos/Projects/Carlyon/image-1.avif",
-    "/images/photos/Projects/Carlyon/image-2.avif",
-    "/images/photos/Projects/Carlyon/image-3.avif",
-    "/images/photos/Projects/Carlyon/image-4.avif"
+    "/images/photos/Projects/Carlyon/image-2.avif"
   ],
   "technologies": [
-    { "name": "JavaScript", "svg": "/images/technologies/javascript.svg" },
-    { "name": "ReactJS", "svg": "/images/technologies/react.svg" },
-    { "name": "Tailwind", "svg": "/images/technologies/tailwindcss.svg" },
-    { "name": "NextJS", "svg": "/images/technologies/nextjs.svg" },
-    { "name": "Github", "svg": "/images/technologies/github.svg" },
-    { "name": "NodeJS", "svg": "/images/technologies/nodejs.svg" },
-    { "name": "Vercel", "svg": "/images/technologies/vercel.svg" }
+    { "name": "Wordpress", "svg": "/images/technologies/wordpress.svg" },
+    { "name": "Namecheap", "svg": "/images/technologies/namecheap.svg" },
+    { "name": "Adobe PS", "svg": "/images/technologies/photoshop.svg" }
   ],
   "contributors": [
     "Developer: Anas Figuigui"
