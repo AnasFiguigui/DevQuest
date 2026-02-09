@@ -17,6 +17,28 @@ import logoUir from '@/images/logos/uir.svg'
 import logoUm5s from '@/images/logos/um5s.svg'
 import { getAllArticles } from '@/lib/articles'
 import { formatDate } from '@/lib/formatDate'
+import {
+  personalInfo,
+  socialLinks,
+  getResumeEducation,
+  homePhotos,
+} from '@/lib/profile'
+
+// Logo map for dynamic resolution
+const logoMap = {
+  isart: logoIsart,
+  ofppt: logoOfppt,
+  uir: logoUir,
+  um5s: logoUm5s,
+}
+
+// Icon map for social links
+const iconMap = {
+  XIcon,
+  InstagramIcon,
+  LinkedInIcon,
+  GitHubIcon,
+}
 
 function MailIcon(props) {
   return (
@@ -227,39 +249,11 @@ function Role({ role }) {
 }
 
 function Resume() {
-  const resume = [
-    {
-      university: 'Isart Digital',
-      title: 'Video Game Creator',
-      logo: logoIsart,
-      start: '2024',
-      end: {
-        label: '2025',
-        dateTime: new Date().getFullYear().toString(),
-      },
-    },
-    {
-      university: 'International University Of Rabat',
-      title: 'Computer Engineering - Executive',
-      logo: logoUir,
-      start: '2023',
-      end: '2024',
-    },
-    {
-      university: 'Specialized Institute Of Applied Technology',
-      title: 'Fullstack Web Development',
-      logo: logoOfppt,
-      start: '2021',
-      end: '2023',
-    },
-    {
-      university: 'FSJES-Souissi - University Of Mohammed V',
-      title: 'Economics and Management',
-      logo: logoUm5s,
-      start: '2019',
-      end: '2021',
-    },
-  ];
+  // Get education data from profile and resolve logos
+  const resume = getResumeEducation().map(edu => ({
+    ...edu,
+    logo: logoMap[edu.logo] || null,
+  }))
 
   return (
     <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
@@ -287,13 +281,7 @@ function Resume() {
 }
 
 async function loadPhotos() {
-  return [
-    '/images/photos/image-1.webm',
-    '/images/photos/image-2.webm',
-    '/images/photos/image-3.webm',
-    '/images/photos/image-4.webm',
-    '/images/photos/image-5.webm',
-  ]
+  return homePhotos
 }
 
 function Photos({ images }) {
@@ -309,6 +297,7 @@ function Photos({ images }) {
   )
 }
 
+
 export default async function Home() {
   let articles = (await getAllArticles()).slice(0, 4)
   const photos = await loadPhotos()
@@ -318,27 +307,20 @@ export default async function Home() {
       <Container className="mt-9">
         <div className="max-w-4xl">
           <h1 className="text-2xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            Back-end developer MACH architecture Video game programmer
+            {personalInfo.titles.tagline}
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-          I’m Anas Figuigui, a game developer specializing in gameplay systems and interactive experiences. With a background in backend development and cloud technologies, I approach game creation with both technical precision and creative vision, mainly working with Unity and Unreal Engine to build engaging and immersive worlds.          </p>
+            {personalInfo.shortDescription}
+          </p>
           <div className="mt-6 flex gap-6">
-            <SocialLink href="https://x.com/AnasFiguigui_" aria-label="Follow on X" icon={XIcon} />
-            <SocialLink
-              href="https://www.instagram.com/anasfiguigui/"
-              aria-label="Follow on Instagram"
-              icon={InstagramIcon}
-            />
-            <SocialLink
-              href="https://www.linkedin.com/in/anas-figuigui/"
-              aria-label="Follow on LinkedIn"
-              icon={LinkedInIcon}
-            />
-            <SocialLink
-              href="https://github.com/AnasFiguigui"
-              aria-label="Follow on GitHub"
-              icon={GitHubIcon}
-            />
+            {socialLinks.map((link) => (
+              <SocialLink
+                key={link.id}
+                href={link.href}
+                aria-label={link.label}
+                icon={iconMap[link.icon]}
+              />
+            ))}
           </div>
         </div>
       </Container>

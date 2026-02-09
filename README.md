@@ -14,6 +14,8 @@ Open-source personal portfolio showcasing my games and web projects.
 - **Project Showcase** - Interactive modal galleries with image viewer and swipe support
 - **3D Carousel** - Smooth, physics-based image carousel component
 - **Blog/Articles** - MDX-powered articles with rich content support
+- **Centralized Profile** - Edit all personal data from a single file (`src/lib/profile.js`)
+- **Dynamic Stats** - Auto-calculated project counts and years of experience
 - **Dark Mode** - Full dark/light theme support
 - **Responsive Design** - Mobile-first approach with adaptive layouts
 - **SEO Optimized** - Meta tags, OpenGraph, and structured data
@@ -84,6 +86,9 @@ DevQuest/
 │   │   ├── ImageLightbox.jsx
 │   │   └── ...
 │   ├── lib/              # Utility functions
+│   │   ├── profile.js    # ⭐ Centralized profile data
+│   │   ├── projects-client.js
+│   │   └── articles.js
 │   └── styles/           # Global styles
 └── package.json
 ```
@@ -98,6 +103,35 @@ DevQuest/
 - **Typography**: [@tailwindcss/typography](https://tailwindcss.com/docs/typography-plugin)
 
 ## 📝 Adding Content
+
+### Customizing Your Profile
+
+All personal data is centralized in `src/lib/profile.js`. Edit this single file to update:
+
+| Section | What it controls |
+|---------|-----------------|
+| `personalInfo` | Name, email, titles, descriptions, headlines |
+| `socialLinks` | Social media links (easy to add new ones) |
+| `interests` | Badge icons on about page |
+| `education` | Education timeline entries |
+| `professionalExperience` | Work experience (empty by default) |
+| `favoriteGames` | About page carousel images |
+| `homePhotos` | Home page photo gallery |
+
+**Dynamic Stats** (auto-calculated):
+- Total projects, games, websites count from `projects-client.js`
+- Years of experience from `experienceStartDate`
+
+Example - Adding a new social link:
+```js
+// In socialLinks array
+{
+  id: 'discord',
+  href: 'https://discord.gg/yourserver',
+  label: 'Join Discord',
+  icon: 'DiscordIcon', // Add icon to SocialIcons.jsx
+}
+```
 
 ### New Project
 

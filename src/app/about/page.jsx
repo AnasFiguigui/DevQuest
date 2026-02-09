@@ -13,6 +13,21 @@ import {
 } from '@/components/SocialIcons'
 import portraitImage from '@/images/portrait.jpg'
 import hoverImage from '@/images/portrait22.jpg'
+import {
+  personalInfo,
+  socialLinks,
+  interests,
+  getTimelineEducation,
+  favoriteGames,
+} from '@/lib/profile'
+
+// Icon map for social links
+const iconMap = {
+  XIcon,
+  InstagramIcon,
+  LinkedInIcon,
+  GitHubIcon,
+}
 
 function SocialLink({ className, href, children, icon: Icon }) {
   return (
@@ -46,47 +61,8 @@ export const metadata = {
 }
 
 export default function About() {
-  const educationItems = [
-    {
-      date: 'Jan 2025 - Oct 2025',
-      title: 'Video game creator',
-      institution: 'ISART DIGITAL',
-      description: 'Certified in Video Game Creation, covering game design, programming, and production pipelines.',
-    },
-    {
-      date: 'May 2024',
-      title: 'AWS Cloud Solution Architect Certification',
-      institution: 'Amazon Web Services',
-      description: 'Professional certification in cloud architecture',
-    },
-    {
-      date: 'Dec 2023 - Nov 2024',
-      title: 'Bachelors degree, Computer Engineering',
-      institution: 'International University of Rabat',
-      description: 'Graduated in Computer Engineering with a focus on software development, cloud architecture, and AI applications.',
-    },
-    {
-      date: 'Sep 2021 - Jul 2023',
-      title: 'Digital Developpement option Web Full Stack',
-      institution: 'Specialized Institute Of Applied Technology NTIC',
-      description: 'Completed a comprehensive program in web development, covering both frontend and backend technologies, with a focus on modern frameworks and best practices.',
-    },
-  ]
-
-  // Favorite games images
-  const favoriteGames = [
-    '/images/photos/FavGames/arc.avif',
-    '/images/photos/FavGames/bdo.avif',
-    '/images/photos/FavGames/crimson.avif',
-    '/images/photos/FavGames/d3.avif',
-    '/images/photos/FavGames/diablo2.avif',
-    '/images/photos/FavGames/diablo4.avif',
-    '/images/photos/FavGames/hades2.avif',
-    '/images/photos/FavGames/khazan.avif',
-    '/images/photos/FavGames/minecraft.avif',
-    '/images/photos/FavGames/poe.avif',
-    '/images/photos/FavGames/witcher3.avif',
-  ]
+  // Get education data from profile
+  const educationItems = getTimelineEducation()
 
   return (
     <Container className="mt-16 sm:mt-32">
@@ -111,43 +87,50 @@ export default function About() {
         </div>
         <div className="lg:order-first lg:row-span-2">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            Anas Figuigui, Game & Backend Developer specializing in MACH architecture
+            {personalInfo.aboutHeadline}
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
-            <p>
-              I am a Game and backend engineer with a strong background in cloud-based architectures and interactive experiences. I specialize in designing and implementing gameplay systems, immersive worlds, and scalable backend solutions using Unity, Unreal Engine, and modern cloud technologies.
-            </p>
-            <p>
-              My recent work includes leading the development of a horror game set in a Moroccan location featuring zombies, where I oversaw gameplay systems, technical direction, and team collaboration while contributing to level design and atmosphere creation.
-            </p>
-            <p>
-              Alongside game development, I continue to deepen my expertise in cloud and backend technologies, having earned the <b>AWS Cloud Solution Architect</b> certification.
-            </p>
-            <p>
-              Driven, curious, and hands-on, I enjoy tackling challenging projects, blending technical rigor with creative vision, and building engaging experiences that leave a lasting impact.
-            </p>
+            {personalInfo.longDescription.map((paragraph, index) => (
+              <p key={index} dangerouslySetInnerHTML={{ __html: paragraph }} />
+            ))}
+          </div>
+
+          {/* Interests Badges */}
+          <div className="mt-8">
+            <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-3">
+              Interests
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {interests.map((interest) => (
+                <span
+                  key={interest.id}
+                  className="inline-flex items-center gap-1.5 rounded-full bg-zinc-100 px-3 py-1.5 text-sm font-medium text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200"
+                >
+                  <span>{interest.emoji}</span>
+                  {interest.label}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
         <div className="lg:pl-20">
           <ul role="list">
-            <SocialLink href="https://x.com/_AnasFiguigui" icon={XIcon}>
-              Follow on X
-            </SocialLink>
-            <SocialLink href="https://www.instagram.com/anasfiguigui/" icon={InstagramIcon} className="mt-4">
-              Follow on Instagram
-            </SocialLink>
-            <SocialLink href="https://www.linkedin.com/in/anas-figuigui/" icon={LinkedInIcon} className="mt-4">
-              Follow on LinkedIn
-            </SocialLink>
-            <SocialLink href="https://github.com/AnasFiguigui" icon={GitHubIcon} className="mt-4">
-              Follow on GitHub
-            </SocialLink>
+            {socialLinks.map((link, index) => (
+              <SocialLink
+                key={link.id}
+                href={link.href}
+                icon={iconMap[link.icon]}
+                className={index > 0 ? 'mt-4' : ''}
+              >
+                {link.label}
+              </SocialLink>
+            ))}
             <SocialLink
-              href="mailto:anas.production.af@gmail.com"
+              href={`mailto:${personalInfo.email}`}
               icon={MailIcon}
               className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
             >
-              anas.production.af@gmail.com
+              {personalInfo.email}
             </SocialLink>
           </ul>
         </div>
