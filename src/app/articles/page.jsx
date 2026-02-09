@@ -44,9 +44,9 @@ function Article({ article }) {
 }
 
 export const metadata = {
-  title: 'Articles',
+  title: 'DevQuest.',
   description:
-    'Découvrez des analyses approfondies sur la conception de jeux vidéo, les mécaniques de gameplay et les technologies utilisées. Une ressource idéale pour explorer les aspects techniques et créatifs de chaque réalisation.',
+    'A space where I document my development journey.',
 }
 
 export default async function ArticlesIndex() {
@@ -54,8 +54,8 @@ export default async function ArticlesIndex() {
 
   return (
     <SimpleLayout
-      title="Retrouvez ici les présentations techniques et les explications détaillées de mes projets."
-      intro="Découvrez des analyses approfondies sur la conception de jeux vidéo, les mécaniques de gameplay et les technologies utilisées. Une ressource idéale pour explorer les aspects techniques et créatifs de chaque réalisation."
+      title="Dev Journal"
+      intro="Explore my development journey through detailed dev logs, project breakdowns, events, and behind-the-scenes insights. A space where I document my progress, experiments, challenges, and lessons learned as a game and web developer."
     >
       <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
         <div className="flex max-w-3xl flex-col space-y-16">
