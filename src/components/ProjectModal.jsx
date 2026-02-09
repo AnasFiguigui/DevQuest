@@ -14,6 +14,10 @@ function ImageViewerComponent({ pictures, initialIndex, onClose }) {
   const [currentIndex, setCurrentIndex] = useState(initialIndex)
   const hasPrev = currentIndex > 0
   const hasNext = currentIndex < pictures.length - 1
+  
+  // Touch swipe state
+  const touchStartX = useRef(0)
+  const touchEndX = useRef(0)
 
   const handlePrev = useCallback(() => {
     if (currentIndex > 0) setCurrentIndex(currentIndex - 1)
@@ -22,6 +26,28 @@ function ImageViewerComponent({ pictures, initialIndex, onClose }) {
   const handleNext = useCallback(() => {
     if (currentIndex < pictures.length - 1) setCurrentIndex(currentIndex + 1)
   }, [currentIndex, pictures.length])
+
+  // Touch handlers for swipe
+  const handleTouchStart = useCallback((e) => {
+    touchStartX.current = e.touches[0].clientX
+  }, [])
+
+  const handleTouchMove = useCallback((e) => {
+    touchEndX.current = e.touches[0].clientX
+  }, [])
+
+  const handleTouchEnd = useCallback(() => {
+    const diff = touchStartX.current - touchEndX.current
+    const minSwipeDistance = 50
+    
+    if (Math.abs(diff) > minSwipeDistance) {
+      if (diff > 0 && hasNext) {
+        handleNext()
+      } else if (diff < 0 && hasPrev) {
+        handlePrev()
+      }
+    }
+  }, [hasNext, hasPrev, handleNext, handlePrev])
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -34,7 +60,12 @@ function ImageViewerComponent({ pictures, initialIndex, onClose }) {
   }, [handlePrev, handleNext, hasPrev, hasNext, onClose])
 
   return (
-    <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+    <div 
+      className="fixed inset-0 z-[999] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
       <div className="relative flex items-center justify-center w-full h-full max-w-6xl">
         {/* Close button */}
         <button
@@ -557,12 +588,12 @@ export default memo(function ProjectModal({ projectId, onClose, onNavigate, allP
         {modalContent}
       </div>
 
-      {/* Left / Right project navigation (screen edges) */}
+      {/* Left / Right project navigation (screen edges) - hidden on mobile */}
       {prevId && (
         <button
           onClick={handlePrevProject}
           aria-label="Previous project"
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 inline-flex items-center rounded-l-md bg-white/10 px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-700 hover:bg-white/20 focus:z-10"
+          className="absolute left-4 top-1/2 transform -translate-y-1/2 hidden md:inline-flex items-center rounded-l-md bg-white/10 px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-700 hover:bg-white/20 focus:z-10"
         >
           <span className="sr-only">Previous project</span>
           <ChevronLeftIcon aria-hidden="true" className="h-5 w-5" />
@@ -573,7 +604,7 @@ export default memo(function ProjectModal({ projectId, onClose, onNavigate, allP
         <button
           onClick={handleNextProject}
           aria-label="Next project"
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 inline-flex items-center rounded-r-md bg-white/10 px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-700 hover:bg-white/20 focus:z-10"
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 hidden md:inline-flex items-center rounded-r-md bg-white/10 px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-700 hover:bg-white/20 focus:z-10"
         >
           <span className="sr-only">Next project</span>
           <ChevronRightIcon aria-hidden="true" className="h-5 w-5" />
