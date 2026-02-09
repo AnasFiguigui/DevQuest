@@ -437,12 +437,24 @@ export default memo(function ProjectModal({ projectId, onClose, onNavigate, allP
           {details.contributors?.length > 0 && (
             <div className="mb-8">
               <h3 className="mb-4 text-lg font-semibold text-white tracking-wide">Contributors</h3>
-              <ul className="space-y-2">
-                {details.contributors.map((contrib, idx) => (
-                  <li key={idx} className="text-white/80">
-                    {contrib}
-                  </li>
-                ))}
+              <ul className="space-y-2 list-disc list-inside">
+                {details.contributors.map((contrib, idx) => {
+                  const colonIndex = contrib.indexOf(':')
+                  if (colonIndex !== -1) {
+                    const role = contrib.slice(0, colonIndex)
+                    const names = contrib.slice(colonIndex + 1)
+                    return (
+                      <li key={idx} className="text-white/80">
+                        <strong className="text-white">{role}:</strong>{names}
+                      </li>
+                    )
+                  }
+                  return (
+                    <li key={idx} className="text-white/80">
+                      {contrib}
+                    </li>
+                  )
+                })}
               </ul>
             </div>
           )}

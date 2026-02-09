@@ -29,11 +29,10 @@
     { "name": "Github Actions", "svg": "/images/technologies/github-actions.svg" }
   ],
   "contributors": [
-    "Producer: Anas Figuigui",
-    "Lead Designer: Anas Figuigui",
-    "Lead Programmer: Anas Figuigui",
-    "Artist: Anas Figuigui",
-    "Sound Designer: Anas Figuigui"
+    "Producer: Anas FIGUIGUI",
+    "Game Designers: Zhor ELHAMDOUCHI, Mehdi HAIDAR",
+    "Game Programmers: Fadwa QORCHI, Anas FIGUIGUI",
+    "Game Artists: Mehdi HAIDAR"
   ],
   "articleUrl": "/projects/LostInSalaColonia",
   "projectUrl": "https://isartmaroc.itch.io/lostinsalacolonia",

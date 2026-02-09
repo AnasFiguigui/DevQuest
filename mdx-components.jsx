@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { ImageLightbox } from '@/components/ImageLightbox'
+import { ImageLightbox, ImageRow } from '@/components/ImageLightbox'
 import { ArticleVideo } from '@/components/ArticleVideo'
 import Carousel3D from '@/components/Carousel3D'
 
@@ -11,6 +11,8 @@ export function useMDXComponents(components) {
     Image: (props) => <Image {...props} />,
     // Clickable image with lightbox
     ImageLightbox,
+    // Two images side by side with lightbox
+    ImageRow,
     // Video component
     ArticleVideo,
     // 3D Carousel
