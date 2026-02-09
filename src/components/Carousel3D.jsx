@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
 import Image from 'next/image'
 import PropTypes from 'prop-types'
+import gsap from 'gsap'
 import './Carousel3D.css'
 
 // Physics constants
@@ -20,13 +21,6 @@ const SKELETON_STEP = 215
 
 export default function Carousel3D({ images, autoPlay = true, autoPlaySpeed = 50, aspectRatio = '3/4' }) {
   const stageRef = useRef(null)
-
-Carousel3D.propTypes = {
-  images: PropTypes.arrayOf(PropTypes.string).isRequired,
-  autoPlay: PropTypes.bool,
-  autoPlaySpeed: PropTypes.number,
-  aspectRatio: PropTypes.string,
-}
   const cardsRef = useRef(null)
   const [isLoading, setIsLoading] = useState(true)
   
@@ -218,8 +212,8 @@ Carousel3D.propTypes = {
       measure()
       updateCarouselTransforms()
 
-      // Initial animation with GSAP if available
-      if (globalThis.gsap) {
+      // Initial animation with GSAP
+      if (gsap) {
         const items = itemsRef.current
         const visibleCards = []
         const viewportWidth = window.innerWidth
@@ -240,7 +234,7 @@ Carousel3D.propTypes = {
 
         await new Promise(r => requestAnimationFrame(r))
 
-        const tl = globalThis.gsap.timeline()
+        const tl = gsap.timeline()
 
         visibleCards.forEach(({ item, screenX }, idx) => {
           const state = { p: 0 }
@@ -429,4 +423,11 @@ Carousel3D.propTypes = {
       </div>
     </div>
   )
+}
+
+Carousel3D.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.string).isRequired,
+  autoPlay: PropTypes.bool,
+  autoPlaySpeed: PropTypes.number,
+  aspectRatio: PropTypes.string,
 }

@@ -19,16 +19,7 @@ import { getAllArticles } from '@/lib/articles'
 import { formatDate } from '@/lib/formatDate'
 
 function MailIcon(props) {
-  Article.propTypes = {
-    article: PropTypes.shape({
-      slug: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      date: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-    }).isRequired,
-  };
-  
-    return (
+  return (
     <svg
       viewBox="0 0 24 24"
       fill="none"
@@ -103,15 +94,25 @@ function Article({ article }) {
   )
 }
 
+Article.propTypes = {
+  article: PropTypes.shape({
+    slug: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+  }).isRequired,
+}
+
 function SocialLink({ icon: Icon, ...props }) {
-  SocialLink.propTypes = {
-    icon: PropTypes.elementType.isRequired,
-  };
   return (
     <Link className="group -m-1 p-1" {...props}>
       <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
     </Link>
   )
+}
+
+SocialLink.propTypes = {
+  icon: PropTypes.elementType.isRequired,
 }
 
 function Contact() {
@@ -189,27 +190,6 @@ function Contact() {
 }
 
 function Role({ role }) {
-  Role.propTypes = {
-    role: PropTypes.shape({
-      university: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      logo: PropTypes.string.isRequired,
-      start: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.shape({
-          label: PropTypes.string.isRequired,
-          dateTime: PropTypes.string.isRequired,
-        }),
-      ]).isRequired,
-      end: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.shape({
-          label: PropTypes.string.isRequired,
-          dateTime: PropTypes.string.isRequired,
-        }),
-      ]).isRequired,
-    }).isRequired,
-  };
   let startLabel =
     typeof role.start === 'string' ? role.start : role.start.label
   let startDate =
@@ -317,18 +297,6 @@ async function loadPhotos() {
 }
 
 function Photos({ images }) {
-  Photos.propTypes = {
-    images: PropTypes.arrayOf(
-      PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.shape({
-          src: PropTypes.string,
-          alt: PropTypes.string,
-        }),
-      ])
-    ).isRequired,
-  };
-  
   const imgs = images.map((img) => ({
     src: img?.src || img,
     alt: img?.alt || '',

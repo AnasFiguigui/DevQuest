@@ -1,11 +1,14 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, memo } from 'react'
 import Image from 'next/image'
 
 import { SimpleLayout } from '@/components/SimpleLayout'
 import projectsData from '@/lib/projects-client'
 import ProjectModal from '@/components/ProjectModal'
+
+// Simple cache for project details
+const projectCache = new Map()
 
 const tabs = [
   { name: 'All Projects', value: 'all' },
@@ -157,17 +160,26 @@ function truncateWords(text, maxWords = 5) {
   return words.slice(0, maxWords).join(' ') + '...'
 }
 
-function ProjectCard({ project, onOpen }) {
-  const [details, setDetails] = useState(null)
+const ProjectCard = memo(function ProjectCard({ project, onOpen }) {
+  const [details, setDetails] = useState(() => projectCache.get(project.id) || null)
 
   useEffect(() => {
+    // Skip if already cached
+    if (projectCache.has(project.id)) {
+      setDetails(projectCache.get(project.id))
+      return
+    }
+    
     let mounted = true
     fetch(`/projects/${project.id}.json`)
       .then((r) => {
         if (!r.ok) throw new Error('Failed')
         return r.json()
       })
-      .then((d) => mounted && setDetails(d))
+      .then((d) => {
+        projectCache.set(project.id, d)
+        if (mounted) setDetails(d)
+      })
       .catch(() => {
         if (mounted) setDetails(null)
       })
@@ -189,6 +201,7 @@ function ProjectCard({ project, onOpen }) {
           src={thumb}
           alt={title}
           fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105 group-hover:blur-sm"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent mix-blend-multiply" />
@@ -211,11 +224,10 @@ function ProjectCard({ project, onOpen }) {
         <button
           onClick={onOpen}
           className="pointer-events-none group-hover:pointer-events-auto inline-flex w-full items-center justify-center rounded-md bg-white/90 px-4 py-2 text-sm font-medium text-zinc-900 shadow-lg dark:bg-white/10 dark:text-white"
-          rel="noopener noreferrer"
         >
           See project
         </button>
       </div>
     </article>
   )
-}
+})

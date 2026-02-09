@@ -348,11 +348,13 @@ export default memo(function ProjectModal({ projectId, onClose, onNavigate, allP
         <div className="relative h-52 md:h-52 w-full overflow-hidden shrink-0 bg-gradient-to-br from-zinc-600 to-zinc-800">
           {!bannerFailed ? (
             <>
-              <img
+              <Image
                 src={details.banner?.src || details.thumbnail?.src}
                 alt={details.name || 'Project banner'}
-                className="h-full w-full object-cover"
+                fill
+                className="object-cover"
                 onError={() => setBannerFailed(true)}
+                priority
               />
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40" />
             </>
