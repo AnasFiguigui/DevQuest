@@ -2,8 +2,8 @@ import { ArticleLayout } from '@/components/ArticleLayout'
 
 export const article = {
   author: 'Anas Figuigui',
-  date: '2026-02-08',
-  title: 'Article Title Here',
+  date: '2025-10-03',
+  title: 'ISART Game Jam - Morocco 2100 (Game Jam Breakdown)',
   description:
     'A brief description of what this article is about. This will appear in article lists and as the meta description.',
 }
@@ -48,8 +48,21 @@ Use `ImageLightbox` for images that users can click to view in full size:
 <ImageLightbox 
   src="/images/photos/Projects/Eden/image-1.avif" 
   alt="Description of the image for accessibility"
-  caption="Optional caption that appears below the image"
 />
+<ImageRow 
+  images={[
+    "/images/photos/Projects/Eden/image-1.avif",
+    "/images/photos/Projects/Eden/image-1.avif"
+  ]}
+/>
+<ImageRow 
+  images={[
+    { src: "/images/photos/Projects/Eden/image-1.avif", alt: "First image" },
+    { src: "/images/photos/Projects/Eden/image-1.avif", alt: "Second image" }
+  ]}
+  caption="Optional caption for the image pair"
+/>
+
 
 ### Videos
 
@@ -86,11 +99,11 @@ Use `Carousel3D` to showcase multiple images in an interactive carousel:
     '/images/photos/FavGames/witcher3.avif',
     '/images/photos/FavGames/diablo4.avif',
     '/images/photos/FavGames/hades2.avif',
-    '/images/photos/FavGames/poe.avif',
+    '/images/photos/FavGames/poe.avif'
   ]}
   autoPlay={true}
   autoPlaySpeed={50}
-  aspectRatio="3/4"
+  aspectRatio="16/9"
 />
 
 ### Links
@@ -151,3 +164,4 @@ When writing about technical topics, you can organize information in clear secti
 
 Wrap up your article with final thoughts, lessons learned, or a call to action 
 for readers.
+
