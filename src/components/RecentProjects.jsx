@@ -29,7 +29,7 @@ export function RecentProjects() {
           <button
             key={project.id}
             onClick={() => setModalProjectId(project.id)}
-            className="group relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-6 pb-6 pt-40 bg-zinc-900/5 dark:bg-zinc-900 text-left"
+            className="group relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-6 pb-6 bg-zinc-900/5 dark:bg-zinc-900 text-left aspect-[5/4]"
           >
             <Image
               src={project.thumbnail}
