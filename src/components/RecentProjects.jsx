@@ -14,10 +14,8 @@ export function RecentProjects() {
     .sort((a, b) => +new Date(b.releaseDate) - +new Date(a.releaseDate))
     .slice(0, 3)
 
-  const allProjectIds = projectsData
-    .slice()
-    .sort((a, b) => +new Date(b.releaseDate) - +new Date(a.releaseDate))
-    .map((p) => p.id)
+  // Only allow navigation between the 3 displayed projects
+  const recentProjectIds = recentProjects.map((p) => p.id)
 
   return (
     <>
@@ -58,7 +56,7 @@ export function RecentProjects() {
           projectId={modalProjectId}
           onClose={() => setModalProjectId(null)}
           onNavigate={(id) => setModalProjectId(id)}
-          allProjectIds={allProjectIds}
+          allProjectIds={recentProjectIds}
         />
       )}
     </>

@@ -8,6 +8,23 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Disable text selection globally */
+* {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Allow selection in input fields and textareas */
+input,
+textarea {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
 /* Hide scrollbar while keeping scroll functionality */
 .hide-scrollbar {
   -ms-overflow-style: none;
