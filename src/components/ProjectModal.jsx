@@ -221,7 +221,7 @@ const PictureGallery = memo(PictureGalleryComponent)
 
 function SkeletonLoader() {
   return (
-    <div className="max-h-[95vh] w-full max-w-6xl overflow-hidden rounded-2xl bg-white/0 dark:bg-zinc-950/70 backdrop-blur-xl border border-white/20 dark:border-white/5 shadow-2xl flex flex-col animate-pulse">
+    <div className="max-h-[95vh] w-full overflow-hidden rounded-2xl bg-white/0 dark:bg-zinc-950/70 backdrop-blur-xl border border-white/20 dark:border-white/5 shadow-2xl flex flex-col animate-pulse">
       {/* Banner Skeleton */}
       <div className="relative h-52 md:h-52 w-full overflow-hidden shrink-0 bg-zinc-700/50" />
       
@@ -343,7 +343,7 @@ export default memo(function ProjectModal({ projectId, onClose, onNavigate, allP
   } else {
     modalContent = (
       /* Main modal */
-      <div className="max-h-[95vh] w-full max-w-6xl overflow-hidden rounded-2xl bg-white/0 dark:bg-zinc-950/70 backdrop-blur-xl border border-white/20 dark:border-white/5 shadow-2xl flex flex-col">
+      <div className="max-h-[95vh] w-full overflow-hidden rounded-2xl bg-white/0 dark:bg-zinc-950/70 backdrop-blur-xl border border-white/20 dark:border-white/5 shadow-2xl flex flex-col">
         {/* Banner Section */}
         <div className="relative h-52 md:h-52 w-full overflow-hidden shrink-0 bg-gradient-to-br from-zinc-600 to-zinc-800">
           {!bannerFailed ? (
@@ -586,7 +586,7 @@ export default memo(function ProjectModal({ projectId, onClose, onNavigate, allP
         isAnimating ? 'opacity-0' : 'opacity-100'
       }`}
     >
-      <div className={`transform transition-all duration-300 ${isAnimating ? 'scale-95 opacity-0' : 'scale-100 opacity-100'}`}>
+      <div className={`w-full max-w-6xl transform transition-all duration-300 ${isAnimating ? 'scale-95 opacity-0' : 'scale-100 opacity-100'}`}>
         {modalContent}
       </div>
 
