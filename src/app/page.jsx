@@ -1,8 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import PropTypes from 'prop-types'
+
 import PhotosGallery from '@/components/Photos'
 import { Contact } from '@/components/Contact'
-
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
@@ -10,6 +11,7 @@ import {
   GitHubIcon,
   InstagramIcon,
   LinkedInIcon,
+  MailIcon,
   XIcon,
 } from '@/components/SocialIcons'
 import logoIsart from '@/images/logos/isart.svg'
@@ -79,21 +81,6 @@ function ArrowDownIcon(props) {
   )
 }
 
-function MailIcon(props) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
-      <path
-        d="M2.75 7.75a3 3 0 0 1 3-3h12.5a3 3 0 0 1 3 3v8.5a3 3 0 0 1-3 3H5.75a3 3 0 0 1-3-3v-8.5Z"
-        strokeWidth="1.5"
-      />
-      <path
-        d="m4 6 6.024 5.479a2.915 2.915 0 0 0 3.952 0L20 6"
-        strokeWidth="1.5"
-      />
-    </svg>
-  )
-}
-
 function StatCard({ value, label }) {
   return (
     <div className="flex flex-col items-center rounded-2xl border border-zinc-100 bg-zinc-50 px-6 py-6 dark:border-zinc-700/40 dark:bg-zinc-800/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/10 hover:border-indigo-500/30">
@@ -103,7 +90,10 @@ function StatCard({ value, label }) {
   )
 }
 
-import PropTypes from 'prop-types';
+StatCard.propTypes = {
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  label: PropTypes.string.isRequired,
+}
 
 function Article({ article }) {
   return (

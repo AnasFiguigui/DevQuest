@@ -6,7 +6,7 @@ import { skillsData as defaultSkillsData } from '@/lib/profile'
 
 function SkillCard({ name, icon }) {
   return (
-    <div className="flex items-center justify-center gap-3 rounded-lg bg-zinc-50 px-4 py-3 transition-all hover:bg-zinc-100 dark:bg-zinc-800/50 dark:hover:bg-zinc-800 lg:justify-start">
+    <div className="flex items-center justify-center gap-3 rounded-lg bg-zinc-50 px-4 py-3 transition-all duration-300 hover:scale-105 hover:bg-zinc-100 dark:bg-zinc-800/50 dark:hover:bg-zinc-800 lg:justify-start">
       <div className="relative h-8 w-8 flex-shrink-0">
         <Image
           src={icon}

@@ -1,8 +1,10 @@
 'use client'
 
-import { createContext, useEffect, useRef } from 'react'
+import { createContext, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { ThemeProvider, useTheme } from 'next-themes'
+import clsx from 'clsx'
+import LoadingScreen from '@/components/LoadingScreen'
 
 function usePrevious(value) {
   let ref = useRef()
@@ -43,12 +45,40 @@ export const AppContext = createContext({})
 export function Providers({ children }) {
   let pathname = usePathname()
   let previousPathname = usePrevious(pathname)
+  const [isLoading, setIsLoading] = useState(true)
+  const [isReady, setIsReady] = useState(false)
+
+  useEffect(() => {
+    // Check if this is the first visit in this session
+    const hasLoadedOnce = sessionStorage.getItem('hasLoadedOnce')
+    if (hasLoadedOnce) {
+      setIsLoading(false)
+    }
+    setIsReady(true)
+  }, [])
+
+  const handleLoadingComplete = useCallback(() => {
+    setIsLoading(false)
+  }, [])
+
+  // Memoize context value to prevent unnecessary re-renders
+  const contextValue = useMemo(() => ({ previousPathname }), [previousPathname])
+
+  // Don't render anything until we've checked sessionStorage
+  if (!isReady) {
+    return <div className="fixed inset-0 bg-black" />
+  }
 
   return (
-    <AppContext.Provider value={{ previousPathname }}>
+    <AppContext.Provider value={contextValue}>
       <ThemeProvider attribute="class" disableTransitionOnChange>
         <ThemeWatcher />
-        {children}
+        {isLoading && (
+          <LoadingScreen onLoadingComplete={handleLoadingComplete} />
+        )}
+        <div className={clsx('flex w-full', isLoading ? 'invisible' : 'visible')}>
+          {children}
+        </div>
       </ThemeProvider>
     </AppContext.Provider>
   )
