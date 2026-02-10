@@ -4,6 +4,7 @@ import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
 import { EducationTimeline } from '@/components/EducationTimeline'
+import { SkillsSection } from '@/components/SkillsSection'
 import Carousel3D from '@/components/Carousel3D'
 import {
   GitHubIcon,
@@ -139,6 +140,14 @@ export default function About() {
       {/* Education Timeline Section */}
       <div className="mt-24 sm:mt-32">
         <EducationTimeline title="Education & Certifications" items={educationItems} />
+      </div>
+
+      {/* Skills Section */}
+      <div className="mt-24 sm:mt-32">
+        <SkillsSection 
+          title="Skills & Technologies"
+          description="A collection of languages, frameworks, and tools I've worked with throughout my career."
+        />
       </div>
 
       {/* Favorite Games Carousel Section */}

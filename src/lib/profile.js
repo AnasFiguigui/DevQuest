@@ -72,10 +72,11 @@ export const socialLinks = [
 
 export const interests = [
   { id: 'horror', label: 'Horror Movies', emoji: '🎬' },
-  { id: 'cooking', label: 'Cooking', emoji: '🍳' },
-  { id: 'anime', label: 'Anime', emoji: '🎌' },
-  { id: 'gaming', label: 'Gaming', emoji: '🎮' },
-  { id: 'music', label: 'Music', emoji: '🎵' },
+  { id: 'pizza', label: 'Pizza', emoji: '🍕' },
+  { id: 'anime', label: 'Animes', emoji: '👀' },
+  { id: 'gaming', label: 'Survival Games', emoji: '🎮' },
+  { id: 'music', label: 'Dark Souls Music', emoji: '🎵' },
+  { id: 'cats', label: 'Cats', emoji: '🐈‍⬛' },
 ]
 
 // ============================================================================
@@ -177,8 +178,9 @@ export const experienceStartDate = {
 
 const FAV_GAMES_PATH = '/images/photos/FavGames/'
 export const favoriteGames = [
-  'arc', 'bdo', 'crimson', 'd3', 'diablo2', 'diablo4',
-  'hades2', 'khazan', 'minecraft', 'poe', 'witcher3'
+  'arc', 'bdo','diablo2', 'diablo4', 'd3' , 'eldenringnr' ,
+  'hades2', 'sh2', 'outlast', 're7', 'bet',
+  'shpt', 'khazan', 'minecraft', 'poe', 'witcher3'
 ].map(name => `${FAV_GAMES_PATH}${name}.avif`)
 
 // ============================================================================
