@@ -24,10 +24,12 @@ import {
   personalInfo,
   socialLinks,
   getResumeEducation,
+  getTimelineEducation,
   homePhotos,
   getAllStats,
 } from '@/lib/profile'
 import { RecentProjects } from '@/components/RecentProjects'
+import { EducationTimeline } from '@/components/EducationTimeline'
 
 // Logo map for dynamic resolution
 const logoMap = {
@@ -222,6 +224,12 @@ export default async function Home() {
   let articles = (await getAllArticles()).slice(0, 4)
   const photos = await loadPhotos()
   const stats = getAllStats()
+  // Get education data without descriptions
+  const educationItems = getTimelineEducation().map(({ date, title, institution }) => ({
+    date,
+    title,
+    institution,
+  }))
 
   return (
     <>
@@ -276,6 +284,11 @@ export default async function Home() {
           <StatCard value={stats.websites} label="Web Apps" />
           <StatCard value={stats.modsAndTools} label="Mods & Tools" />
         </div>
+      </Container>
+
+      {/* Education Timeline */}
+      <Container className="mt-24">
+        <EducationTimeline title="Education" items={educationItems} />
       </Container>
 
       {/* Recent Projects */}
