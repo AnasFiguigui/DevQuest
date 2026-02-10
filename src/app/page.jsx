@@ -96,7 +96,7 @@ function MailIcon(props) {
 
 function StatCard({ value, label }) {
   return (
-    <div className="flex flex-col items-center rounded-2xl border border-zinc-100 bg-zinc-50 px-6 py-6 dark:border-zinc-700/40 dark:bg-zinc-800/50">
+    <div className="flex flex-col items-center rounded-2xl border border-zinc-100 bg-zinc-50 px-6 py-6 dark:border-zinc-700/40 dark:bg-zinc-800/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/10 hover:border-indigo-500/30">
       <span className="text-4xl font-bold text-indigo-500">{value}</span>
       <span className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">{label}</span>
     </div>
@@ -260,7 +260,7 @@ export default async function Home() {
       {/* CTA Buttons and Stats */}
       <Container className="mt-16">
         {/* Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="flex flex-row items-center justify-center gap-4">
           <a
             href="#contact"
             className="inline-flex items-center gap-2 rounded-md bg-zinc-700/30 px-6 py-3 text-sm font-semibold text-zinc-400 hover:bg-zinc-500/30 transition-colors"

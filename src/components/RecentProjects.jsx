@@ -22,7 +22,7 @@ export function RecentProjects() {
   return (
     <>
       <h2 className="text-center text-3xl font-semibold text-zinc-900 dark:text-zinc-100">
-        Projects
+        Recent Projects
       </h2>
       <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {recentProjects.map((project) => (
