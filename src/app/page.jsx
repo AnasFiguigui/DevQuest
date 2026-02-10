@@ -288,7 +288,7 @@ export default async function Home() {
 
       {/* Education Timeline */}
       <Container className="mt-24">
-        <EducationTimeline title="Education" items={educationItems} />
+        <EducationTimeline title="Education & Certifications" items={educationItems} />
       </Container>
 
       {/* Recent Projects */}

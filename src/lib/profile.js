@@ -17,7 +17,7 @@ export const personalInfo = {
   titles: {
     primary: 'Game Developer',
     secondary: 'Backend Developer',
-    tagline: 'Anas Figuigui,\nGame & Backend Developer',
+    tagline: '👋 Hello, I\'m Anas Figuigui,\nGame & Backend Developer',
   },
   
   // Short description for home page

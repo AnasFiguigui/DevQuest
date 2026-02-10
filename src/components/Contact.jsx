@@ -14,11 +14,21 @@ export function Contact() {
     setErrorMessage('')
 
     const formData = new FormData(e.target)
+    
+    // Honeypot check - if filled, it's a bot
+    if (formData.get('website')) {
+      // Silently reject but show success to confuse bots
+      setStatus('success')
+      e.target.reset()
+      return
+    }
+
     const data = {
       fullName: formData.get('fullName'),
       phone: formData.get('phone'),
       email: formData.get('email'),
       message: formData.get('message'),
+      _timestamp: formData.get('_timestamp'),
     }
 
     try {
@@ -56,6 +66,18 @@ export function Contact() {
       </p>
 
       <div className="mt-6 grid grid-cols-1 gap-3">
+        {/* Honeypot field - hidden from users, bots fill it */}
+        <input
+          type="text"
+          name="website"
+          autoComplete="off"
+          tabIndex={-1}
+          className="absolute -left-[9999px] opacity-0 h-0 w-0"
+          aria-hidden="true"
+        />
+        {/* Timestamp for timing check */}
+        <input type="hidden" name="_timestamp" value={Date.now()} />
+
         <label htmlFor="fullName" className="sr-only">
           Full name
         </label>
@@ -64,7 +86,7 @@ export function Contact() {
           name="fullName"
           type="text"
           required
-          placeholder="Full name"
+          placeholder="Full name*"
           className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-400/10 sm:text-sm dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500"
         />
 
@@ -76,7 +98,7 @@ export function Contact() {
           name="phone"
           type="tel"
           required
-          placeholder="Phone number"
+          placeholder="Phone number*"
           className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-400/10 sm:text-sm dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500"
         />
 
@@ -88,7 +110,7 @@ export function Contact() {
           name="email"
           type="email"
           required
-          placeholder="Email address"
+          placeholder="Email address*"
           className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-400/10 sm:text-sm dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500"
         />
 

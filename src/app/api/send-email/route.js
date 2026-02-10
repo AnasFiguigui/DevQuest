@@ -4,7 +4,14 @@ const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(request) {
   try {
-    const { fullName, phone, email, message } = await request.json()
+    const { fullName, phone, email, message, _timestamp } = await request.json()
+
+    // Spam protection: Check if submission was too fast (less than 3 seconds)
+    const submissionTime = Date.now() - Number(_timestamp)
+    if (_timestamp && submissionTime < 3000) {
+      // Too fast, likely a bot
+      return Response.json({ success: true, id: 'blocked' })
+    }
 
     // Validate required fields
     if (!fullName || !email || !message) {
