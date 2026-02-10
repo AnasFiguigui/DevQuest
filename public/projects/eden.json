@@ -8,8 +8,8 @@
   "category": "Single-Player / Action-Adventure Platformer",
   "banner": { "type": "image", "src": "/images/photos/Projects/Eden/banner.avif" },
   "thumbnail": { "type": "image", "src": "/images/photos/Projects/Eden/thumbnail.avif" },
-  "shortDescription": "2D platformer game.",
-  "longDescription": "<p>You play as a YouTuber who goes to film inside Sala Colonia, an ancient historical site in Rabat. At first, it’s just a simple vlog, but very quickly strange things happen. The place is haunted by ghosts and supernatural forces that you can only see with your camera.</p>",
+  "shortDescription": "2.5D platformer game.",
+  "longDescription": "<p>A brutal 2.5D action-platformer inspired by classic Ghosts 'n Goblins, featuring fast-paced combat, short-range teleportation, and dynamic weapon switching. Face intense challenges, master precise platforming, and outmaneuver enemies with quick reflexes and clever use of your abilities.</p>",
   "media": { "type": "video", "src": "" },
   "youtubeUrl": "",
   "pictures": [
@@ -44,5 +44,5 @@
   },
   "articleUrl": "/projects/LostInSalaColonia",
   "projectUrl": "https://isartmaroc.itch.io/lostinsalacolonia",
-  "tags": ["puzzle", "single-player"]
+  "tags": ["platformer", "single-player", "action-adventure", "unity", "c-sharp"]
 }
