@@ -2,6 +2,7 @@
 
 import { useState, useEffect, memo } from 'react'
 import Image from 'next/image'
+import clsx from 'clsx'
 
 import { SimpleLayout } from '@/components/SimpleLayout'
 import projectsData from '@/lib/projects-client'
@@ -16,10 +17,6 @@ const tabs = [
   { name: 'Websites', value: 'website' },
   { name: 'Mods', value: 'mod' },
 ]
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
 
 function getCountByCategory(category) {
   if (category === 'all') return projectsData.length
@@ -60,16 +57,16 @@ function Section({ onFilterChange }) {
             <button
               key={tab.value}
               onClick={() => handleTabChange(tab.value)}
-              className={classNames(
+              className={clsx(
                 'group relative min-w-0 flex-1 overflow-hidden px-4 py-4 text-center text-sm font-medium inline-flex items-center justify-center',
-                tabIdx === 0 ? 'rounded-l-lg' : '',
-                tabIdx === tabs.length - 1 ? 'rounded-r-lg' : '',
+                tabIdx === 0 && 'rounded-l-lg',
+                tabIdx === tabs.length - 1 && 'rounded-r-lg',
                 'text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300'
               )}
             >
               <span>{tab.name}</span>
               <span
-                className={classNames(
+                className={clsx(
                   currentTab === tab.value ? 'bg-indigo-500/20 text-indigo-400' : 'bg-zinc-200/20 dark:bg-white/10 text-zinc-600 dark:text-gray-300',
                   'ml-3 rounded-full px-2.5 py-0.5 text-xs font-medium'
                 )}
@@ -79,7 +76,7 @@ function Section({ onFilterChange }) {
 
               <span
                 aria-hidden="true"
-                className={classNames(
+                className={clsx(
                   currentTab === tab.value ? 'bg-indigo-400' : 'bg-transparent',
                   'absolute inset-x-0 bottom-0 h-0.5 transition'
                 )}
@@ -195,7 +192,10 @@ const ProjectCard = memo(function ProjectCard({ project, onOpen }) {
   const truncated = truncateWords(shortDesc, 5)
 
   return (
-    <article className="group relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-6 pb-6 pt-56 sm:pt-36 lg:pt-36 min-h-[256px] bg-zinc-900/5 dark:bg-zinc-900">
+    <button 
+      onClick={onOpen}
+      className="group relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-6 pb-6 pt-56 sm:pt-36 lg:pt-36 min-h-[256px] bg-zinc-900/5 dark:bg-zinc-900 cursor-pointer text-left"
+    >
       {/* background image */}
       <div className="absolute inset-0 -z-10 overflow-hidden rounded-2xl">
         <Image
@@ -222,13 +222,10 @@ const ProjectCard = memo(function ProjectCard({ project, onOpen }) {
 
       {/* See project button */}
       <div className="absolute inset-x-0 bottom-6 z-10 px-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-        <button
-          onClick={onOpen}
-          className="pointer-events-none group-hover:pointer-events-auto inline-flex w-full items-center justify-center rounded-md bg-white/90 px-4 py-2 text-sm font-medium text-zinc-900 shadow-lg dark:bg-white/10 dark:text-white"
-        >
+        <span className="inline-flex w-full items-center justify-center rounded-md bg-white/90 px-4 py-2 text-sm font-medium text-zinc-900 shadow-lg dark:bg-white/10 dark:text-white">
           See project
-        </button>
+        </span>
       </div>
-    </article>
+    </button>
   )
 })

@@ -7,10 +7,10 @@ export const metadata = {
   title: {
     template: '%s - Anas Figuigui',
     default:
-      'Anas Figuigui - Junior Back-end developer MACH architecture',
+      'Anas Figuigui - Game & Backend Developer',
   },
   description:
-    'Anas Figuigui, développeur backend spécialisé dans l\'architecture MACH.',
+    'Game developer specializing in gameplay systems and interactive experiences, with a background in backend development and cloud technologies.',
   alternates: {
     types: {
       'application/rss+xml': `${process.env.NEXT_PUBLIC_SITE_URL}/feed.xml`,

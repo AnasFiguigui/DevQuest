@@ -1,12 +1,18 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/Button'
 import { MailIcon } from '@/components/SocialIcons'
 
 export function Contact() {
   const [status, setStatus] = useState('idle') // idle, loading, success, error
   const [errorMessage, setErrorMessage] = useState('')
+  const [timestamp, setTimestamp] = useState('')
+
+  // Set timestamp on client only to avoid hydration mismatch
+  useEffect(() => {
+    setTimestamp(Date.now().toString())
+  }, [])
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -76,7 +82,7 @@ export function Contact() {
           aria-hidden="true"
         />
         {/* Timestamp for timing check */}
-        <input type="hidden" name="_timestamp" value={Date.now()} />
+        <input type="hidden" name="_timestamp" value={timestamp} />
 
         <label htmlFor="fullName" className="sr-only">
           Full name
