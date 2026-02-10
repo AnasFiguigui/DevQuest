@@ -261,7 +261,7 @@ export default async function Home() {
         <div className="flex flex-row items-center justify-center gap-4">
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 rounded-md bg-zinc-700/30 px-6 py-3 text-sm font-semibold text-zinc-400 hover:bg-zinc-500/30 transition-colors"
+            className="inline-flex items-center gap-2 rounded-md dark:bg-zinc-700/30 bg-zinc-100 px-6 py-3 text-sm font-semibold text-zinc-400 dark:hover:bg-zinc-500/30 hover:bg-zinc-300/50 transition-colors"
           >
             <MailIcon className="h-5 w-5 stroke-current" />
             Contact Me
