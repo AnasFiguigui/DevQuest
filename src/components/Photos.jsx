@@ -89,10 +89,6 @@ export default function Photos({ images = [], height = 300, gap = 25 }) {
     });
   }, []);
 
-  const disableWheel = useCallback((e) => {
-    e.preventDefault();
-  }, []);
-
   const onPointerDown = useCallback((e) => {
     const scroller = scrollerRef.current;
     if (!scroller) return;
@@ -130,7 +126,6 @@ export default function Photos({ images = [], height = 300, gap = 25 }) {
 
     setInitial();
     scroller.addEventListener('scroll', handleScroll, { passive: true });
-    scroller.addEventListener('wheel', disableWheel, { passive: false });
     scroller.addEventListener('pointerdown', onPointerDown);
     scroller.addEventListener('pointermove', onPointerMove);
     scroller.addEventListener('pointerup', onPointerUp);
@@ -150,7 +145,6 @@ export default function Photos({ images = [], height = 300, gap = 25 }) {
       clearTimeout(timeoutId);
       globalThis.removeEventListener('resize', onResize);
       scroller.removeEventListener('scroll', handleScroll);
-      scroller.removeEventListener('wheel', disableWheel);
       scroller.removeEventListener('pointerdown', onPointerDown);
       scroller.removeEventListener('pointermove', onPointerMove);
       scroller.removeEventListener('pointerup', onPointerUp);
@@ -160,7 +154,7 @@ export default function Photos({ images = [], height = 300, gap = 25 }) {
       if (rafIdRef.current) globalThis.cancelAnimationFrame(rafIdRef.current);
       if (autoRafIdRef.current) globalThis.cancelAnimationFrame(autoRafIdRef.current);
     };
-  }, [images, handleScroll, disableWheel, onPointerDown, onPointerMove, onPointerUp, pauseAuto, resumeAuto, setInitial]);
+  }, [images, handleScroll, onPointerDown, onPointerMove, onPointerUp, pauseAuto, resumeAuto, setInitial]);
 
   if (!images || images.length === 0) return null;
 
