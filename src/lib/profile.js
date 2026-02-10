@@ -103,7 +103,7 @@ export const education = [
     logo: null,
     startMonth: 'May',
     startYear: 2024,
-    endMonth: 'May',
+    endMonth: 'Dec',
     endYear: 2024,
     description: 'Professional certification in cloud architecture.',
   },

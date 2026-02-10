@@ -77,7 +77,7 @@ const defaultSkillsData = [
 
 function SkillCard({ name, icon }) {
   return (
-    <div className="flex items-center gap-3 rounded-lg bg-zinc-50 px-4 py-3 transition-all hover:bg-zinc-100 dark:bg-zinc-800/50 dark:hover:bg-zinc-800">
+    <div className="flex items-center justify-center gap-3 rounded-lg bg-zinc-50 px-4 py-3 transition-all hover:bg-zinc-100 dark:bg-zinc-800/50 dark:hover:bg-zinc-800 lg:justify-start">
       <div className="relative h-8 w-8 flex-shrink-0">
         <Image
           src={icon}
@@ -100,7 +100,7 @@ function CategorySection({ category, emoji, skills }) {
         <span>{emoji}</span>
         {category}
       </h3>
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-3">
         {skills.map((skill) => (
           <SkillCard key={skill.name} {...skill} />
         ))}
