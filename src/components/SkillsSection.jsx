@@ -2,78 +2,7 @@
 
 import Image from 'next/image'
 import clsx from 'clsx'
-
-// Default skills data
-const defaultSkillsData = [
-  {
-    category: 'Languages',
-    emoji: '🧠',
-    skills: [
-      { name: 'C++', icon: '/images/technologies/c-plusplus.svg' },
-      { name: 'C#', icon: '/images/technologies/c-sharp.svg' },
-      { name: 'Java', icon: '/images/technologies/java.svg' },
-      { name: 'PHP', icon: '/images/technologies/php.svg' },
-      { name: 'JavaScript', icon: '/images/technologies/javascript.svg' },
-      { name: 'TypeScript', icon: '/images/technologies/typescript.svg' },
-    ],
-  },
-  {
-    category: 'Frameworks & Libraries',
-    emoji: '🏗️',
-    skills: [
-      { name: 'React', icon: '/images/technologies/react.svg' },
-      { name: 'Next.js', icon: '/images/technologies/nextjs.svg' },
-      { name: 'Express', icon: '/images/technologies/express.svg' },
-      { name: 'Laravel', icon: '/images/technologies/laravel.svg' },
-      { name: 'Redux', icon: '/images/technologies/redux.svg' },
-      { name: 'Tailwind CSS', icon: '/images/technologies/tailwindcss.svg' },
-    ],
-  },
-  {
-    category: 'Databases',
-    emoji: '🗄️',
-    skills: [
-      { name: 'MongoDB', icon: '/images/technologies/mongodb.svg' },
-      { name: 'MySQL', icon: '/images/technologies/mysql.svg' },
-      { name: 'Redis', icon: '/images/technologies/redis.svg' },
-    ],
-  },
-  {
-    category: 'Cloud & DevOps',
-    emoji: '☁️',
-    skills: [
-      { name: 'AWS', icon: '/images/technologies/aws.svg' },
-      { name: 'Docker', icon: '/images/technologies/docker.svg' },
-      { name: 'Kubernetes', icon: '/images/technologies/kubernetes.svg' },
-      { name: 'Jenkins', icon: '/images/technologies/jenkins.svg' },
-      { name: 'Terraform', icon: '/images/technologies/terraform.svg' },
-      { name: 'Vercel', icon: '/images/technologies/vercel.svg' },
-      { name: 'GitHub', icon: '/images/technologies/github.svg' },
-      { name: 'Spark', icon: '/images/technologies/spark.svg' },
-      { name: 'Hadoop', icon: '/images/technologies/hadoop.svg' },
-    ],
-  },
-  {
-    category: 'Game Development',
-    emoji: '🎮',
-    skills: [
-      { name: 'Unity', icon: '/images/technologies/unity.svg' },
-      { name: 'Unreal Engine', icon: '/images/technologies/Unreal.svg' },
-    ],
-  },
-  {
-    category: 'Tools & Software',
-    emoji: '🛠️',
-    skills: [
-      { name: 'Photoshop', icon: '/images/technologies/photoshop.svg' },
-      { name: 'Postman', icon: '/images/technologies/postman.svg' },
-      { name: 'Jira', icon: '/images/technologies/jira.svg' },
-      { name: 'WordPress', icon: '/images/technologies/wordpress.svg' },
-      { name: 'Excel', icon: '/images/technologies/excel.svg' },
-      { name: 'Kafka', icon: '/images/technologies/kafka.svg' },
-    ],
-  },
-]
+import { skillsData as defaultSkillsData } from '@/lib/profile'
 
 function SkillCard({ name, icon }) {
   return (
