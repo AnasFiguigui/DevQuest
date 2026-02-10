@@ -1,5 +1,6 @@
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
+import { ScrollToTop } from '@/components/ScrollToTop'
 
 export function Layout({ children }) {
   return (
@@ -14,6 +15,7 @@ export function Layout({ children }) {
         <main className="flex-auto">{children}</main>
         <Footer />
       </div>
+      <ScrollToTop />
     </>
   )
 }
