@@ -102,13 +102,14 @@ export function ProjectsClient() {
       ? projectsData
       : projectsData.filter((project) => project.type === selectedCategory)
 
-  // order by release date (newest first) for navigation
-  const orderedFilteredIds = filteredProjects
+  // order by release date (newest first)
+  const sortedProjects = filteredProjects
     .slice()
     .sort((a, b) => +new Date(b.releaseDate) - +new Date(a.releaseDate))
-    .map((p) => p.id)
 
-  const displayedProjects = showAll ? filteredProjects : filteredProjects.slice(0, 6)
+  const orderedFilteredIds = sortedProjects.map((p) => p.id)
+
+  const displayedProjects = showAll ? sortedProjects : sortedProjects.slice(0, 6)
 
   return (
     <SimpleLayout

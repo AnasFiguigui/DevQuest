@@ -5,7 +5,7 @@ export const summaries = [
     shortDescription: 'Une revisite moderne du classique Snake',
     thumbnail: '/images/photos/Projects/LISC/thumbnail.avif',
     type: 'game',
-    releaseDate: '2025-09-17'
+    releaseDate: '2025-10-17'
   },
   {
     id: 'eden',
@@ -13,7 +13,7 @@ export const summaries = [
     shortDescription: "2D platformer game.",
     thumbnail: '/images/photos/Projects/Eden/thumbnail.avif',
     type: 'game',
-    releaseDate: '2025-05-15'
+    releaseDate: '2025-10-15'
   },
   {
     id: 'project-75',
@@ -45,7 +45,7 @@ export const summaries = [
     shortDescription: 'Expérience d’empilement 3D',
     thumbnail: '/images/photos/Projects/Tower/thumbnail.avif',
     type: 'game',
-    releaseDate: '2024-08-15'
+    releaseDate: '2024-06-15'
   },
   {
     id: 'carlyon',
@@ -53,7 +53,7 @@ export const summaries = [
     shortDescription: 'Comercial service webiste',
     thumbnail: '/images/photos/Projects/Carlyon/thumbnail.avif',
     type: 'website',
-    releaseDate: '2025-02-12'
+    releaseDate: '2024-02-12'
   }
 ]
 
