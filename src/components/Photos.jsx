@@ -182,7 +182,7 @@ export default function Photos({ images = [], height = 300, gap = 25 }) {
           }}
         >
           {duplicatedImages.map(({ key, src, alt }) => {
-            const isWebm = typeof src === 'string' && src.toLowerCase().endsWith('.webm');
+            const isVideo = typeof src === 'string' && src.toLowerCase().endsWith('.webm');
             return (
             <div
               key={key}
@@ -192,7 +192,7 @@ export default function Photos({ images = [], height = 300, gap = 25 }) {
               )}
               style={{ flex: '0 0 auto', height: 'var(--photo-height)', width: imgWidth }}
             >
-              {isWebm ? (
+              {isVideo ? (
                 <video
                   src={src}
                   className="absolute inset-0 h-full w-full object-cover"
@@ -202,7 +202,8 @@ export default function Photos({ images = [], height = 300, gap = 25 }) {
                   playsInline
                   disablePictureInPicture
                   controls={false}
-                  preload="metadata"
+                  preload="auto"
+                  onCanPlay={(e) => e.target.play().catch(() => {})}
                 />
               ) : (
                 <Image
@@ -211,7 +212,7 @@ export default function Photos({ images = [], height = 300, gap = 25 }) {
                   fill
                   className="absolute inset-0 h-full w-full object-cover"
                   draggable={false}
-                  unoptimized={false}
+                  unoptimized
                 />
               )}
             </div>

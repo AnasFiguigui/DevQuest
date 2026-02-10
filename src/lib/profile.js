@@ -187,7 +187,7 @@ export const favoriteGames = [
 // HOME PAGE PHOTOS
 // ============================================================================
 
-export const homePhotos = Array.from({ length: 5 }, (_, i) => `/images/photos/image-${i + 1}.webm`)
+export const homePhotos = Array.from({ length: 5 }, (_, i) => `/images/photos/image-${i + 1}.webp`)
 
 // ============================================================================
 // DYNAMIC STATS CALCULATION
