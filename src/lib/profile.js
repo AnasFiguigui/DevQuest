@@ -17,22 +17,22 @@ export const personalInfo = {
   titles: {
     primary: 'Game Developer',
     secondary: 'Backend Developer',
-    tagline: 'Back-end developer MACH architecture Video game programmer',
+    tagline: 'Anas Figuigui,\nGame & Backend Developer',
   },
   
   // Short description for home page
-  shortDescription: `I'm Anas Figuigui, a game developer specializing in gameplay systems and interactive experiences. With a background in backend development and cloud technologies, I approach game creation with both technical precision and creative vision, mainly working with Unity and Unreal Engine to build engaging and immersive worlds.`,
+  shortDescription: `I'm Anas Figuigui, a game developer specializing in gameplay systems and interactive experiences. With a background in backend development and cloud technologies, I approach game creation with both technical precision and creative vision, mainly working with Unity and Unreal Engine to build engaging, atmospheric worlds.`,
   
   // Long description paragraphs for about page
   longDescription: [
-    'I am a Game and backend engineer with a strong background in cloud-based architectures and interactive experiences. I specialize in designing and implementing gameplay systems, immersive worlds, and scalable backend solutions using Unity, Unreal Engine, and modern cloud technologies.',
-    'My recent work includes leading the development of a horror game set in a Moroccan location featuring zombies, where I oversaw gameplay systems, technical direction, and team collaboration while contributing to level design and atmosphere creation.',
-    'Alongside game development, I continue to deepen my expertise in cloud and backend technologies, having earned the <b>AWS Cloud Solution Architect</b> certification.',
-    'Driven, curious, and hands-on, I enjoy tackling challenging projects, blending technical rigor with creative vision, and building engaging experiences that leave a lasting impact.',
+    'Game and backend developer focused on building immersive gameplay systems and scalable cloud architectures. I work with Unity, Unreal Engine, and modern backend technologies to create interactive experiences backed by solid infrastructure.',
+    'I recently led the development of a horror game set in a Moroccan environment, directing gameplay systems, technical implementation, and team collaboration while shaping level design and atmosphere.',
+    'AWS Certified Solutions Architect, continuously expanding my expertise in distributed systems and backend scalability.',
+    'Driven by both technical precision and creative ambition, I build experiences that are as robust under the hood as they are engaging on screen.',
   ],
   
   // About page headline
-  aboutHeadline: 'Anas Figuigui, Game & Backend Developer specializing in MACH architecture',
+  aboutHeadline: 'Anas Figuigui, Game & Backend Developer',
 }
 
 // ============================================================================
