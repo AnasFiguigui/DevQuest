@@ -3,6 +3,11 @@
 @import './prism.css';
 @import 'tailwindcss/utilities';
 
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
 /* Hide scrollbar while keeping scroll functionality */
 .hide-scrollbar {
   -ms-overflow-style: none;

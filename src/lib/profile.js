@@ -168,8 +168,8 @@ export const professionalExperience = [
 // ============================================================================
 
 export const experienceStartDate = {
-  month: 9, // September
-  year: 2021, // When started OFPPT
+  month: 11, // September
+  year: 2025, // When started OFPPT
 }
 
 // ============================================================================

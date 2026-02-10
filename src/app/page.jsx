@@ -23,7 +23,9 @@ import {
   socialLinks,
   getResumeEducation,
   homePhotos,
+  getAllStats,
 } from '@/lib/profile'
+import { RecentProjects } from '@/components/RecentProjects'
 
 // Logo map for dynamic resolution
 const logoMap = {
@@ -74,6 +76,30 @@ function ArrowDownIcon(props) {
         strokeLinejoin="round"
       />
     </svg>
+  )
+}
+
+function MailIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+      <path
+        d="M2.75 7.75a3 3 0 0 1 3-3h12.5a3 3 0 0 1 3 3v8.5a3 3 0 0 1-3 3H5.75a3 3 0 0 1-3-3v-8.5Z"
+        strokeWidth="1.5"
+      />
+      <path
+        d="m4 6 6.024 5.479a2.915 2.915 0 0 0 3.952 0L20 6"
+        strokeWidth="1.5"
+      />
+    </svg>
+  )
+}
+
+function StatCard({ value, label }) {
+  return (
+    <div className="flex flex-col items-center rounded-2xl border border-zinc-100 bg-zinc-50 px-6 py-6 dark:border-zinc-700/40 dark:bg-zinc-800/50">
+      <span className="text-4xl font-bold text-indigo-500">{value}</span>
+      <span className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">{label}</span>
+    </div>
   )
 }
 
@@ -205,6 +231,7 @@ function Photos({ images }) {
 export default async function Home() {
   let articles = (await getAllArticles()).slice(0, 4)
   const photos = await loadPhotos()
+  const stats = getAllStats()
 
   return (
     <>
@@ -229,6 +256,43 @@ export default async function Home() {
         </div>
       </Container>
       <Photos images={photos} />
+      
+      {/* CTA Buttons and Stats */}
+      <Container className="mt-16">
+        {/* Buttons */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 rounded-md bg-zinc-700/30 px-6 py-3 text-sm font-semibold text-zinc-400 hover:bg-zinc-500/30 transition-colors"
+          >
+            <MailIcon className="h-5 w-5 stroke-current" />
+            Contact Me
+          </a>
+          <a
+            href="/cv.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-md bg-indigo-500/20 px-6 py-3 text-sm font-semibold text-indigo-400 hover:bg-indigo-500/30 transition-colors"
+          >
+            <ArrowDownIcon className="h-5 w-5 stroke-current" />
+            Download CV
+          </a>
+        </div>
+
+        {/* Stats */}
+        <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <StatCard value={stats.yearsOfExperience.replace(' years', '').replace(' year', '')} label="Years Experience" />
+          <StatCard value={stats.games} label="Games Created" />
+          <StatCard value={stats.websites} label="Web Apps" />
+          <StatCard value={stats.modsAndTools} label="Mods & Tools" />
+        </div>
+      </Container>
+
+      {/* Recent Projects */}
+      <Container className="mt-24">
+        <RecentProjects />
+      </Container>
+
       <Container className="mt-24 md:mt-28">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
           <div className="flex flex-col gap-14">
@@ -243,7 +307,9 @@ export default async function Home() {
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
             <Resume />
-            <Contact />
+            <div id="contact">
+              <Contact />
+            </div>
           </div>
         </div>
       </Container>
