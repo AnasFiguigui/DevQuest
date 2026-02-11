@@ -37,7 +37,12 @@
       "Music & Sound Designer: Soulayman ECHATOUI"
     ]
   },
-  "articleUrl": "/projects/LostInSalaColonia",
+  "article": [
+    {
+      "articleUrl": "/articles/Isart-Game-Jam",
+      "content": "<p>How I Built a Video Game in 3 Days at the Morocco 2100 Game Jam, My First Game Jam Experience</p>"
+    }
+  ],
   "projectUrl": "https://anasfiguigui.itch.io/qarnlaroub",
   "tags": ["arcade", "single-player", "minigames", "morocco", "future", "chaos"]
 }

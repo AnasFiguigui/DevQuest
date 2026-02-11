@@ -42,7 +42,11 @@
       "Game Artist: Mehdi HAIDAR"
     ]
   },
-  "articleUrl": "/projects/LostInSalaColonia",
-  "projectUrl": "https://isartmaroc.itch.io/lostinsalacolonia",
+  "article": [
+    {
+      "articleUrl": "/articles/My-VGC-Journey",
+      "content": "<p>From daily prototypes to pitching at Moroccan Gaming Expo 2025 and graduating from the Video Game Creator program — a journey of growth, teamwork, and community.</p>"
+    }
+  ],
   "tags": ["platformer", "single-player", "action-adventure", "unity", "c-sharp"]
 }

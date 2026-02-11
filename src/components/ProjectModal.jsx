@@ -345,7 +345,7 @@ export default memo(function ProjectModal({ projectId, onClose, onNavigate, allP
       /* Main modal */
       <div className="max-h-[95vh] w-full overflow-hidden rounded-2xl bg-white/0 dark:bg-zinc-950/70 backdrop-blur-xl border border-white/20 dark:border-white/5 shadow-2xl flex flex-col">
         {/* Banner Section */}
-        <div className="relative h-52 md:h-52 w-full overflow-hidden shrink-0 bg-gradient-to-br from-zinc-600 to-zinc-800">
+        <div className="relative h-32 md:h-52 w-full overflow-hidden shrink-0 bg-gradient-to-br from-zinc-600 to-zinc-800">
           {!bannerFailed ? (
             <>
               <Image
@@ -379,7 +379,7 @@ export default memo(function ProjectModal({ projectId, onClose, onNavigate, allP
         </div>
 
         {/* Content Section */}
-        <div className="overflow-y-auto flex-1 px-14 py-8 hide-scrollbar">
+        <div className="overflow-y-auto flex-1 px-4 md:px-14 py-6 md:py-8 hide-scrollbar">
           
           {/* Title overlay */}
           <div className=" text-white">
@@ -519,33 +519,56 @@ export default memo(function ProjectModal({ projectId, onClose, onNavigate, allP
           </div>
 
           {/* Articles */}
-          {details.articleUrl && (
+          {details.article?.length > 0 && (
             <div className="mb-8">
-              <h3 className="mb-4 text-lg font-semibold text-white">Articles</h3>
-              <div className="space-y-2">
-                {Array.isArray(details.articleUrl) ? (
-                  details.articleUrl.map((url, idx) => (
-                    <a
-                      key={idx}
-                      href={url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block text-indigo-400 hover:text-indigo-300 underline"
-                    >
-                      Read article →
-                    </a>
-                  ))
-                ) : (
-                  <a
-                    href={details.articleUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block text-indigo-400 hover:text-indigo-300 underline"
+              <h3 className="mb-4 text-lg font-semibold text-white tracking-wide">Articles</h3>
+              <div className="space-y-4">
+                {details.article.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="rounded-lg bg-white/5 border border-white/10 overflow-hidden"
                   >
-                    Read article →
-                  </a>
-                )}
+                    {/* Article content preview */}
+                    {item.content && (
+                      <div 
+                        className="px-4 py-3 text-sm text-white/70 line-clamp-3 prose-sm prose-invert [&>p]:m-0"
+                        dangerouslySetInnerHTML={{ __html: item.content }}
+                      />
+                    )}
+                    {/* Read more link */}
+                    <a
+                      href={item.articleUrl}
+                      className="group flex items-center gap-3 px-4 py-3 bg-white/5 hover:bg-white/10 border-t border-white/10 hover:border-indigo-500/50 transition-all"
+                    >
+                      <svg className="w-5 h-5 text-indigo-400/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                      <span className="text-white/80 group-hover:text-white transition-colors">Read full article</span>
+                      <svg className="w-4 h-4 text-white/40 group-hover:text-indigo-400 group-hover:translate-x-1 transition-all ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                  </div>
+                ))}
               </div>
+            </div>
+          )}
+
+          {/* Project Link */}
+          {details.projectUrl && (
+            <div className="mb-8">
+              <h3 className="mb-4 text-lg font-semibold text-white tracking-wide">Play / View Project</h3>
+              <a
+                href={details.projectUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-3 px-6 py-3 rounded-lg bg-indigo-400/50 hover:bg-indigo-400/70 text-white font-medium transition-all shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+                <span>Open Project</span>
+              </a>
             </div>
           )}
 

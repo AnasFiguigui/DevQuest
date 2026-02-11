@@ -48,9 +48,9 @@ export function RecentProjects() {
               alt={project.name}
               fill
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              className="absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+              className="absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-500 will-change-transform group-hover:scale-110"
             />
-            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/70 via-black/40 to-transparent transition-opacity duration-300" />
+            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
             <h3 className="text-xl font-semibold text-white transition-transform duration-300 group-hover:translate-x-1">{project.name}</h3>
             <p className="mt-1 text-sm text-white/80 transition-all duration-300 group-hover:text-white">{project.shortDescription}</p>
           </button>

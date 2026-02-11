@@ -43,7 +43,12 @@
       "Music & Sound Designer: ECHATOUI Souleyman"
     ]
   },
-  "articleUrl": "/projects/LostInSalaColonia",
+  "article": [
+    {
+      "articleUrl": "/articles/Lost-In-Sala-Colonia",
+      "content": "<p>A dev journal of Lost In SalaColonia: from our first visit to Chellah, through prototyping and teamwork, to presenting the final project at ISART Talents.</p>"
+    }
+  ],
   "projectUrl": "https://isartmaroc.itch.io/lostinsalacolonia",
   "tags": ["puzzle", "single-player", "horror", "unity", "c-sharp"]
 }
