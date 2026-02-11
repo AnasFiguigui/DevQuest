@@ -4,6 +4,28 @@ import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import PropTypes from 'prop-types'
 
+// Tiny blur placeholder - a small colored rectangle that matches most images
+const shimmer = (w, h) => `
+<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient id="g">
+      <stop stop-color="#333" offset="20%" />
+      <stop stop-color="#222" offset="50%" />
+      <stop stop-color="#333" offset="70%" />
+    </linearGradient>
+  </defs>
+  <rect width="${w}" height="${h}" fill="#333" />
+  <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
+  <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
+</svg>`
+
+const toBase64 = (str) =>
+  typeof globalThis.window === 'undefined'
+    ? Buffer.from(str).toString('base64')
+    : globalThis.btoa(str)
+
+const blurDataURL = `data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`
+
 function CloseIcon(props) {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
@@ -91,7 +113,7 @@ LightboxModal.propTypes = {
   onClose: PropTypes.func.isRequired,
 }
 
-function ClickableImage({ src, alt, onClick }) {
+function ClickableImage({ src, alt, onClick, priority = false }) {
   return (
     <button
       type="button"
@@ -104,6 +126,10 @@ function ClickableImage({ src, alt, onClick }) {
         width={1200}
         height={800}
         className="w-full rounded-xl transition-transform duration-300 group-hover:scale-[1.02]"
+        loading={priority ? 'eager' : 'lazy'}
+        placeholder="blur"
+        blurDataURL={blurDataURL}
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px"
       />
       <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/10" />
       <div className="absolute bottom-4 right-4 rounded-full bg-black/50 p-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -117,9 +143,10 @@ ClickableImage.propTypes = {
   src: PropTypes.string.isRequired,
   alt: PropTypes.string,
   onClick: PropTypes.func.isRequired,
+  priority: PropTypes.bool,
 }
 
-export function ImageLightbox({ src, alt = '', caption, className = '' }) {
+export function ImageLightbox({ src, alt = '', caption, className = '', priority = false }) {
   const [isOpen, setIsOpen] = useState(false)
 
   const openLightbox = () => setIsOpen(true)
@@ -128,7 +155,7 @@ export function ImageLightbox({ src, alt = '', caption, className = '' }) {
   return (
     <>
       <figure className={`my-4 ${className}`}>
-        <ClickableImage src={src} alt={alt} onClick={openLightbox} />
+        <ClickableImage src={src} alt={alt} onClick={openLightbox} priority={priority} />
         {caption && (
           <figcaption className="mt-3 text-center text-sm text-zinc-500 dark:text-zinc-400">
             {caption}
@@ -148,13 +175,15 @@ ImageLightbox.propTypes = {
   alt: PropTypes.string,
   caption: PropTypes.string,
   className: PropTypes.string,
+  priority: PropTypes.bool,
 }
 
 // Two images side by side
 export function ImageRow({ 
   images, 
   caption, 
-  className = '' 
+  className = '',
+  priority = false
 }) {
   const [openIndex, setOpenIndex] = useState(null)
   const closeLightbox = useCallback(() => setOpenIndex(null), [])
@@ -174,6 +203,7 @@ export function ImageRow({
               src={img.src}
               alt={img.alt || ''}
               onClick={() => setOpenIndex(index)}
+              priority={priority}
             />
           ))}
         </div>
@@ -209,4 +239,5 @@ ImageRow.propTypes = {
   ).isRequired,
   caption: PropTypes.string,
   className: PropTypes.string,
+  priority: PropTypes.bool,
 }
