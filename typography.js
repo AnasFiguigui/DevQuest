@@ -168,8 +168,8 @@ module.exports = function typographyStyles({ theme }) {
           paddingLeft: theme('spacing.6'),
         },
         li: {
-          marginTop: theme('spacing.6'),
-          marginBottom: theme('spacing.6'),
+          marginTop: theme('spacing.2'),
+          marginBottom: theme('spacing.2'),
           paddingLeft: theme('spacing[3.5]'),
         },
         'li::marker': {
@@ -183,12 +183,12 @@ module.exports = function typographyStyles({ theme }) {
           color: 'var(--tw-prose-bullets)',
         },
         'li :is(ol, ul)': {
-          marginTop: theme('spacing.4'),
-          marginBottom: theme('spacing.4'),
+          marginTop: theme('spacing.2'),
+          marginBottom: theme('spacing.2'),
         },
         'li :is(li, p)': {
-          marginTop: theme('spacing.3'),
-          marginBottom: theme('spacing.3'),
+          marginTop: theme('spacing.1'),
+          marginBottom: theme('spacing.1'),
         },
 
         // Code blocks
