@@ -5,10 +5,10 @@
   height: 280px;
   overflow: hidden;
   perspective: 1500px;
-  overscroll-behavior: none;
+  overscroll-behavior-x: none;
   -webkit-user-select: none;
   user-select: none;
-  touch-action: none;
+  touch-action: pan-y;
   cursor: grab;
 }
 

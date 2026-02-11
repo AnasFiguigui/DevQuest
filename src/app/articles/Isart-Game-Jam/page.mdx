@@ -5,7 +5,7 @@ export const article = {
   date: '2025-10-05',
   title: 'Morocco 2100 — My First Game Jam Experience',
   description:
-    'How I built my first playable video game in 4 days during the Morocco 2100 game jam, and what that intense experience taught me about teamwork and rapid development.',
+    'How I Built a Video Game in 3 Days at the Morocco 2100 Game Jam, My First Game Jam Experience',
 }
 
 export const metadata = {
@@ -17,11 +17,13 @@ export default (props) => <ArticleLayout article={article} {...props} />
 
 ---
 
-My first video game was built in **four intense days**.
+<ImageLightbox 
+  src="/images/photos/Articles/JAM2025/image-1.avif" 
+  alt="Team working during Morocco 2100 game jam"
+  priority
+/>
 
 During the **Morocco 2100** game jam, organized by ISART Digital as part of the Video Game Creator program, 55 participants came together in Rabat to imagine the future of Morocco through interactive experiences.
-
-And somehow… we shipped a playable game.
 
 ---
 
@@ -33,12 +35,14 @@ From September 29 to October 2, teams from:
 - Université Internationale de Rabat  
 - Université Ibn Tofaïl  
 
-worked under one theme:
-
-> **“Morocco 2100”**
-
 The goal wasn’t perfection.  
 It was to learn, collaborate, and create something playable — fast.
+
+<ImageLightbox 
+  src="/images/photos/Articles/JAM2025/image-4.avif" 
+  alt="Team working during Morocco 2100 game jam"
+  priority
+/>
 
 ---
 
@@ -57,34 +61,23 @@ Scope is everything.
 
 Instead of trying to build a big game, we focused on making one mechanic feel good. That decision saved us.
 
-<ImageLightbox 
-  src="/images/articles/gamejam/morocco2100-team.avif" 
-  alt="Team working during Morocco 2100 game jam"
+<ImageRow 
+  images={[
+    { src: "/images/photos/Articles/JAM2025/image-2.avif", alt: "Team working during Morocco 2100 game jam" },
+    { src: "/images/photos/Articles/JAM2025/image-3.avif", alt: "Team working during Morocco 2100 game jam" }
+  ]}
+  caption="Team working during Morocco 2100 game jam"
 />
 
 ---
 
-## What I Learned
+## What I Learned & Why It Matters
 
 - Team communication is more important than technical perfection  
 - A finished small game > an ambitious unfinished one  
 - Fast iteration beats long planning  
-- Pressure reveals your strengths and weaknesses  
-
-Seeing people play something we built in less than a week was surreal.
-
----
-
-## Why It Matters
-
-This jam wasn’t just an event.
 
 It was the moment I realized I could take an idea, collaborate with a team, and turn it into a **real, playable experience** under tight constraints.
 
-It gave me confidence.
 
-And it made me hungry to build more.
 
----
-
-Sometimes, growth happens in four days.
