@@ -2,10 +2,10 @@ import { ArticleLayout } from '@/components/ArticleLayout'
 
 export const article = {
   author: 'Anas Figuigui',
-  date: '2025-09-17',
-  title: 'Lost In Sala Colonia - Behind the Build',
+  date: '2025-09-12',
+  title: 'Lost In SalaColonia — From Chellah to ISART Talents',
   description:
-    'A brief description of what this article is about. This will appear in article lists and as the meta description.',
+    'A dev journal of Lost In SalaColonia: from our first visit to Chellah, through prototyping and teamwork, to presenting the final project at ISART Talents.',
 }
 
 export const metadata = {
@@ -15,153 +15,158 @@ export const metadata = {
 
 export default (props) => <ArticleLayout article={article} {...props} />
 
-{/* 
-  ============================================
-  ARTICLE TEMPLATE - HOW TO USE
-  ============================================
-  
-  1. Duplicate this folder and rename it (e.g., "my-new-article")
-  2. Update the article metadata above (author, date, title, description)
-  3. Replace this content with your article content
-  4. Use the components shown below for rich content
-  
-  Available components:
-  - ImageLightbox: Clickable image that opens in a modal
-  - ArticleVideo: Video player with optional controls
-  - Carousel3D: 3D image carousel
-  - Standard markdown (headers, lists, code blocks, etc.)
-*/}
-
-This is the introduction paragraph of your article. Write about your journey, 
-experience, or whatever topic you want to cover. **Bold text** and *italic text* 
-work as expected in markdown.
-
-## Section Header
-
-Use `##` for main sections and `###` for subsections. This helps organize your 
-content and creates a clear hierarchy.
-
-### Clickable Images
-
-Use `ImageLightbox` for images that users can click to view in full size:
+---
 
 <ImageLightbox 
-  src="/images/photos/Projects/Eden/image-1.avif" 
+  src="/images/photos/Articles/LISC/image-1.avif" 
+  alt="Description of the image for accessibility"
+/>
+
+**Lost In SalaColonia** — from walking through ancient ruins with a notebook in hand, to presenting a playable experience in front of industry professionals at **ISART Talents**.
+
+---
+
+## The Beginning — Visiting Chellah
+
+Before writing a single line of code, we visited **Chellah**.
+Walking through the ruins changed everything.
+
+The textures of the stone, the atmosphere, the silence broken by wind and birds — it wasn’t just historical, it was emotional. We didn’t want to “make a game about ruins.”  
+We wanted to capture the *feeling* of being there.
+
+
+<ImageRow 
+  images={[
+    "/images/photos/Articles/LISC/image-2.avif",
+    "/images/photos/Articles/LISC/image-3.avif"
+  ]}
+/>
+<ImageRow 
+  images={[
+    { src: "/images/photos/Articles/LISC/image-4.avif", alt: "First image" },
+    { src: "/images/photos/Articles/LISC/image-5.avif", alt: "Second image" }
+  ]}
+  alt="Team visiting Chellah for inspiration"
+/>
+
+During that visit, we asked ourselves:
+
+- What stories could this place inspire?
+- How do we translate atmosphere into mechanics?
+
+That day shaped the identity of Lost In SalaColonia.
+
+---
+
+## From Inspiration to Prototype
+
+Once we had a direction, we moved into rapid prototyping.
+
+<ImageRow 
+  images={[
+    { src: "/images/photos/Articles/LISC/image-6.avif", alt: "First image" },
+    { src: "/images/photos/Articles/LISC/image-7.avif", alt: "Second image" }
+  ]}
+  alt="Team visiting Chellah for inspiration"
+/>
+
+At first, it was overpowered. Then too limited. After several iterations, we tuned it to feel tactical and intentional rather than chaotic.
+
+That balance made exploration dynamic without breaking level design.
+
+---
+
+## Teamwork & Production Structure
+
+This project truly taught us what production means.
+
+We organized ourselves with:
+
+- Clear role distribution  
+- Weekly milestones  
+- Short daily check-ins  
+- Shared documentation for scope decisions  
+
+Instead of working in isolation, we kept constant communication between design, programming, and art.
+
+<ImageRow 
+  images={[
+    { src: "/images/photos/Articles/LISC/image-13.avif", alt: "Early greybox prototype" },
+    { src: "/images/photos/Articles/LISC/image-14.avif", alt: "Gameplay iteration phase" }
+  ]}
+  caption="Early prototypes evolving into playable systems"
+/>
+
+The biggest lesson?  
+Miscommunication costs more time than technical challenges.
+
+When designers and programmers align early, iteration becomes smooth.
+
+---
+
+## Preparing for ISART Talents
+
+After four months of learning and development, the moment came to present our project at **ISART Talents**.
+
+<ImageLightbox 
+  src="/images/photos/Articles/LISC/image-8.avif" 
   alt="Description of the image for accessibility"
 />
 <ImageRow 
   images={[
-    "/images/photos/Projects/Eden/image-1.avif",
-    "/images/photos/Projects/Eden/image-1.avif"
+    { src: "/images/photos/Articles/LISC/image-9.avif", alt: "First image" },
+    { src: "/images/photos/Articles/LISC/image-10.avif", alt: "Second image" }
   ]}
+  alt="Team visiting Chellah for inspiration"
 />
 <ImageRow 
   images={[
-    { src: "/images/photos/Projects/Eden/image-1.avif", alt: "First image" },
-    { src: "/images/photos/Projects/Eden/image-1.avif", alt: "Second image" }
+    { src: "/images/photos/Articles/LISC/image-11.avif", alt: "First image" },
+    { src: "/images/photos/Articles/LISC/image-12.avif", alt: "Second image" }
   ]}
-  caption="Optional caption for the image pair"
+  alt="Team visiting Chellah for inspiration"
 />
 
+The event brought together:
 
-### Videos
+- UIR students
+- Video game professionals  
+- Representatives from the French Embassy in Morocco
+- Other institutional partners  
 
-Use `ArticleVideo` to embed videos:
+We weren’t just showing a project. We were presenting months of growth.
 
-<ArticleVideo 
-  src="/images/photos/image-1.webm"
-  caption="Demo video showing the feature in action"
-  autoPlay={true}
-  loop={true}
-  muted={true}
-  controls={false}
-/>
+---
 
-{/* For videos with user controls: */}
-{/* 
-<ArticleVideo 
-  src="/path/to/video.mp4"
-  caption="Video with controls"
-  autoPlay={false}
-  loop={false}
-  muted={false}
-  controls={true}
-/>
-*/}
+## What Lost In SalaColonia Taught Me
 
-### 3D Carousel
+- Inspiration should come from real places and emotions.
+- Strong prototypes beat ambitious unfinished systems.
+- Playtesting reveals truths you can’t see yourself.
+- Team structure is as important as technical skill.
+- Presentation skills are part of being a game developer.
 
-Use `Carousel3D` to showcase multiple images in an interactive carousel:
+This project transformed how I approach design.  
+I stopped thinking only in features and started thinking in **player experience flows**.
 
-<Carousel3D 
-  images={[
-    '/images/photos/FavGames/minecraft.avif',
-    '/images/photos/FavGames/witcher3.avif',
-    '/images/photos/FavGames/diablo4.avif',
-    '/images/photos/FavGames/hades2.avif',
-    '/images/photos/FavGames/poe.avif'
-  ]}
-  autoPlay={true}
-  autoPlaySpeed={50}
-  aspectRatio="16/9"
-/>
+---
 
-### Links
+## Technical Growth
 
-Regular markdown links work normally:
-- [Internal link to about page](/about)
-- [External link to GitHub](https://github.com/AnasFiguigui)
+During the development of Lost In SalaColonia, I strengthened:
 
-External links automatically open in a new tab.
+- Gameplay system implementation  
+- Iterative level design workflows  
+- Debugging and optimization  
+- Cross-discipline collaboration  
+- Vertical slice production planning  
 
-### Code Blocks
+More than anything, I learned how to balance creativity with constraints.
 
-Use triple backticks for code blocks with syntax highlighting:
+---
 
-```javascript
-function hello() {
-  console.log('Hello from the article!')
-}
-```
+## Final Thoughts
 
-```python
-def greet(name):
-    return f"Hello, {name}!"
-```
+From Chellah’s ancient walls to the spotlight of ISART Talents, Lost In SalaColonia represents a key milestone in my development journey.
 
-### Lists
-
-**Unordered list:**
-- First item
-- Second item
-- Third item with nested items
-  - Nested item 1
-  - Nested item 2
-
-**Ordered list:**
-1. First step
-2. Second step
-3. Third step
-
-### Blockquotes
-
-> This is a blockquote. Use it to highlight important quotes or key takeaways 
-> from your article.
-
-### Inline Code
-
-Use backticks for `inline code` like variable names or short commands.
-
-## Technical Details
-
-When writing about technical topics, you can organize information in clear sections:
-
-- **Technology**: List the technologies used
-- **Platform**: Web, mobile, etc.
-- **Duration**: How long the project took
-
-## Conclusion
-
-Wrap up your article with final thoughts, lessons learned, or a call to action 
-for readers.
-
+It’s proof that great projects require structure, and meaningful games are built by teams who communicate, iterate, and believe in their vision.

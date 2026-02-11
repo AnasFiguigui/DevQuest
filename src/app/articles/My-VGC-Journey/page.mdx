@@ -2,10 +2,10 @@ import { ArticleLayout } from '@/components/ArticleLayout'
 
 export const article = {
   author: 'Anas Figuigui',
-  date: '2026-02-08',
-  title: 'Video Game Creator Program – From Start to Graduation',
+  date: '2025-11-10',
+  title: 'Video Game Creator Journey: Dailies, Moroccan Gaming Expo & Graduation',
   description:
-    'A brief description of what this article is about. This will appear in article lists and as the meta description.',
+    'From daily prototypes to pitching at Moroccan Gaming Expo 2025 and graduating from the Video Game Creator program — a journey of growth, teamwork, and community.',
 }
 
 export const metadata = {
@@ -15,153 +15,136 @@ export const metadata = {
 
 export default (props) => <ArticleLayout article={article} {...props} />
 
-{/* 
-  ============================================
-  ARTICLE TEMPLATE - HOW TO USE
-  ============================================
-  
-  1. Duplicate this folder and rename it (e.g., "my-new-article")
-  2. Update the article metadata above (author, date, title, description)
-  3. Replace this content with your article content
-  4. Use the components shown below for rich content
-  
-  Available components:
-  - ImageLightbox: Clickable image that opens in a modal
-  - ArticleVideo: Video player with optional controls
-  - Carousel3D: 3D image carousel
-  - Standard markdown (headers, lists, code blocks, etc.)
-*/}
+---
 
-This is the introduction paragraph of your article. Write about your journey, 
-experience, or whatever topic you want to cover. **Bold text** and *italic text* 
-work as expected in markdown.
+This year has been a turning point in my journey as a game developer.  
+From daily prototyping sessions to pitching at the **Moroccan Gaming Expo 2025**, and finally graduating from the **Video Game Creator (VGC) program**, every step shaped how I think about building games.
 
-## Section Header
+This isn’t just a recap — it’s a reflection on growth, discipline, and community.
 
-Use `##` for main sections and `###` for subsections. This helps organize your 
-content and creates a clear hierarchy.
+---
 
-### Clickable Images
+## The Power of Dailies
 
-Use `ImageLightbox` for images that users can click to view in full size:
+One of the most impactful habits I developed during the program was committing to **daily progress**.
+
+A “daily” wasn’t just about writing code. It meant:
+
+- Testing a gameplay idea  
+- Iterating on mechanics  
+- Improving player feedback  
+- Documenting design decisions  
+- Sharing progress with the team  
+
+Small improvements compound fast. A tweak in movement feel. A slight timing adjustment. A better sound cue.
+
+Over time, these tiny refinements turned rough prototypes into polished experiences.
+
+> Consistency beats intensity in game development.
+
+---
+
+## Moroccan Gaming Expo 2025 — A Defining Moment
+
+A month later, the energy of **MGE 2025 in Rabat** still resonates with me.
+
+Participating as part of the VGC program and representing my studio, **ExpertLevel Studio**, was a huge milestone.
+
+### What made it unforgettable:
+
+- Presenting our projects and receiving direct player feedback  
+- Pitching in front of a live audience — intense but incredibly rewarding  
+- Attending the *Clair Obscur: Expedition 33* conference  
+- Meeting inspiring industry professionals  
 
 <ImageLightbox 
-  src="/images/photos/Projects/Eden/image-1.avif" 
-  alt="Description of the image for accessibility"
+  src="/images/articles/vgc/mge-pitch.avif" 
+  alt="Pitching at Moroccan Gaming Expo 2025"
 />
+
+The strongest takeaway wasn’t just exposure — it was realizing how fast Morocco’s gaming ecosystem is evolving.  
+Through collaboration between **MJCC, Institut Français, ISART Digital**, and many partners, real opportunities are being built for young creators.
+
+And being part of that movement felt powerful.
+
+---
+
+## Graduation — More Than a Certificate
+
+After nine months of training, teamwork, late builds, and playtests…  
+we officially completed the **Video Game Creator 2025 program**.
+
 <ImageRow 
   images={[
-    "/images/photos/Projects/Eden/image-1.avif",
-    "/images/photos/Projects/Eden/image-1.avif"
+    { src: "/images/articles/vgc/graduation-1.avif", alt: "VGC Graduation Ceremony" },
+    { src: "/images/articles/vgc/graduation-2.avif", alt: "Receiving certificate" }
   ]}
-/>
-<ImageRow 
-  images={[
-    { src: "/images/photos/Projects/Eden/image-1.avif", alt: "First image" },
-    { src: "/images/photos/Projects/Eden/image-1.avif", alt: "Second image" }
-  ]}
-  caption="Optional caption for the image pair"
+  caption="Video Game Creator 2025 Graduation Ceremony"
 />
 
+Receiving the certificate was meaningful — but what truly mattered was everything behind it:
 
-### Videos
+- Learning how to design a game from concept to production  
+- Understanding project management in real conditions  
+- Collaborating across disciplines  
+- Pitching and presenting professionally  
 
-Use `ArticleVideo` to embed videos:
+I’m deeply grateful to:
 
-<ArticleVideo 
-  src="/images/photos/image-1.webm"
-  caption="Demo video showing the feature in action"
-  autoPlay={true}
-  loop={true}
-  muted={true}
-  controls={false}
-/>
+- Ambassade de France au Maroc  
+- MJCC  
+- ISART Digital  
+- Université Internationale de Rabat  
+- ISMAC  
+- All mentors, coordinators, and teachers  
 
-{/* For videos with user controls: */}
-{/* 
-<ArticleVideo 
-  src="/path/to/video.mp4"
-  caption="Video with controls"
-  autoPlay={false}
-  loop={false}
-  muted={false}
-  controls={true}
-/>
-*/}
+And especially my classmates — the creativity, teamwork, and energy we shared made this journey unforgettable.
 
-### 3D Carousel
+---
 
-Use `Carousel3D` to showcase multiple images in an interactive carousel:
+## What This Year Taught Me
 
-<Carousel3D 
-  images={[
-    '/images/photos/FavGames/minecraft.avif',
-    '/images/photos/FavGames/witcher3.avif',
-    '/images/photos/FavGames/diablo4.avif',
-    '/images/photos/FavGames/hades2.avif',
-    '/images/photos/FavGames/poe.avif'
-  ]}
-  autoPlay={true}
-  autoPlaySpeed={50}
-  aspectRatio="16/9"
-/>
+1. **Discipline creates freedom.**  
+   Structured workflows allow creativity to thrive.
 
-### Links
+2. **Community accelerates growth.**  
+   Feedback from peers and professionals shortens learning curves dramatically.
 
-Regular markdown links work normally:
-- [Internal link to about page](/about)
-- [External link to GitHub](https://github.com/AnasFiguigui)
+3. **Shipping matters more than perfection.**  
+   A playable prototype teaches more than a perfect idea.
 
-External links automatically open in a new tab.
+4. **Game development is human.**  
+   Behind every build are conversations, debates, laughs, and shared pressure.
 
-### Code Blocks
+---
 
-Use triple backticks for code blocks with syntax highlighting:
+## Technical Evolution
 
-```javascript
-function hello() {
-  console.log('Hello from the article!')
-}
-```
+During the program, I strengthened:
 
-```python
-def greet(name):
-    return f"Hello, {name}!"
-```
+- **Gameplay systems implementation**
+- **Rapid prototyping workflows**
+- **Production pipelines**
+- **Pitch structuring & presentation clarity**
+- **Team coordination in milestone-based development**
 
-### Lists
+The shift wasn’t just technical — it was mental.  
+I started thinking less like “someone making a game” and more like a **developer building production-ready systems**.
 
-**Unordered list:**
-- First item
-- Second item
-- Third item with nested items
-  - Nested item 1
-  - Nested item 2
+---
 
-**Ordered list:**
-1. First step
-2. Second step
-3. Third step
+## Looking Forward
 
-### Blockquotes
+This graduation doesn’t feel like an ending.
 
-> This is a blockquote. Use it to highlight important quotes or key takeaways 
-> from your article.
+It feels like a launchpad.
 
-### Inline Code
+New projects.  
+Stronger vision.  
+Bigger ambition.
 
-Use backticks for `inline code` like variable names or short commands.
+The journey continues — and now I build with more clarity, confidence, and purpose.
 
-## Technical Details
+---
 
-When writing about technical topics, you can organize information in clear sections:
-
-- **Technology**: List the technologies used
-- **Platform**: Web, mobile, etc.
-- **Duration**: How long the project took
-
-## Conclusion
-
-Wrap up your article with final thoughts, lessons learned, or a call to action 
-for readers.
-
+> This certificate marks not the end of a program, but the beginning of new adventures.

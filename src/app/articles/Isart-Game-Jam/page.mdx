@@ -2,10 +2,10 @@ import { ArticleLayout } from '@/components/ArticleLayout'
 
 export const article = {
   author: 'Anas Figuigui',
-  date: '2025-10-03',
-  title: 'ISART Game Jam - Morocco 2100 (Game Jam Breakdown)',
+  date: '2025-10-05',
+  title: 'Morocco 2100 — My First Game Jam Experience',
   description:
-    'A brief description of what this article is about. This will appear in article lists and as the meta description.',
+    'How I built my first playable video game in 4 days during the Morocco 2100 game jam, and what that intense experience taught me about teamwork and rapid development.',
 }
 
 export const metadata = {
@@ -15,153 +15,76 @@ export const metadata = {
 
 export default (props) => <ArticleLayout article={article} {...props} />
 
-{/* 
-  ============================================
-  ARTICLE TEMPLATE - HOW TO USE
-  ============================================
-  
-  1. Duplicate this folder and rename it (e.g., "my-new-article")
-  2. Update the article metadata above (author, date, title, description)
-  3. Replace this content with your article content
-  4. Use the components shown below for rich content
-  
-  Available components:
-  - ImageLightbox: Clickable image that opens in a modal
-  - ArticleVideo: Video player with optional controls
-  - Carousel3D: 3D image carousel
-  - Standard markdown (headers, lists, code blocks, etc.)
-*/}
+---
 
-This is the introduction paragraph of your article. Write about your journey, 
-experience, or whatever topic you want to cover. **Bold text** and *italic text* 
-work as expected in markdown.
+My first video game was built in **four intense days**.
 
-## Section Header
+During the **Morocco 2100** game jam, organized by ISART Digital as part of the Video Game Creator program, 55 participants came together in Rabat to imagine the future of Morocco through interactive experiences.
 
-Use `##` for main sections and `###` for subsections. This helps organize your 
-content and creates a clear hierarchy.
+And somehow… we shipped a playable game.
 
-### Clickable Images
+---
 
-Use `ImageLightbox` for images that users can click to view in full size:
+## The Challenge
+
+From September 29 to October 2, teams from:
+
+- ISMAC  
+- Université Internationale de Rabat  
+- Université Ibn Tofaïl  
+
+worked under one theme:
+
+> **“Morocco 2100”**
+
+The goal wasn’t perfection.  
+It was to learn, collaborate, and create something playable — fast.
+
+---
+
+## Our Process
+
+We kept it simple:
+
+1. Define one strong core mechanic  
+2. Build a small vertical slice  
+3. Playtest constantly  
+4. Polish only what matters  
+
+Game jams teach you something very quickly:
+
+Scope is everything.
+
+Instead of trying to build a big game, we focused on making one mechanic feel good. That decision saved us.
 
 <ImageLightbox 
-  src="/images/photos/Projects/Eden/image-1.avif" 
-  alt="Description of the image for accessibility"
-/>
-<ImageRow 
-  images={[
-    "/images/photos/Projects/Eden/image-1.avif",
-    "/images/photos/Projects/Eden/image-1.avif"
-  ]}
-/>
-<ImageRow 
-  images={[
-    { src: "/images/photos/Projects/Eden/image-1.avif", alt: "First image" },
-    { src: "/images/photos/Projects/Eden/image-1.avif", alt: "Second image" }
-  ]}
-  caption="Optional caption for the image pair"
+  src="/images/articles/gamejam/morocco2100-team.avif" 
+  alt="Team working during Morocco 2100 game jam"
 />
 
+---
 
-### Videos
+## What I Learned
 
-Use `ArticleVideo` to embed videos:
+- Team communication is more important than technical perfection  
+- A finished small game > an ambitious unfinished one  
+- Fast iteration beats long planning  
+- Pressure reveals your strengths and weaknesses  
 
-<ArticleVideo 
-  src="/images/photos/image-1.webm"
-  caption="Demo video showing the feature in action"
-  autoPlay={true}
-  loop={true}
-  muted={true}
-  controls={false}
-/>
+Seeing people play something we built in less than a week was surreal.
 
-{/* For videos with user controls: */}
-{/* 
-<ArticleVideo 
-  src="/path/to/video.mp4"
-  caption="Video with controls"
-  autoPlay={false}
-  loop={false}
-  muted={false}
-  controls={true}
-/>
-*/}
+---
 
-### 3D Carousel
+## Why It Matters
 
-Use `Carousel3D` to showcase multiple images in an interactive carousel:
+This jam wasn’t just an event.
 
-<Carousel3D 
-  images={[
-    '/images/photos/FavGames/minecraft.avif',
-    '/images/photos/FavGames/witcher3.avif',
-    '/images/photos/FavGames/diablo4.avif',
-    '/images/photos/FavGames/hades2.avif',
-    '/images/photos/FavGames/poe.avif'
-  ]}
-  autoPlay={true}
-  autoPlaySpeed={50}
-  aspectRatio="16/9"
-/>
+It was the moment I realized I could take an idea, collaborate with a team, and turn it into a **real, playable experience** under tight constraints.
 
-### Links
+It gave me confidence.
 
-Regular markdown links work normally:
-- [Internal link to about page](/about)
-- [External link to GitHub](https://github.com/AnasFiguigui)
+And it made me hungry to build more.
 
-External links automatically open in a new tab.
+---
 
-### Code Blocks
-
-Use triple backticks for code blocks with syntax highlighting:
-
-```javascript
-function hello() {
-  console.log('Hello from the article!')
-}
-```
-
-```python
-def greet(name):
-    return f"Hello, {name}!"
-```
-
-### Lists
-
-**Unordered list:**
-- First item
-- Second item
-- Third item with nested items
-  - Nested item 1
-  - Nested item 2
-
-**Ordered list:**
-1. First step
-2. Second step
-3. Third step
-
-### Blockquotes
-
-> This is a blockquote. Use it to highlight important quotes or key takeaways 
-> from your article.
-
-### Inline Code
-
-Use backticks for `inline code` like variable names or short commands.
-
-## Technical Details
-
-When writing about technical topics, you can organize information in clear sections:
-
-- **Technology**: List the technologies used
-- **Platform**: Web, mobile, etc.
-- **Duration**: How long the project took
-
-## Conclusion
-
-Wrap up your article with final thoughts, lessons learned, or a call to action 
-for readers.
-
+Sometimes, growth happens in four days.
