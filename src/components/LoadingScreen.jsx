@@ -113,13 +113,13 @@ export function LoadingScreen({ onLoadingComplete }) {
         ) : (
           // Fallback spinner while loading animation JSON
           <div className="w-full h-full flex items-center justify-center">
-            <div className="w-16 h-16 border-4 border-indigo-500/30 border-t-indigo-500 rounded-full animate-spin" />
+            <div className="w-16 h-16 border-4 border-indigo-400/30 border-t-indigo-400 rounded-full animate-spin" />
           </div>
         )}
       </div>
 
       {/* Loading text */}
-      <div className="mt-8 flex flex-col items-center gap-4">
+      <div className="flex flex-col items-center gap-4">
         <p className="text-lg font-medium text-white tracking-wider animate-pulse">
           Loading...
         </p>
@@ -127,7 +127,7 @@ export function LoadingScreen({ onLoadingComplete }) {
         {/* Progress bar */}
         <div className="w-48 h-1 bg-zinc-800 rounded-full overflow-hidden">
           <div
-            className="h-full bg-indigo-500 transition-all duration-300 ease-out"
+            className="h-full bg-indigo-400/90 transition-all duration-300 ease-out"
             style={{ width: `${progress}%` }}
           />
         </div>
