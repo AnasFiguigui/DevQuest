@@ -15,7 +15,7 @@ const tabs = [
   { name: 'All Projects', value: 'all' },
   { name: 'Games', value: 'game' },
   { name: 'Websites', value: 'website' },
-  { name: 'Mods', value: 'mod' },
+  { name: 'Mods & Tools', value: 'mod' },
 ]
 
 function getCountByCategory(category) {
